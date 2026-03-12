@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EnMS Improvement Opportunity Finder</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <style>
+    :root {
+      --navy: #0A2342;
+      --blue: #1B4F8A;
+      --teal: #00A878;
+      --teal-light: #E8F9F4;
+      --bg: #F7F8FC;
+      --white: #FFFFFF;
+      --text: #1A202C;
+      --muted: #718096;
+      --border: #E2E8F0;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+      --shadow-lg: 0 4px 16px rgba(0,0,0,0.12);
+      --radius: 12px;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Header ─────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, var(--teal) 100%);
+      color: #fff;
+      padding: 48px 0 52px;
+      text-align: center;
+    }
+    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; }
+    header p { font-size: 1.05rem; opacity: .85; margin-top: 6px; max-width: 620px; margin-inline: auto; }
+    .header-stats {
+      display: flex; gap: 32px; justify-content: center; margin-top: 18px;
+      font-size: .88rem; opacity: .75;
+    }
+    .header-stats span { display: inline-flex; align-items: center; gap: 5px; }
+
+    /* ── Form ───────────────────────────────────── */
+    .form-section { margin-top: -28px; position: relative; z-index: 2; padding-bottom: 40px; }
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 32px;
+    }
+    .card h2 { font-size: 1.15rem; font-weight: 600; margin-bottom: 20px; color: var(--navy); }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .form-group label {
+      display: block; font-weight: 600; font-size: .85rem; margin-bottom: 5px;
+    }
+    .form-group input, .form-group select {
+      width: 100%; padding: 10px 14px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: .95rem; background: #fff;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none; border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0,168,120,0.15);
+    }
+    .optional { font-weight: 400; color: var(--muted); font-size: .78rem; }
+
+    /* NAICS search */
+    .naics-wrapper { position: relative; }
+    .naics-dropdown {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: #fff; border: 1.5px solid var(--border); border-top: none;
+      border-radius: 0 0 8px 8px; max-height: 220px; overflow-y: auto;
+      z-index: 10; box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    }
+    .naics-item {
+      padding: 9px 14px; cursor: pointer; font-size: .88rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .naics-item:hover { background: var(--teal-light); }
+    .naics-item strong { color: var(--navy); margin-right: 6px; }
+
+    /* Energy type checkboxes */
+    .energy-types { grid-column: 1 / -1; }
+    .energy-types label.group-label { display: block; font-weight: 600; font-size: .85rem; margin-bottom: 8px; }
+    .checkbox-row { display: flex; flex-wrap: wrap; gap: 16px; }
+    .checkbox-row label {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .9rem; font-weight: 400; cursor: pointer;
+    }
+    .checkbox-row input[type="checkbox"] {
+      width: 16px; height: 16px; accent-color: var(--teal);
+    }
+
+    /* Submit + Reset */
+    .btn-row { margin-top: 24px; display: flex; gap: 12px; }
+    #submit-btn {
+      flex: 1; padding: 14px;
+      background: var(--teal); color: #fff; border: none; border-radius: 8px;
+      font-size: 1.05rem; font-weight: 600; cursor: pointer;
+      transition: background .2s;
+    }
+    #submit-btn:hover { background: #009968; }
+    #submit-btn:disabled { background: #94a3b8; cursor: wait; }
+    #reset-btn {
+      padding: 14px 28px; background: var(--white); color: var(--muted);
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: .95rem; font-weight: 600; cursor: pointer;
+      transition: all .2s;
+    }
+    #reset-btn:hover { border-color: #e53e3e; color: #e53e3e; }
+
+    /* Field hints */
+    .hint {
+      font-size: .78rem; color: var(--teal); margin-top: 5px;
+      min-height: 18px; line-height: 1.35;
+      opacity: 0; transform: translateY(-4px);
+      transition: opacity .25s, transform .25s;
+    }
+    .hint.visible { opacity: 1; transform: translateY(0); }
+    .hint .hint-label { color: var(--muted); }
+    .hint .hint-range { font-weight: 600; }
+    .hint .hint-use {
+      display: inline-block; margin-left: 6px; color: var(--teal);
+      text-decoration: underline; cursor: pointer; font-weight: 500;
+    }
+    .hint .hint-use:hover { color: var(--navy); }
+    .hint .hint-sample { color: var(--muted); font-size: .72rem; }
+
+    /* NAICS chip suggestions */
+    .naics-suggestions {
+      display: none; margin-top: 6px; display: flex; flex-wrap: wrap; gap: 5px;
+    }
+    .naics-suggestions.visible { display: flex; }
+    .naics-chip {
+      display: inline-block; padding: 3px 10px; border: 1px solid var(--border);
+      border-radius: 14px; font-size: .75rem; color: var(--text);
+      background: #fff; cursor: pointer; transition: all .15s; white-space: nowrap;
+    }
+    .naics-chip:hover { border-color: var(--teal); background: var(--teal-light); color: var(--navy); }
+    .naics-chip .chip-count { color: var(--muted); font-size: .68rem; margin-left: 3px; }
+
+    /* ── Results ────────────────────────────────── */
+    .results-section { padding-bottom: 60px; }
+    .summary-banner {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: #fff; padding: 28px 32px; border-radius: var(--radius);
+      margin-bottom: 28px;
+    }
+    .summary-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+    .stat { text-align: center; min-width: 120px; }
+    .stat .stat-value { font-size: 1.6rem; font-weight: 700; }
+    .stat .stat-label { font-size: .8rem; opacity: .85; margin-top: 2px; }
+    .match-desc { margin-top: 14px; font-size: .9rem; opacity: .8; }
+
+    /* Chart sections */
+    .chart-section {
+      background: var(--white); border-radius: var(--radius);
+      box-shadow: var(--card-shadow); padding: 24px; margin-bottom: 28px;
+    }
+    .chart-section h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 16px; }
+    .chart-container { position: relative; height: 350px; }
+    .charts-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px; margin-bottom: 28px;
+    }
+    .charts-grid .chart-section { margin-bottom: 0; }
+    .chart-container-sm { position: relative; height: 280px; }
+
+    /* Chart selector cards */
+    .chart-selector-row {
+      display: flex; gap: 12px; margin-bottom: 20px;
+    }
+    .chart-card {
+      flex: 1; background: var(--white); border: 2px solid var(--border);
+      border-radius: var(--radius); padding: 18px 14px; text-align: center;
+      cursor: pointer; transition: all .2s; min-width: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .chart-card:hover {
+      border-color: var(--teal); box-shadow: 0 2px 8px rgba(0,168,120,0.15);
+      transform: translateY(-2px);
+    }
+    .chart-card.active {
+      border-color: var(--teal); background: var(--teal-light);
+      box-shadow: 0 2px 12px rgba(0,168,120,0.2);
+    }
+    .chart-card-icon { font-size: 2.2rem; margin-bottom: 8px; display: block; line-height: 1.2; }
+    .chart-card-title {
+      font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 5px;
+    }
+    .chart-card-stat { font-size: 17px; font-weight: 800; color: var(--teal); letter-spacing: -0.01em; }
+    .chart-card-stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; font-weight: 500; }
+
+    /* Expanded chart area */
+    .chart-expand-area {
+      background: var(--white); border-radius: var(--radius);
+      box-shadow: var(--card-shadow); padding: 24px; margin-bottom: 28px;
+    }
+    .chart-panel { display: none; }
+    .chart-panel.active { display: block; }
+    .chart-panel .chart-container-sm { height: 350px; }
+
+    /* Chart header with info button */
+    .chart-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .chart-header h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0; }
+    .info-btn {
+      width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--border);
+      background: var(--white); color: var(--muted); font-size: .75rem; font-weight: 700;
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0; line-height: 1;
+    }
+    .info-btn:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
+    .info-btn.active { border-color: var(--teal); color: #fff; background: var(--teal); }
+    .chart-info-panel {
+      display: none; background: #f8fafc; border: 1px solid var(--border);
+      border-radius: 8px; padding: 14px 18px; margin-bottom: 14px;
+      font-size: .82rem; line-height: 1.55; color: var(--text);
+      animation: infoSlide .2s ease-out;
+    }
+    .chart-info-panel.visible { display: block; }
+    @keyframes infoSlide { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    .chart-info-panel strong { color: var(--navy); }
+    .chart-info-panel ul { margin: 4px 0 4px 18px; }
+    .chart-info-panel li { margin-bottom: 2px; }
+    .chart-info-section { margin-bottom: 8px; }
+    .chart-info-section:last-child { margin-bottom: 0; }
+    .axis-explanation {
+      text-align: center; font-size: .75rem; color: var(--muted);
+      margin-top: 6px; line-height: 1.4; padding: 0 20px;
+    }
+
+    /* Sort controls */
+    .sort-bar {
+      display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; align-items: center;
+    }
+    .sort-bar span { font-size: .85rem; font-weight: 600; color: var(--muted); margin-right: 4px; }
+    .sort-btn {
+      padding: 6px 14px; border: 1.5px solid var(--border); border-radius: 20px;
+      background: #fff; font-size: .82rem; font-weight: 500; cursor: pointer;
+      transition: all .15s;
+    }
+    .sort-btn:hover { border-color: var(--teal); color: var(--teal); }
+    .sort-btn.active { background: var(--teal); color: #fff; border-color: var(--teal); }
+
+    /* Recommendation cards */
+    .recs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; }
+    .rec-card {
+      background: var(--white); position: relative; height: 100%;
+    }
+    .rec-card .card-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 18px 0;
+    }
+    .rank-badge {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .85rem; color: #fff; flex-shrink: 0;
+    }
+    .rank-1, .rank-2, .rank-3 { background: var(--teal); }
+    .rank-4, .rank-5, .rank-6 { background: var(--blue); }
+    .rank-default { background: var(--muted); }
+    .card-title-area { flex: 1; }
+    .card-title-area .arc-icon { font-size: 1.1rem; margin-right: 4px; }
+    .card-title-area .arc-label { font-weight: 600; font-size: .95rem; }
+    .impact-badge {
+      display: inline-block; padding: 2px 10px; border-radius: 12px;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    }
+    .impact-high { background: #d1fae5; color: #065f46; }
+    .impact-medium { background: #fef3c7; color: #92400e; }
+    .impact-low { background: #fee2e2; color: #991b1b; }
+
+    .rec-card .body { padding: 12px 18px 18px; }
+    .metrics {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 10px;
+    }
+    .metric {
+      text-align: center; padding: 8px 4px; background: var(--bg); border-radius: 8px;
+    }
+    .metric .val { font-size: .95rem; font-weight: 700; }
+    .metric .val.savings { color: var(--teal); }
+    .metric .lbl { font-size: .68rem; color: var(--muted); margin-top: 1px; }
+
+    /* Implementation rate bar */
+    .impl-bar-wrap {
+      margin-top: 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .impl-bar-bg {
+      flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;
+    }
+    .impl-bar-fill { height: 100%; background: var(--teal); border-radius: 4px; transition: width .5s; }
+    .impl-label { font-size: .75rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
+
+    .sample-size {
+      font-size: .75rem; color: var(--muted); margin-top: 8px;
+    }
+
+    /* EnMS links in rec card */
+    .enms-link {
+      display: inline-block; margin-top: 8px; font-size: .78rem;
+      color: var(--blue); cursor: pointer; font-weight: 500;
+    }
+    .enms-link:hover { color: var(--teal); text-decoration: underline; }
+
+    /* ── Flip Card 3D ─────────────────────────── */
+    .flip-card {
+      perspective: 1000px; min-height: 430px; cursor: pointer;
+    }
+    .flip-card:hover { transform: translateY(-3px); }
+    .flip-card:hover .flip-card-front { box-shadow: var(--shadow-lg); }
+    .flip-card-inner {
+      position: relative; width: 100%; height: 100%; min-height: 430px;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .flip-card-front {
+      background: var(--white); box-shadow: var(--card-shadow); z-index: 2;
+    }
+    .flip-card-back {
+      background: var(--teal-light); box-shadow: var(--card-shadow);
+      transform: rotateY(180deg); z-index: 1;
+      display: flex; flex-direction: column; padding: 20px;
+      overflow-y: auto;
+    }
+    .flip-back-header {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+      padding-bottom: 10px; border-bottom: 2px solid var(--teal);
+    }
+    .flip-back-header .arc-icon { font-size: 1.3rem; }
+    .flip-back-header .arc-label { font-weight: 700; font-size: .95rem; color: var(--navy); }
+    .flip-back-section { margin-bottom: 12px; }
+    .flip-back-section:last-child { margin-bottom: 0; }
+    .flip-back-section h4 {
+      font-size: .72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .5px; color: var(--teal); margin-bottom: 4px;
+    }
+    .flip-back-section p {
+      font-size: .82rem; color: var(--navy); line-height: 1.5; margin: 0;
+    }
+    .flip-back-section ul { list-style: none; padding: 0; margin: 0; }
+    .flip-back-section ul li {
+      font-size: .8rem; color: var(--navy); padding: 3px 0 3px 18px; position: relative;
+    }
+    .flip-back-section ul li::before {
+      content: '\2713'; position: absolute; left: 0; color: var(--teal); font-weight: 700;
+    }
+    .flip-indicator {
+      position: absolute; bottom: 10px; right: 14px;
+      font-size: .68rem; color: var(--muted);
+      display: flex; align-items: center; gap: 4px;
+      opacity: 0.5; transition: opacity .2s;
+    }
+    .flip-card:hover .flip-indicator { opacity: 1; color: var(--teal); }
+    .flip-back-tap {
+      margin-top: auto; text-align: center; font-size: .68rem; color: var(--muted);
+      padding-top: 8px; opacity: 0.6;
+    }
+
+    /* ── EnMS Case Studies Section ──────────────── */
+    .enms-section { margin-top: 36px; }
+    .enms-section h3 { font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 16px; }
+    .enms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .enms-card {
+      background: var(--white); border-radius: var(--radius);
+      box-shadow: var(--card-shadow); padding: 18px;
+      border-left: 4px solid var(--teal);
+    }
+    .enms-card .company { font-weight: 600; font-size: .95rem; margin-bottom: 4px; }
+    .enms-card .industry-line { font-size: .82rem; color: var(--muted); margin-bottom: 8px; }
+    .enms-card .source-badge {
+      display: inline-block; padding: 2px 8px; border-radius: 10px;
+      font-size: .7rem; font-weight: 600;
+    }
+    .source-iso { background: #dbeafe; color: #1e40af; }
+    .source-sep { background: #fef3c7; color: #92400e; }
+    .source-ready { background: #d1fae5; color: #065f46; }
+    .source-default { background: #f1f5f9; color: var(--muted); }
+    .enms-card .savings-line { margin-top: 8px; font-size: .85rem; }
+    .enms-card .improvement { color: var(--teal); font-weight: 700; }
+    .enms-card .year-line { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+
+    /* Loading */
+    .loader { display: none; text-align: center; padding: 40px; }
+    .spinner {
+      width: 36px; height: 36px; border: 3px solid var(--border);
+      border-top-color: var(--teal); border-radius: 50%;
+      animation: spin .7s linear infinite; margin: 0 auto 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── US Facility Map ─────────────────── */
+    .map-section {
+      padding: 24px 0 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .map-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      padding: 20px 24px 16px;
+      overflow: hidden;
+    }
+    .map-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .map-header h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 0;
+    }
+    .map-subtitle {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    /* Sector filter chips */
+    .sector-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    .sector-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--text);
+      background: #fff;
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .sector-chip:hover {
+      border-color: currentColor;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .sector-chip.active {
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .sector-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .sector-chip .sector-count {
+      font-size: .68rem;
+      opacity: 0.7;
+    }
+    .sector-chip-all {
+      font-weight: 600;
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+    .sector-chip-all.active {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    /* Map SVG container */
+    .map-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 975 / 610;
+      max-height: 480px;
+    }
+    .map-container svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .state-path {
+      fill: #E8EDF2;
+      stroke: #fff;
+      stroke-width: 0.8;
+      transition: fill .2s;
+    }
+    .state-path:hover {
+      fill: #D4DCE6;
+    }
+    .state-path.highlighted {
+      fill: #C7D3E0;
+      stroke: var(--navy);
+      stroke-width: 1.2;
+    }
+
+    /* Map bubbles */
+    .map-bubble {
+      cursor: pointer;
+      transition: opacity .3s;
+    }
+    .map-bubble:hover {
+      filter: brightness(1.15);
+    }
+    .bubble-label {
+      pointer-events: none;
+      font-size: 9px;
+      font-weight: 700;
+      fill: #fff;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    /* Map tooltip */
+    .map-tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: var(--navy);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: .8rem;
+      line-height: 1.45;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      z-index: 20;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity .15s, transform .15s;
+      max-width: 260px;
+      white-space: nowrap;
+    }
+    .map-tooltip.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .tt-state {
+      font-weight: 700;
+      font-size: .88rem;
+      margin-bottom: 4px;
+    }
+    .tt-total {
+      color: #4DE0B0;
+      font-weight: 600;
+    }
+    .tt-sector {
+      opacity: 0.85;
+      font-size: .75rem;
+    }
+    .tt-cta {
+      margin-top: 6px;
+      font-size: .7rem;
+      opacity: 0.6;
+      font-style: italic;
+    }
+
+    /* Footer */
+    footer { text-align: center; padding: 32px 0; font-size: .8rem; color: var(--muted); }
+    footer a { color: var(--teal); text-decoration: none; }
+
+    /* Welcome popup */
+    .welcome-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9998; align-items: center; justify-content: center; padding: 1.5rem; }
+    .welcome-overlay.visible { display: flex; }
+    .welcome-popup { background: white; border-radius: 16px; padding: 2rem; max-width: 420px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .welcome-popup h3 { font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 1rem; }
+    .welcome-popup ul { text-align: left; list-style: none; padding: 0; margin: 0 0 1.5rem 0; }
+    .welcome-popup ul li { font-size: 0.82rem; color: #5a6a6e; line-height: 1.5; padding: 0.5rem 0; border-bottom: 1px solid #f0f0f0; padding-left: 1.25rem; position: relative; }
+    .welcome-popup ul li:last-child { border-bottom: none; }
+    .welcome-popup ul li::before { content: ""; position: absolute; left: 0; top: 0.75rem; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+    .welcome-popup button { background: var(--teal); color: white; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; cursor: pointer; }
+    .welcome-popup button:hover { background: #009968; }
+    /* Mobile popup */
+    .mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; padding: 1.5rem; }
+    .mobile-popup { background: white; border-radius: 16px; padding: 2rem; max-width: 340px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .mobile-popup h3 { font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.75rem; }
+    .mobile-popup p { font-size: 0.85rem; color: #5a6a6e; line-height: 1.5; margin-bottom: 1.25rem; }
+    .mobile-popup button { background: var(--teal); color: white; border: none; padding: 0.6rem 1.5rem; border-radius: 8px; font-size: 0.85rem; font-weight: 500; cursor: pointer; }
+    @media (max-width: 768px) { .mobile-overlay { display: flex; } }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .recs-grid { grid-template-columns: 1fr; }
+      .enms-grid { grid-template-columns: 1fr; }
+      .summary-stats { gap: 16px; }
+      .stat { min-width: 80px; }
+      header { padding: 36px 0 44px; }
+      header h1 { font-size: 1.5rem; }
+      .header-stats { flex-direction: column; gap: 4px; }
+      .chart-container { height: 280px; }
+      .chart-selector-row { flex-wrap: wrap; }
+      .chart-card { flex: 1 1 calc(50% - 6px); min-width: calc(50% - 6px); }
+      .flip-card, .flip-card-inner { min-height: 430px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .map-container { max-height: 300px; }
+      .sector-legend { gap: 4px; }
+      .sector-chip { padding: 3px 8px; font-size: .7rem; }
+      .map-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .bubble-label { font-size: 7px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Welcome Popup -->
+  <div class="welcome-overlay" id="welcomePopup">
+    <div class="welcome-popup">
+      <h3>Welcome to the EnMS Improvement Opportunity Finder</h3>
+      <ul>
+        <li>This tool uses publicly available data from the DOE Industrial Assessment Center (IAC) database to help identify energy efficiency opportunities for industrial facilities</li>
+        <li>Enter your facility details to get personalized recommendations based on thousands of real industrial energy assessments across the U.S.</li>
+        <li>Intended for informational and research purposes only — recommendations should be validated by a qualified energy professional</li>
+        <li><span>While Klimate Consulting does its best to review, verify, and ensure accuracy of all data and analysis presented, errors may occur. If you notice any issues, please <a href="https://www.klimateconsulting.com/#contact" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:underline;">contact us</a> or email data@klimateconsulting.com</span></li>
+      </ul>
+      <button onclick="dismissWelcome()">Start Exploring</button>
+    </div>
+  </div>
+
+  <!-- Mobile Popup -->
+  <div class="mobile-overlay" id="mobilePopup">
+    <div class="mobile-popup">
+      <h3>Best on Desktop</h3>
+      <p>This dashboard is optimized for desktop screens. Some charts and interactive features may not display well on smaller devices.</p>
+      <button onclick="document.getElementById('mobilePopup').style.display='none'">Continue Anyway</button>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <a href="https://data.klimateconsulting.com" style="color:rgba(255,255,255,0.7);font-size:0.82rem;text-decoration:none;display:inline-block;margin-bottom:8px;">&larr; Back to Dashboards</a>
+      <h1>EnMS Improvement Opportunity Finder</h1>
+      <p>Enter your facility details to discover energy efficiency recommendations from thousands of real industrial assessments.</p>
+      <div class="header-stats" id="header-stats"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ── US Facility Map ──────────────────── -->
+    <section class="map-section">
+      <div class="container">
+        <div class="map-card">
+          <div class="map-header">
+            <h2>Explore Facilities Across the US</h2>
+            <span class="map-subtitle">Click a bubble to search that state's industry</span>
+          </div>
+          <div class="sector-legend" id="sector-legend"></div>
+          <div class="map-container" id="map-container">
+            <div class="map-tooltip" id="map-tooltip"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Form ──────────────────────────────── -->
+    <section class="form-section">
+      <div class="container">
+        <div class="card">
+          <h2>Your Facility Profile</h2>
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="naics-search">Industry (NAICS Code)</label>
+              <div class="naics-wrapper">
+                <input type="text" id="naics-search" placeholder="Type code or industry name&hellip;" autocomplete="off">
+                <div class="naics-dropdown" id="naics-dropdown"></div>
+              </div>
+              <div class="naics-suggestions" id="naics-suggestions"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="state">State</label>
+              <select id="state">
+                <option value="">Select state&hellip;</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="employees">Number of Employees</label>
+              <input type="number" id="employees" placeholder="e.g. 150" min="1">
+              <div class="hint" id="employees-hint"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="plant-area">Facility Size (sq ft)</label>
+              <input type="number" id="plant-area" placeholder="e.g. 50000" min="1">
+              <div class="hint" id="plant-area-hint"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="sales">Annual Revenue ($)</label>
+              <input type="number" id="sales" placeholder="e.g. 10000000" min="0">
+              <div class="hint" id="sales-hint"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="energy-cost">Annual Energy Cost ($) <span class="optional">optional</span></label>
+              <input type="number" id="energy-cost" placeholder="e.g. 500000" min="0">
+              <div class="hint" id="energy-cost-hint"></div>
+            </div>
+
+            <div class="energy-types">
+              <label class="group-label">Energy Types Used <span class="optional">optional — filters results</span></label>
+              <div class="checkbox-row">
+                <label><input type="checkbox" name="energy_type" value="electricity"> Electricity</label>
+                <label><input type="checkbox" name="energy_type" value="natural_gas"> Natural Gas</label>
+                <label><input type="checkbox" name="energy_type" value="steam"> Steam</label>
+                <label><input type="checkbox" name="energy_type" value="fuel_oil"> Fuel Oil / Propane</label>
+              </div>
+            </div>
+
+          </div>
+          <div class="btn-row">
+            <button id="submit-btn">Find Recommendations &rarr;</button>
+            <button id="reset-btn" type="button">Reset</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Loader ────────────────────────────── -->
+    <div class="loader" id="loader">
+      <div class="spinner"></div>
+      <p>Analyzing assessment data&hellip;</p>
+    </div>
+
+    <!-- ── Results ───────────────────────────── -->
+    <section class="results-section" id="results" style="display:none">
+      <div class="container">
+
+        <div class="summary-banner" id="summary"></div>
+
+        <!-- Chart Selector Cards -->
+        <div class="chart-selector-row" id="chart-selector-row">
+          <div class="chart-card active" data-chart="priority" onclick="selectChart('priority')">
+            <span class="chart-card-icon">&#x1F3AF;</span>
+            <div class="chart-card-title">Priority Matrix</div>
+            <div class="chart-card-stat" id="card-stat-priority"></div>
+            <div class="chart-card-stat-label" id="card-stat-label-priority"></div>
+          </div>
+          <div class="chart-card" data-chart="savings" onclick="selectChart('savings')">
+            <span class="chart-card-icon">&#x1F4B0;</span>
+            <div class="chart-card-title">Savings Breakdown</div>
+            <div class="chart-card-stat" id="card-stat-savings"></div>
+            <div class="chart-card-stat-label" id="card-stat-label-savings"></div>
+          </div>
+          <div class="chart-card" data-chart="impl" onclick="selectChart('impl')">
+            <span class="chart-card-icon">&#x2705;</span>
+            <div class="chart-card-title">Implementation Rate</div>
+            <div class="chart-card-stat" id="card-stat-impl"></div>
+            <div class="chart-card-stat-label" id="card-stat-label-impl"></div>
+          </div>
+          <div class="chart-card" data-chart="payback" onclick="selectChart('payback')">
+            <span class="chart-card-icon">&#x23F1;</span>
+            <div class="chart-card-title">Payback Period</div>
+            <div class="chart-card-stat" id="card-stat-payback"></div>
+            <div class="chart-card-stat-label" id="card-stat-label-payback"></div>
+          </div>
+        </div>
+
+        <!-- Expanded Chart Area (one chart at a time) -->
+        <div class="chart-expand-area" id="chart-expand-area">
+
+          <!-- Priority Matrix Panel -->
+          <div class="chart-panel active" id="panel-priority">
+            <div class="chart-header">
+              <h3>Priority Matrix: Where Should You Focus?</h3>
+              <button class="info-btn" onclick="toggleChartInfo('priority-info')" title="Learn more about this chart">i</button>
+            </div>
+            <div class="chart-info-panel" id="priority-info">
+              <div class="chart-info-section"><strong>What this shows:</strong> Each bubble is a recommendation category, placed by how quickly it pays back (X-axis) vs. how much it saves (Y-axis). Bigger bubbles mean more facilities implemented that recommendation.</div>
+              <div class="chart-info-section"><strong>How it's calculated:</strong> Categories are ranked relative to each other in this result set. X-axis uses percentile rank of payback period (shorter payback = further right). Y-axis uses percentile rank of median annual savings (higher savings = further up). Bubble size reflects implementation rate.</div>
+              <div class="chart-info-section"><strong>Key takeaways:</strong>
+                <ul>
+                  <li><strong>Quick Wins</strong> (top-right): High savings + short payback &mdash; start here</li>
+                  <li><strong>Strategic</strong> (top-left): High savings but longer payback &mdash; plan ahead</li>
+                  <li><strong>Consider</strong> (bottom-right): Lower savings but easy to implement</li>
+                  <li><strong>Low Priority</strong> (bottom-left): Lower savings + longer payback</li>
+                </ul>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="priority-chart"></canvas>
+            </div>
+            <div class="axis-explanation">
+              X-axis: shorter payback &rarr; easier to implement &nbsp;|&nbsp; Y-axis: higher median savings &rarr; more impact &nbsp;|&nbsp; Bubble size: implementation rate
+            </div>
+          </div>
+
+          <!-- Savings Donut Panel -->
+          <div class="chart-panel" id="panel-savings">
+            <div class="chart-header">
+              <h3>Where Do the Savings Come From?</h3>
+              <button class="info-btn" onclick="toggleChartInfo('savings-info')" title="Learn more about this chart">i</button>
+            </div>
+            <div class="chart-info-panel" id="savings-info">
+              <div class="chart-info-section"><strong>What this shows:</strong> The share of total median savings contributed by each recommendation category. Larger slices indicate categories with higher annual dollar savings.</div>
+              <div class="chart-info-section"><strong>How it's calculated:</strong> Each category's median annual savings (in USD) is divided by the total median savings across all categories. Percentages show each category's share.</div>
+              <div class="chart-info-section"><strong>Key takeaways:</strong> The largest slices represent the biggest savings opportunities. Even small-percentage categories can be worthwhile if they're easy to implement.</div>
+            </div>
+            <div class="chart-container">
+              <canvas id="savings-donut-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Implementation Rate Panel -->
+          <div class="chart-panel" id="panel-impl">
+            <div class="chart-header">
+              <h3>How Often Are These Implemented?</h3>
+              <button class="info-btn" onclick="toggleChartInfo('impl-info')" title="Learn more about this chart">i</button>
+            </div>
+            <div class="chart-info-panel" id="impl-info">
+              <div class="chart-info-section"><strong>What this shows:</strong> The percentage of times each recommendation was actually implemented after being suggested in an IAC assessment.</div>
+              <div class="chart-info-section"><strong>How it's calculated:</strong> For each category, we count how many times it was implemented vs. total times recommended, based on the IAC database IMPSTATUS field.</div>
+              <div class="chart-info-section"><strong>Key takeaways:</strong> High implementation rates signal practical, proven recommendations. Categories above 50% are well-accepted by industry. Low rates may indicate higher barriers (cost, complexity, or disruption).</div>
+            </div>
+            <div class="chart-container">
+              <canvas id="impl-rate-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Payback Panel -->
+          <div class="chart-panel" id="panel-payback">
+            <div class="chart-header">
+              <h3>How Quickly Do These Pay Back?</h3>
+              <button class="info-btn" onclick="toggleChartInfo('payback-info')" title="Learn more about this chart">i</button>
+            </div>
+            <div class="chart-info-panel" id="payback-info">
+              <div class="chart-info-section"><strong>What this shows:</strong> How long each recommendation category takes to pay for itself, showing the range from fast (25th percentile) to slow (75th percentile) payback.</div>
+              <div class="chart-info-section"><strong>How it's calculated:</strong> Payback = implementation cost &divide; annual savings. The bar shows three segments: fast payback (P25), median payback, and slow payback (P75). Shorter bars = faster ROI.</div>
+              <div class="chart-info-section"><strong>Key takeaways:</strong> Categories with short bars on the left pay for themselves quickly. A wide range between P25 and P75 means results vary &mdash; your specific savings depend on facility details.</div>
+            </div>
+            <div class="chart-container">
+              <canvas id="payback-chart"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sort controls -->
+        <div class="sort-bar">
+          <span>Sort by:</span>
+          <button class="sort-btn active" data-sort="rank">Top Ranked</button>
+          <button class="sort-btn" data-sort="savings">Highest Savings</button>
+          <button class="sort-btn" data-sort="payback">Shortest Payback</button>
+          <button class="sort-btn" data-sort="impl">Most Implemented</button>
+        </div>
+
+        <div class="recs-grid" id="recs-grid"></div>
+
+        <!-- EnMS Case Studies -->
+        <div class="enms-section" id="enms-section" style="display:none">
+          <h3>EnMS Case Studies in This Industry</h3>
+          <div class="enms-grid" id="enms-grid"></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Data sourced from the <a href="https://iac.university/" target="_blank" rel="noopener">DOE Industrial Assessment Center (IAC) Database</a>.
+      Recommendations should be validated by a qualified energy professional.<br>
+      Built by <a href="https://www.klimateconsulting.com" target="_blank" rel="noopener">Klimate Consulting</a>
+    </div>
+  </footer>
+
+  <script>
+    function dismissWelcome() {
+      localStorage.setItem('kc_enms_welcomed', 'true');
+      document.getElementById('welcomePopup').classList.remove('visible');
+    }
+
+    let PROCESSED = null;
+    let selectedNaics = '';
+    let currentData = null;
+    let suggestTimer = null;
+    let priorityChart = null;
+    let savingsDonutChart = null;
+    let implRateChart = null;
+    let paybackChart = null;
+
+    const CHART_COLORS = [
+      '#00A878', '#1B4F8A', '#E88D30', '#8B5CF6', '#EC4899',
+      '#06B6D4', '#EF4444', '#84CC16', '#F59E0B', '#6366F1',
+      '#14B8A6', '#F97316', '#A855F7',
+    ];
+
+    /* ── Map Configuration ──────────────── */
+    const SECTOR_COLORS = {
+      '332': '#E8713A', '311': '#4CAF50', '326': '#7C4DFF', '333': '#1B4F8A',
+      '336': '#00BCD4', '334': '#FF5722', '331': '#607D8B', '325': '#E91E63',
+      '321': '#8D6E63', '322': '#009688', '_other': '#9E9E9E'
+    };
+    const SECTOR_SHORT_LABELS = {
+      '332': 'Fabricated Metal', '311': 'Food', '326': 'Plastics & Rubber',
+      '333': 'Machinery', '336': 'Transportation', '334': 'Electronics',
+      '331': 'Primary Metal', '325': 'Chemical', '321': 'Wood Products', '322': 'Paper'
+    };
+    const STATE_NAMES = {
+      'AL':'Alabama','AK':'Alaska','AZ':'Arizona','AR':'Arkansas','CA':'California',
+      'CO':'Colorado','CT':'Connecticut','DE':'Delaware','FL':'Florida','GA':'Georgia',
+      'HI':'Hawaii','ID':'Idaho','IL':'Illinois','IN':'Indiana','IA':'Iowa',
+      'KS':'Kansas','KY':'Kentucky','LA':'Louisiana','ME':'Maine','MD':'Maryland',
+      'MA':'Massachusetts','MI':'Michigan','MN':'Minnesota','MS':'Mississippi',
+      'MO':'Missouri','MT':'Montana','NE':'Nebraska','NV':'Nevada','NH':'New Hampshire',
+      'NJ':'New Jersey','NM':'New Mexico','NY':'New York','NC':'North Carolina',
+      'ND':'North Dakota','OH':'Ohio','OK':'Oklahoma','OR':'Oregon','PA':'Pennsylvania',
+      'PR':'Puerto Rico','RI':'Rhode Island','SC':'South Carolina','SD':'South Dakota',
+      'TN':'Tennessee','TX':'Texas','UT':'Utah','VT':'Vermont','VA':'Virginia',
+      'WA':'Washington','WV':'West Virginia','WI':'Wisconsin','WY':'Wyoming'
+    };
+    const FIPS_TO_STATE = {
+      '01':'AL','02':'AK','04':'AZ','05':'AR','06':'CA','08':'CO','09':'CT',
+      '10':'DE','11':'DC','12':'FL','13':'GA','15':'HI','16':'ID','17':'IL',
+      '18':'IN','19':'IA','20':'KS','21':'KY','22':'LA','23':'ME','24':'MD',
+      '25':'MA','26':'MI','27':'MN','28':'MS','29':'MO','30':'MT','31':'NE',
+      '32':'NV','33':'NH','34':'NJ','35':'NM','36':'NY','37':'NC','38':'ND',
+      '39':'OH','40':'OK','41':'OR','42':'PA','44':'RI','45':'SC','46':'SD',
+      '47':'TN','48':'TX','49':'UT','50':'VT','51':'VA','53':'WA','54':'WV',
+      '55':'WI','56':'WY','72':'PR'
+    };
+
+    /* ── Client-side API replacements ──── */
+    function findNaicsGroup(naicsInput) {
+      if (!PROCESSED) return [null, null];
+      const groups = PROCESSED.naics_groups;
+      const s = String(naicsInput).trim();
+      for (let len = s.length; len > 0; len--) {
+        const key = s.substring(0, len);
+        if (groups[key]) return [key, groups[key]];
+      }
+      return [null, null];
+    }
+
+    function localGetMapData() {
+      if (!PROCESSED) return { states: [], sectors: [], total_facilities: 0 };
+      const suggestStats = PROCESSED.suggest_stats || {};
+      const naicsGroups = PROCESSED.naics_groups || {};
+      const states = PROCESSED.states || [];
+      const stateData = [];
+      const globalSectorTotals = {};
+      states.forEach(state => {
+        const ss = suggestStats[state] || {};
+        const total = (ss._all || {}).n || 0;
+        if (total === 0) return;
+        const sectors = {};
+        Object.entries(ss).forEach(([k, v]) => {
+          if (k.startsWith('_')) return;
+          const n = v.n || 0;
+          if (n > 0) {
+            sectors[k] = n;
+            globalSectorTotals[k] = (globalSectorTotals[k] || 0) + n;
+          }
+        });
+        const entries = Object.entries(sectors);
+        const dominant = entries.length ? entries.reduce((a, b) => b[1] > a[1] ? b : a) : ['', 0];
+        stateData.push({ s: state, n: total, d: dominant[0], sectors });
+      });
+      const topSectors = Object.entries(globalSectorTotals).sort((a, b) => b[1] - a[1]).slice(0, 10);
+      const sectorLegend = topSectors.map(([code, count]) => ({
+        code, total: count,
+        label: (naicsGroups[code] || {}).label || ('NAICS ' + code),
+      }));
+      return { states: stateData, sectors: sectorLegend, total_facilities: stateData.reduce((s, d) => s + d.n, 0) };
+    }
+
+    function localGetSuggestions(state, naics) {
+      if (!PROCESSED) return { sample_size: 0 };
+      const naics3 = naics && naics.length >= 3 ? naics.substring(0, 3) : '';
+      const suggestStats = PROCESSED.suggest_stats || {};
+      let stats = null;
+      if (state && naics3 && suggestStats[state]) stats = suggestStats[state][naics3];
+      if (!stats && state && suggestStats[state]) stats = suggestStats[state]._all;
+      if (!stats && naics3) stats = (suggestStats._global || {})[naics3];
+      if (!stats) return { sample_size: 0, employees: null, plant_area: null, sales: null, energy_cost: null, top_naics: [] };
+      const topNaics = [];
+      if (!naics && state && suggestStats[state]) {
+        Object.entries(suggestStats[state]).forEach(([k, v]) => {
+          if (k.startsWith('_')) return;
+          const label = (PROCESSED.naics_groups[k] || {}).label || k;
+          topNaics.push({ code: k, name: label, count: v.n || 0 });
+        });
+        topNaics.sort((a, b) => b.count - a.count);
+      }
+      return { sample_size: stats.n || 0, employees: stats.employees, plant_area: stats.plant_area, sales: stats.sales, energy_cost: stats.energy_cost, top_naics: topNaics.slice(0, 8) };
+    }
+
+    function localSearchNaics(q) {
+      if (!PROCESSED) return [];
+      const lower = q.toLowerCase().trim();
+      const codes = PROCESSED.naics_codes || [];
+      const results = [];
+      for (const item of codes) {
+        const code = String(item.NAICS || '');
+        const label = item.Industry || '';
+        if (code.toLowerCase().includes(lower) || label.toLowerCase().includes(lower)) {
+          results.push({ NAICS: code, Industry: label });
+        }
+        if (results.length >= 50) break;
+      }
+      results.sort((a, b) => a.NAICS.localeCompare(b.NAICS));
+      return results;
+    }
+
+    function localGetRecommendations(naicsInput, annualEnergyCost, energyTypes) {
+      const [naicsKey, group] = findNaicsGroup(naicsInput);
+      if (!group) return {
+        matched_naics: null, naics_label: 'All Industries (no exact match)',
+        n_assessments: null, recommendations: [], enms_cases: [],
+        message: 'No ITAC data found for NAICS ' + naicsInput + '. Try a 2-3 digit code like 311, 332, 325, etc.'
+      };
+      let recs = [...group.recommendations];
+      if (energyTypes && energyTypes.length) {
+        const filtered = recs.filter(r => {
+          const et = r.energy_types || ['any'];
+          return et.includes('any') || energyTypes.some(t => et.includes(t));
+        });
+        if (filtered.length) recs = filtered;
+      }
+      if (annualEnergyCost && annualEnergyCost > 0) {
+        recs.forEach(r => {
+          r.projected_savings_low = r.p25_savings_usd || 0;
+          r.projected_savings_high = r.p75_savings_usd || 0;
+        });
+      }
+      return {
+        matched_naics: naicsKey,
+        naics_label: group.label || ('NAICS ' + naicsKey),
+        n_assessments: group.n_assessments || 0,
+        recommendations: recs.slice(0, 15),
+        enms_cases: (group.enms_cases || []).slice(0, 6),
+      };
+    }
+
+    let mapData = null;
+    let activeSector = null;
+    let mapSvg = null;
+    let mapBubbles = null;
+    let mapLabels = null;
+    let stateCentroids = {};
+
+    async function initMap() {
+      try {
+        const topoRes = await fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json');
+        mapData = localGetMapData();
+        const us = await topoRes.json();
+
+        if (mapData.error || !mapData.states || !mapData.states.length) return;
+
+        const container = document.getElementById('map-container');
+        const width = 975;
+        const height = 610;
+
+        mapSvg = d3.select(container)
+          .insert('svg', '.map-tooltip')
+          .attr('viewBox', '0 0 ' + width + ' ' + height)
+          .attr('preserveAspectRatio', 'xMidYMid meet');
+
+        const statesGeo = topojson.feature(us, us.objects.states);
+        const stateMesh = topojson.mesh(us, us.objects.states, (a, b) => a !== b);
+        const path = d3.geoPath();
+
+        mapSvg.append('g')
+          .attr('class', 'states-layer')
+          .selectAll('path')
+          .data(statesGeo.features)
+          .join('path')
+          .attr('class', 'state-path')
+          .attr('d', path)
+          .attr('data-state', d => FIPS_TO_STATE[d.id] || '');
+
+        mapSvg.append('path')
+          .attr('fill', 'none')
+          .attr('stroke', '#fff')
+          .attr('stroke-width', 0.8)
+          .attr('stroke-linejoin', 'round')
+          .attr('d', path(stateMesh));
+
+        statesGeo.features.forEach(f => {
+          const abbr = FIPS_TO_STATE[f.id];
+          if (abbr) {
+            const centroid = path.centroid(f);
+            if (centroid && !isNaN(centroid[0])) {
+              stateCentroids[abbr] = centroid;
+            }
+          }
+        });
+
+        // Nudge small/dense northeast states
+        const nudges = {
+          'CT': [15, 0], 'DE': [12, 0], 'DC': [16, 6],
+          'MA': [18, -4], 'MD': [8, 8], 'NH': [12, -6],
+          'NJ': [12, 0], 'RI': [16, 2], 'VT': [8, -4], 'HI': [20, 0]
+        };
+        for (const [st, [dx, dy]] of Object.entries(nudges)) {
+          if (stateCentroids[st]) {
+            stateCentroids[st][0] += dx;
+            stateCentroids[st][1] += dy;
+          }
+        }
+
+        renderSectorLegend(mapData.sectors);
+        renderMapBubbles();
+      } catch (err) {
+        console.warn('Map init failed:', err);
+        const container = document.getElementById('map-container');
+        if (container) container.style.display = 'none';
+      }
+    }
+
+    function renderSectorLegend(sectors) {
+      const container = document.getElementById('sector-legend');
+      if (!container || !sectors) return;
+      let html = '<span class="sector-chip sector-chip-all active" data-sector="" onclick="filterMapSector(this, \'\')">' +
+        'All Sectors <span class="sector-count">(' + fmtN(mapData.total_facilities) + ')</span></span>';
+      sectors.forEach(s => {
+        const color = SECTOR_COLORS[s.code] || SECTOR_COLORS['_other'];
+        const shortLabel = SECTOR_SHORT_LABELS[s.code] || s.label;
+        html += '<span class="sector-chip" data-sector="' + s.code + '" ' +
+          'style="--chip-color:' + color + '" ' +
+          'onclick="filterMapSector(this, \'' + s.code + '\')">' +
+          '<span class="sector-dot" style="background:' + color + '"></span>' +
+          shortLabel +
+          ' <span class="sector-count">(' + fmtN(s.total) + ')</span></span>';
+      });
+      container.innerHTML = html;
+    }
+
+    function filterMapSector(chipEl, sectorCode) {
+      document.querySelectorAll('.sector-chip').forEach(c => {
+        c.classList.remove('active');
+        c.style.background = '';
+        c.style.color = '';
+        c.style.borderColor = '';
+      });
+      chipEl.classList.add('active');
+      if (sectorCode) {
+        const color = SECTOR_COLORS[sectorCode] || SECTOR_COLORS['_other'];
+        chipEl.style.background = color;
+        chipEl.style.color = '#fff';
+        chipEl.style.borderColor = 'transparent';
+      }
+      activeSector = sectorCode || null;
+      updateMapBubbles();
+    }
+
+    function getDisplayCount(sd, filter) {
+      if (!filter) return sd.n;
+      return sd.sectors[filter] || 0;
+    }
+
+    function getBubbleColor(sd, filter) {
+      if (filter) return SECTOR_COLORS[filter] || SECTOR_COLORS['_other'];
+      return SECTOR_COLORS[sd.d] || SECTOR_COLORS['_other'];
+    }
+
+    function renderMapBubbles() {
+      if (!mapSvg || !mapData) return;
+      const counts = mapData.states.map(s => s.n);
+      const maxCount = Math.max(...counts);
+      const rScale = d3.scaleSqrt().domain([0, maxCount]).range([5, 34]);
+
+      const bubbleGroup = mapSvg.append('g').attr('class', 'bubbles-layer');
+      const sorted = [...mapData.states].sort((a, b) => b.n - a.n);
+
+      mapBubbles = bubbleGroup.selectAll('circle')
+        .data(sorted, d => d.s)
+        .join('circle')
+        .attr('class', 'map-bubble')
+        .attr('cx', d => (stateCentroids[d.s] || [0,0])[0])
+        .attr('cy', d => (stateCentroids[d.s] || [0,0])[1])
+        .attr('r', 0)
+        .attr('fill', d => getBubbleColor(d, null))
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 1.2)
+        .attr('opacity', 0.85)
+        .attr('data-state', d => d.s)
+        .on('mouseenter', function(event, d) { showMapTooltip(event, d); })
+        .on('mousemove', function(event) { moveMapTooltip(event); })
+        .on('mouseleave', function() { hideMapTooltip(); })
+        .on('click', function(event, d) { handleBubbleClick(d); });
+
+      mapBubbles.transition()
+        .duration(600)
+        .delay((d, i) => i * 15)
+        .ease(d3.easeCubicOut)
+        .attr('r', d => rScale(d.n));
+
+      mapLabels = bubbleGroup.selectAll('text')
+        .data(sorted.filter(d => rScale(d.n) >= 12), d => d.s)
+        .join('text')
+        .attr('class', 'bubble-label')
+        .attr('x', d => (stateCentroids[d.s] || [0,0])[0])
+        .attr('y', d => (stateCentroids[d.s] || [0,0])[1])
+        .text(d => d.s)
+        .attr('opacity', 0)
+        .transition()
+        .duration(400)
+        .delay(700)
+        .attr('opacity', 1);
+    }
+
+    function updateMapBubbles() {
+      if (!mapBubbles || !mapData) return;
+      const counts = mapData.states.map(s => getDisplayCount(s, activeSector));
+      const maxCount = Math.max(...counts, 1);
+      const rScale = d3.scaleSqrt().domain([0, maxCount]).range([5, 34]);
+
+      mapBubbles.transition()
+        .duration(400)
+        .ease(d3.easeCubicOut)
+        .attr('r', d => {
+          const c = getDisplayCount(d, activeSector);
+          return c > 0 ? rScale(c) : 0;
+        })
+        .attr('fill', d => getBubbleColor(d, activeSector))
+        .attr('opacity', d => getDisplayCount(d, activeSector) > 0 ? 0.85 : 0);
+
+      if (mapLabels) {
+        mapLabels.transition().duration(300).attr('opacity', d => {
+          const c = getDisplayCount(d, activeSector);
+          const r = c > 0 ? rScale(c) : 0;
+          return r >= 12 ? 1 : 0;
+        });
+      }
+    }
+
+    function showMapTooltip(event, d) {
+      const tt = document.getElementById('map-tooltip');
+      if (!tt) return;
+      const count = getDisplayCount(d, activeSector);
+      let html = '<div class="tt-state">' + (STATE_NAMES[d.s] || d.s) + ' (' + d.s + ')</div>';
+      if (activeSector) {
+        const label = SECTOR_SHORT_LABELS[activeSector] || activeSector;
+        html += '<div class="tt-total">' + fmtN(count) + ' ' + label + ' facilities</div>';
+      } else {
+        html += '<div class="tt-total">' + fmtN(d.n) + ' facilities assessed</div>';
+        const topSectors = Object.entries(d.sectors).sort((a, b) => b[1] - a[1]).slice(0, 3);
+        topSectors.forEach(([code, n]) => {
+          const label = SECTOR_SHORT_LABELS[code] || code;
+          const color = SECTOR_COLORS[code] || SECTOR_COLORS['_other'];
+          html += '<div class="tt-sector"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + color + ';margin-right:5px"></span>' + label + ': ' + n + '</div>';
+        });
+      }
+      html += '<div class="tt-cta">Click to search this state</div>';
+      tt.innerHTML = html;
+      tt.classList.add('visible');
+      moveMapTooltip(event);
+      d3.selectAll('.state-path').classed('highlighted', false);
+      d3.select('.state-path[data-state="' + d.s + '"]').classed('highlighted', true);
+    }
+
+    function moveMapTooltip(event) {
+      const tt = document.getElementById('map-tooltip');
+      const container = document.getElementById('map-container');
+      if (!tt || !container) return;
+      const rect = container.getBoundingClientRect();
+      let x = event.clientX - rect.left + 14;
+      let y = event.clientY - rect.top - 10;
+      const ttRect = tt.getBoundingClientRect();
+      if (x + ttRect.width > rect.width - 10) x = x - ttRect.width - 28;
+      if (y + ttRect.height > rect.height - 10) y = rect.height - ttRect.height - 10;
+      if (y < 10) y = 10;
+      tt.style.left = x + 'px';
+      tt.style.top = y + 'px';
+    }
+
+    function hideMapTooltip() {
+      const tt = document.getElementById('map-tooltip');
+      if (tt) tt.classList.remove('visible');
+      d3.selectAll('.state-path').classed('highlighted', false);
+    }
+
+    function handleBubbleClick(d) {
+      const stateSelect = document.getElementById('state');
+      stateSelect.value = d.s;
+      stateSelect.dispatchEvent(new Event('change'));
+
+      const sectorCode = activeSector || d.d;
+      if (sectorCode) {
+        const label = SECTOR_SHORT_LABELS[sectorCode] || '';
+        selectedNaics = sectorCode;
+        document.getElementById('naics-search').value = sectorCode + (label ? ' \u2013 ' + label : '');
+      }
+
+      fetchSuggestions();
+
+      document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      const card = document.querySelector('.form-section .card');
+      if (card) {
+        card.style.transition = 'box-shadow 0.3s';
+        card.style.boxShadow = '0 0 0 3px rgba(0,168,120,0.4), 0 4px 16px rgba(0,0,0,0.12)';
+        setTimeout(() => { card.style.boxShadow = ''; }, 1500);
+      }
+    }
+
+    /* ── ARC Category Descriptions ────────── */
+    const ARC_DESCRIPTIONS = {
+      '2.1': {
+        desc: 'Covers how your facility schedules and tracks energy use, including monitoring systems, energy accounting, and management practices that reduce waste through better awareness and planning.',
+        actions: ['Install energy monitoring dashboards', 'Set up automated equipment scheduling', 'Track energy use by production line', 'Train staff on energy-saving practices']
+      },
+      '2.2': {
+        desc: 'Focuses on the physical shell of your building \u2014 walls, roof, windows, doors, and insulation \u2014 that keeps conditioned air in and outside weather out.',
+        actions: ['Add or upgrade wall and roof insulation', 'Seal air leaks around doors and windows', 'Install high-performance window glazing', 'Add weather stripping and door seals']
+      },
+      '2.3': {
+        desc: 'Covers heating, ventilation, and air conditioning systems that control indoor temperature and air quality. These are often the largest energy consumers in a facility.',
+        actions: ['Upgrade to high-efficiency HVAC units', 'Install programmable thermostats', 'Clean and maintain ductwork regularly', 'Add economizer controls for free cooling']
+      },
+      '2.4': {
+        desc: 'Addresses all facility lighting including production areas, offices, warehouses, and outdoor spaces. Modern lighting upgrades are among the fastest-payback improvements available.',
+        actions: ['Replace fluorescent fixtures with LED', 'Install occupancy sensors in low-traffic areas', 'Add daylight harvesting controls', 'Reduce over-lit areas to recommended levels']
+      },
+      '2.5': {
+        desc: 'Focuses on electric motors and variable-speed drives used in fans, pumps, conveyors, and other industrial equipment. Motors typically account for a large share of industrial electricity use.',
+        actions: ['Add variable frequency drives to pumps/fans', 'Replace oversized motors with right-sized ones', 'Upgrade to premium-efficiency motors', 'Fix misaligned or worn drive belts']
+      },
+      '2.6': {
+        desc: 'Covers compressed air systems used for tools, automation, and process needs. Compressed air is one of the most expensive utilities in a plant, and leaks are extremely common.',
+        actions: ['Find and repair compressed air leaks', 'Lower system pressure to minimum needed', 'Upgrade to variable-speed compressors', 'Eliminate inappropriate compressed air uses']
+      },
+      '2.7': {
+        desc: 'Addresses furnaces, ovens, kilns, and other direct heating equipment used in manufacturing. Improving combustion efficiency and reducing heat loss can yield major savings.',
+        actions: ['Tune burners for optimal combustion', 'Insulate furnace walls and doors', 'Recover waste heat from exhaust gases', 'Install automatic temperature controls']
+      },
+      '2.8': {
+        desc: 'Covers boilers, steam distribution, condensate return systems, and steam traps. Steam systems can lose significant energy through leaks, failed traps, and poor insulation.',
+        actions: ['Repair or replace failed steam traps', 'Insulate bare steam and condensate pipes', 'Optimize boiler combustion efficiency', 'Return more condensate to the boiler']
+      },
+      '2.9': {
+        desc: 'Focuses on electrical distribution systems including transformers, power factor, and electrical load management. Improvements here reduce demand charges and distribution losses.',
+        actions: ['Install power factor correction capacitors', 'Shift loads to reduce peak demand charges', 'Replace oversized or inefficient transformers', 'Implement power quality monitoring']
+      },
+      '2.10': {
+        desc: 'Addresses water usage, wastewater treatment, and waste reduction opportunities. Reducing water consumption often reduces the energy needed to pump, heat, and treat it.',
+        actions: ['Fix leaks in water distribution system', 'Recycle process water where possible', 'Install low-flow fixtures and nozzles', 'Optimize wastewater treatment aeration']
+      },
+      '2.11': {
+        desc: 'Covers on-site renewable energy generation such as solar panels, wind, and combined heat-and-power (cogeneration) systems that produce both electricity and useful heat.',
+        actions: ['Evaluate rooftop or ground-mount solar', 'Assess combined heat and power potential', 'Explore power purchase agreements', 'Consider battery storage for demand management']
+      },
+      '2.12': {
+        desc: 'Focuses on capturing waste heat from one process and using it in another, through heat exchangers, economizers, and heat recovery ventilation. This turns wasted energy into savings.',
+        actions: ['Install exhaust gas heat exchangers', 'Preheat combustion air with waste heat', 'Recover heat from hot wastewater streams', 'Add economizers to boiler exhaust stacks']
+      },
+      '2.13': {
+        desc: 'Covers commercial and industrial refrigeration systems including chillers, cold storage, and process cooling. These run continuously and benefit greatly from efficiency upgrades.',
+        actions: ['Clean condenser and evaporator coils', 'Check and repair door seals on cold storage', 'Upgrade to high-efficiency compressors', 'Optimize setpoints and defrost schedules']
+      }
+    };
+
+    function generateBackContent(rec) {
+      const info = ARC_DESCRIPTIONS[rec.arc] || {
+        desc: 'This recommendation category covers energy efficiency improvements for your facility.',
+        actions: ['Consult an energy professional for details']
+      };
+      const savingsLo = '$' + fmtMoney(rec.p25_savings_usd);
+      const savingsHi = '$' + fmtMoney(rec.p75_savings_usd);
+      const implPct = Math.round((rec.implementation_rate || 0) * 100);
+      const payback = fmtPayback(rec.median_payback_years);
+
+      const insight = 'Facilities like yours typically save ' + savingsLo + ' to ' + savingsHi +
+        ' per year with these improvements. The median payback is ' + payback +
+        ', and ' + implPct + '% of assessed facilities went ahead with it.';
+
+      return (
+        '<div class="flip-back-header">' +
+          '<span class="arc-icon">' + (rec.arc_icon || '') + '</span>' +
+          '<span class="arc-label">' + esc(rec.arc_label) + '</span>' +
+        '</div>' +
+        '<div class="flip-back-section">' +
+          '<h4>What This Means</h4>' +
+          '<p>' + info.desc + '</p>' +
+        '</div>' +
+        '<div class="flip-back-section">' +
+          '<h4>Why It Matters for You</h4>' +
+          '<p>' + insight + '</p>' +
+        '</div>' +
+        '<div class="flip-back-section">' +
+          '<h4>Common Actions</h4>' +
+          '<ul>' + info.actions.map(a => '<li>' + esc(a) + '</li>').join('') + '</ul>' +
+        '</div>' +
+        '<div class="flip-back-tap">\u21BA Click to flip back</div>'
+      );
+    }
+
+    function flipCard(el) { el.classList.toggle('flipped'); }
+
+    /* ── Chart Info Toggle ─────────────────── */
+    function toggleChartInfo(panelId) {
+      const allPanels = document.querySelectorAll('.chart-info-panel');
+      const allBtns = document.querySelectorAll('.info-btn');
+      const target = document.getElementById(panelId);
+      const isOpen = target && target.classList.contains('visible');
+      // Close all panels first
+      allPanels.forEach(p => p.classList.remove('visible'));
+      allBtns.forEach(b => b.classList.remove('active'));
+      // Toggle the clicked one
+      if (!isOpen && target) {
+        target.classList.add('visible');
+        // Find and activate the matching button
+        const btn = target.previousElementSibling?.querySelector?.('.info-btn')
+          || target.parentElement.querySelector('.info-btn');
+        if (btn) btn.classList.add('active');
+      }
+    }
+
+    /* ── Percentile Rank Helper ────────────── */
+    function percentileRank(values, value) {
+      if (!values.length) return 0.5;
+      const sorted = [...values].sort((a, b) => a - b);
+      let count = 0;
+      for (const v of sorted) {
+        if (v < value) count++;
+        else if (v === value) count += 0.5;
+      }
+      return sorted.length > 1 ? count / (sorted.length - 1) : 0.5;
+    }
+
+    /* ── Chart Card Selector ────────────────── */
+    function selectChart(chartKey) {
+      // Update active card
+      document.querySelectorAll('.chart-card').forEach(card => {
+        card.classList.toggle('active', card.dataset.chart === chartKey);
+      });
+      // Close any open info panels
+      document.querySelectorAll('.chart-info-panel').forEach(p => p.classList.remove('visible'));
+      document.querySelectorAll('.info-btn').forEach(b => b.classList.remove('active'));
+      // Show the matching panel, hide others
+      document.querySelectorAll('.chart-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      const target = document.getElementById('panel-' + chartKey);
+      if (target) target.classList.add('active');
+      // Trigger Chart.js resize (needed after display:none → block)
+      const chartMap = {
+        priority: priorityChart,
+        savings: savingsDonutChart,
+        impl: implRateChart,
+        payback: paybackChart,
+      };
+      const chart = chartMap[chartKey];
+      if (chart) setTimeout(() => chart.resize(), 50);
+    }
+
+    function updateCardStats(recs) {
+      // Priority: count Quick Wins
+      const paybacks = recs.map(r => r.median_payback_years || 3);
+      const savings = recs.map(r => r.median_savings_usd || 0);
+      const quickWins = recs.filter(r => {
+        const xRank = 1 - percentileRank(paybacks, r.median_payback_years || 3);
+        const yRank = percentileRank(savings, r.median_savings_usd || 0);
+        return xRank >= 0.5 && yRank >= 0.5;
+      }).length;
+      document.getElementById('card-stat-priority').textContent = quickWins + ' Quick Wins';
+      document.getElementById('card-stat-label-priority').textContent = 'of ' + recs.length + ' categories';
+
+      // Savings: total
+      const totalSavings = recs.reduce((sum, r) => sum + (r.median_savings_usd || 0), 0);
+      document.getElementById('card-stat-savings').textContent = '$' + fmtMoney(totalSavings) + '/yr';
+      document.getElementById('card-stat-label-savings').textContent = 'total median savings';
+
+      // Impl rate: average
+      const avgImpl = recs.reduce((sum, r) => sum + (r.implementation_rate || 0), 0) / recs.length;
+      document.getElementById('card-stat-impl').textContent = Math.round(avgImpl * 100) + '%';
+      document.getElementById('card-stat-label-impl').textContent = 'avg implementation';
+
+      // Payback: median of medians
+      const pbVals = recs.filter(r => r.median_payback_years != null).map(r => r.median_payback_years);
+      pbVals.sort((a, b) => a - b);
+      const medPb = pbVals.length > 0 ? pbVals[Math.floor(pbVals.length / 2)] : null;
+      document.getElementById('card-stat-payback').textContent = fmtPayback(medPb);
+      document.getElementById('card-stat-label-payback').textContent = 'median payback';
+    }
+
+    /* ── Init ──────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Load pre-processed data
+      try {
+        const dataRes = await fetch('./data/itac_processed.json');
+        PROCESSED = await dataRes.json();
+      } catch(e) {
+        console.error('Failed to load data:', e);
+        alert('Failed to load data. Please refresh the page.');
+        return;
+      }
+
+      // Populate header stats
+      const stats = PROCESSED.metadata || {};
+      if (stats.total_assessments) {
+        document.getElementById('header-stats').innerHTML =
+          '<span>' + fmtN(stats.total_assessments) + ' assessments</span>' +
+          '<span>' + fmtN(stats.naics_groups) + ' industry groups</span>' +
+          '<span>' + fmtN(stats.valid_recommendations) + ' recommendations</span>';
+      }
+
+      // Populate states dropdown
+      const states = PROCESSED.states || [];
+      const sel = document.getElementById('state');
+      states.forEach(s => {
+        const o = document.createElement('option');
+        o.value = s; o.textContent = s;
+        sel.appendChild(o);
+      });
+
+      // Welcome popup
+      if (!localStorage.getItem('kc_enms_welcomed')) {
+        document.getElementById('welcomePopup').classList.add('visible');
+      }
+
+      setupNaicsSearch();
+      initMap();
+
+      // Wire up suggest triggers
+      document.getElementById('state').addEventListener('change', () => fetchSuggestions());
+      ['employees', 'plant-area', 'sales', 'energy-cost'].forEach(id => {
+        document.getElementById(id).addEventListener('change', () => fetchSuggestions());
+        document.getElementById(id).addEventListener('input', () => {
+          clearTimeout(suggestTimer);
+          suggestTimer = setTimeout(fetchSuggestions, 600);
+        });
+      });
+
+      document.getElementById('submit-btn').addEventListener('click', handleSubmit);
+      document.getElementById('reset-btn').addEventListener('click', handleReset);
+
+      document.querySelectorAll('.sort-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          if (currentData) renderRecs(currentData.recommendations, btn.dataset.sort);
+        });
+      });
+    });
+
+    /* ── Suggestions ──────────────────────── */
+    function fetchSuggestions() {
+      const state = document.getElementById('state').value;
+      const naics = selectedNaics;
+      if (!state && !naics) { clearAllHints(); return; }
+
+      const s = localGetSuggestions(state, naics);
+      if (s.sample_size === 0 && !s.employees) { clearAllHints(); return; }
+
+      updateHint('employees',   s.employees,   s.sample_size);
+      updateHint('plant-area',  s.plant_area,  s.sample_size);
+      updateHint('sales',       s.sales,       s.sample_size, '$');
+      updateHint('energy-cost', s.energy_cost, s.sample_size, '$');
+      renderNaicsSuggestions(s.top_naics);
+    }
+
+    function updateHint(fieldId, stats, sampleSize, prefix) {
+      const hint = document.getElementById(fieldId + '-hint');
+      const input = document.getElementById(fieldId);
+      if (!hint) return;
+      if (!stats) { hint.classList.remove('visible'); hint.innerHTML = ''; return; }
+
+      const p = prefix || '';
+      const lo  = p + fmtN(stats.p25);
+      const mid = p + fmtN(stats.median);
+      const hi  = p + fmtN(stats.p75);
+
+      hint.innerHTML =
+        '<span class="hint-label">Typical: </span>' +
+        '<span class="hint-range">' + lo + ' \u2013 ' + hi + '</span>' +
+        ' <span class="hint-label">(median ' + mid + ')</span>' +
+        '<span class="hint-use" data-field="' + fieldId + '" data-val="' + stats.median + '">use median</span>' +
+        ' <span class="hint-sample">\u00B7 ' + fmtN(sampleSize) + ' facilities</span>';
+      hint.classList.add('visible');
+
+      hint.querySelector('.hint-use').addEventListener('click', function () {
+        input.value = this.dataset.val;
+        input.dispatchEvent(new Event('change'));
+      });
+    }
+
+    function clearAllHints() {
+      ['employees-hint', 'plant-area-hint', 'sales-hint', 'energy-cost-hint'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) { el.classList.remove('visible'); el.innerHTML = ''; }
+      });
+      const ns = document.getElementById('naics-suggestions');
+      if (ns) { ns.classList.remove('visible'); ns.innerHTML = ''; }
+    }
+
+    function renderNaicsSuggestions(topNaics) {
+      const wrap = document.getElementById('naics-suggestions');
+      if (!wrap) return;
+      if (!topNaics || !topNaics.length || selectedNaics) {
+        wrap.classList.remove('visible'); wrap.innerHTML = ''; return;
+      }
+      wrap.innerHTML = '<span style="font-size:.75rem;color:var(--muted);width:100%;margin-bottom:2px">Top industries in this area:</span>' +
+        topNaics.map(n =>
+          '<span class="naics-chip" data-code="' + esc(n.code) + '" data-name="' + esc(n.name) + '">' +
+          esc(n.name) + '<span class="chip-count">(' + n.count + ')</span></span>'
+        ).join('');
+      wrap.classList.add('visible');
+
+      wrap.querySelectorAll('.naics-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          selectedNaics = chip.dataset.code;
+          document.getElementById('naics-search').value = chip.dataset.code + ' \u2013 ' + chip.dataset.name;
+          wrap.classList.remove('visible'); wrap.innerHTML = '';
+          fetchSuggestions();
+        });
+      });
+    }
+
+    /* ── NAICS Search ─────────────────────── */
+    function setupNaicsSearch() {
+      const input = document.getElementById('naics-search');
+      const dd = document.getElementById('naics-dropdown');
+      let timer;
+      input.addEventListener('input', () => {
+        clearTimeout(timer);
+        const q = input.value.trim();
+        if (q.length < 2) {
+          dd.style.display = 'none';
+          if (selectedNaics) { selectedNaics = ''; fetchSuggestions(); }
+          return;
+        }
+        timer = setTimeout(() => {
+          const items = localSearchNaics(q);
+          dd.innerHTML = '';
+          items.forEach(n => {
+            const div = document.createElement('div');
+            div.className = 'naics-item';
+            div.innerHTML = '<strong>' + esc(n.NAICS) + '</strong> ' + esc(n.Industry);
+            div.addEventListener('click', () => {
+              selectedNaics = n.NAICS;
+              input.value = n.NAICS + ' \u2013 ' + n.Industry;
+              dd.style.display = 'none';
+              fetchSuggestions();
+            });
+            dd.appendChild(div);
+          });
+          dd.style.display = items.length ? 'block' : 'none';
+        }, 200);
+      });
+      document.addEventListener('click', e => {
+        if (!e.target.closest('.naics-wrapper')) dd.style.display = 'none';
+      });
+    }
+
+    /* ── Submit ────────────────────────────── */
+    async function handleSubmit() {
+      const btn = document.getElementById('submit-btn');
+      const loader = document.getElementById('loader');
+      btn.disabled = true;
+      btn.textContent = 'Analyzing\u2026';
+      loader.style.display = 'block';
+      document.getElementById('results').style.display = 'none';
+
+      const energyTypes = Array.from(
+        document.querySelectorAll('input[name="energy_type"]:checked')
+      ).map(el => el.value);
+
+      const body = {
+        naics: selectedNaics || document.getElementById('naics-search').value.split(' ')[0],
+        annual_energy_cost: parseFloat(document.getElementById('energy-cost').value) || null,
+        energy_types: energyTypes,
+      };
+
+      try {
+        currentData = localGetRecommendations(body.naics, body.annual_energy_cost, body.energy_types);
+        if (currentData.message && !currentData.recommendations.length) {
+          alert(currentData.message);
+          return;
+        }
+        renderResults(currentData);
+      } catch (err) {
+        alert('Something went wrong: ' + err.message);
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Find Recommendations \u2192';
+      loader.style.display = 'none';
+    }
+
+    /* ── Reset ─────────────────────────────── */
+    function handleReset() {
+      selectedNaics = '';
+      currentData = null;
+      document.getElementById('naics-search').value = '';
+      document.getElementById('state').value = '';
+      document.getElementById('employees').value = '';
+      document.getElementById('plant-area').value = '';
+      document.getElementById('sales').value = '';
+      document.getElementById('energy-cost').value = '';
+      document.querySelectorAll('input[name="energy_type"]').forEach(cb => cb.checked = false);
+      clearAllHints();
+      document.getElementById('results').style.display = 'none';
+      // Destroy charts to free memory
+      [priorityChart, savingsDonutChart, implRateChart, paybackChart].forEach(c => { if (c) c.destroy(); });
+      priorityChart = savingsDonutChart = implRateChart = paybackChart = null;
+      // Reset map to All Sectors
+      activeSector = null;
+      document.querySelectorAll('.sector-chip').forEach(c => {
+        c.classList.remove('active');
+        c.style.background = '';
+        c.style.color = '';
+        c.style.borderColor = '';
+      });
+      const allChip = document.querySelector('.sector-chip-all');
+      if (allChip) allChip.classList.add('active');
+      updateMapBubbles();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ── Render Results ───────────────────── */
+    function renderResults(d) {
+      document.getElementById('results').style.display = 'block';
+      renderSummary(d);
+      updateCardStats(d.recommendations);
+
+      // Temporarily show all chart panels so Chart.js can measure canvas dimensions
+      document.querySelectorAll('.chart-panel').forEach(p => p.style.display = 'block');
+
+      renderPriorityChart(d.recommendations);
+      renderSavingsDonut(d.recommendations);
+      renderImplRateChart(d.recommendations);
+      renderPaybackChart(d.recommendations);
+
+      // Re-hide all, then activate the default (Priority Matrix)
+      document.querySelectorAll('.chart-panel').forEach(p => p.style.display = '');
+      selectChart('priority');
+
+      renderRecs(d.recommendations, 'rank');
+      renderEnmsCases(d.enms_cases);
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderSummary(d) {
+      const totalSavings = d.recommendations.reduce(
+        (sum, r) => sum + (r.median_savings_usd || 0), 0
+      );
+      document.getElementById('summary').innerHTML =
+        '<div class="summary-stats">' +
+          statEl(fmtN(d.n_assessments), 'Similar Facilities Assessed') +
+          statEl(d.recommendations.length, 'Opportunity Categories') +
+          statEl('$' + fmtMoney(totalSavings), 'Total Median Savings/yr') +
+        '</div>' +
+        '<p class="match-desc">Top recommendations for <strong>' +
+          esc(d.naics_label) + '</strong> (NAICS ' + esc(d.matched_naics) + ')</p>';
+    }
+
+    function statEl(val, label) {
+      return '<div class="stat"><div class="stat-value">' + val + '</div><div class="stat-label">' + label + '</div></div>';
+    }
+
+    /* ── Priority Matrix (Chart.js) ───────── */
+    function renderPriorityChart(recs) {
+      const ctx = document.getElementById('priority-chart').getContext('2d');
+      if (priorityChart) priorityChart.destroy();
+
+      // Percentile-rank scaling: spread bubbles across all 4 quadrants
+      const paybacks = recs.map(r => r.median_payback_years || 3);
+      const savings = recs.map(r => r.median_savings_usd || 0);
+
+      // Add small jitter to avoid exact overlaps when values are identical
+      const jitter = () => (Math.random() - 0.5) * 0.03;
+
+      const data = recs.map(r => {
+        const pb = r.median_payback_years || 3;
+        const sv = r.median_savings_usd || 0;
+        // X: shorter payback = more right (invert percentile)
+        const xRank = 1 - percentileRank(paybacks, pb);
+        // Y: higher savings = more up
+        const yRank = percentileRank(savings, sv);
+        return {
+          x: Math.max(0.04, Math.min(0.96, xRank + jitter())),
+          y: Math.max(0.04, Math.min(0.96, yRank + jitter())),
+          r: Math.max(6, Math.min(28, (r.implementation_rate || 0) * 30)),
+          label: r.arc_label,
+          icon: r.arc_icon,
+          savings: r.median_savings_usd,
+          payback: r.median_payback_years,
+          implRate: r.implementation_rate,
+        };
+      });
+
+      // Quadrant background plugin
+      const quadrantPlugin = {
+        id: 'quadrants',
+        beforeDraw(chart) {
+          const { ctx, chartArea: {left, top, right, bottom}, scales: {x, y} } = chart;
+          const midX = x.getPixelForValue(0.5);
+          const midY = y.getPixelForValue(0.5);
+          ctx.save();
+          // Quick Wins (top-right)
+          ctx.fillStyle = 'rgba(0, 168, 120, 0.07)';
+          ctx.fillRect(midX, top, right - midX, midY - top);
+          // Strategic (top-left)
+          ctx.fillStyle = 'rgba(27, 79, 138, 0.06)';
+          ctx.fillRect(left, top, midX - left, midY - top);
+          // Low Priority (bottom-left)
+          ctx.fillStyle = 'rgba(113, 128, 150, 0.04)';
+          ctx.fillRect(left, midY, midX - left, bottom - midY);
+          // Consider (bottom-right)
+          ctx.fillStyle = 'rgba(237, 137, 54, 0.05)';
+          ctx.fillRect(midX, midY, right - midX, bottom - midY);
+
+          // Labels
+          ctx.font = 'bold 11px -apple-system, sans-serif';
+          ctx.fillStyle = 'rgba(0,168,120,0.55)';
+          ctx.fillText('\u2605 QUICK WINS', right - 94, top + 18);
+          ctx.fillStyle = 'rgba(27,79,138,0.45)';
+          ctx.fillText('STRATEGIC', left + 6, top + 18);
+          ctx.fillStyle = 'rgba(113,128,150,0.35)';
+          ctx.fillText('LOW PRIORITY', left + 6, bottom - 6);
+          ctx.fillStyle = 'rgba(237,137,54,0.45)';
+          ctx.fillText('CONSIDER', right - 66, bottom - 6);
+          ctx.restore();
+        }
+      };
+
+      priorityChart = new Chart(ctx, {
+        type: 'bubble',
+        data: {
+          datasets: [{
+            data: data,
+            backgroundColor: data.map(d => {
+              // Color by quadrant
+              if (d.x >= 0.5 && d.y >= 0.5) return 'rgba(0, 168, 120, 0.65)';   // Quick Win
+              if (d.x < 0.5 && d.y >= 0.5) return 'rgba(27, 79, 138, 0.6)';     // Strategic
+              if (d.x >= 0.5 && d.y < 0.5) return 'rgba(237, 137, 54, 0.6)';    // Consider
+              return 'rgba(113, 128, 150, 0.5)';                                  // Low Priority
+            }),
+            borderColor: data.map(d => {
+              if (d.x >= 0.5 && d.y >= 0.5) return 'rgba(0, 168, 120, 0.95)';
+              if (d.x < 0.5 && d.y >= 0.5) return 'rgba(27, 79, 138, 0.9)';
+              if (d.x >= 0.5 && d.y < 0.5) return 'rgba(237, 137, 54, 0.9)';
+              return 'rgba(113, 128, 150, 0.7)';
+            }),
+            borderWidth: 1.5,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              min: 0, max: 1,
+              title: { display: true, text: 'Ease of Implementation (shorter payback \u2192)', font: { weight: '600', size: 12 } },
+              ticks: { display: false },
+              grid: { color: 'rgba(0,0,0,0.05)' },
+            },
+            y: {
+              min: 0, max: 1,
+              title: { display: true, text: 'Savings Impact (higher median savings \u2192)', font: { weight: '600', size: 12 } },
+              ticks: { display: false },
+              grid: { color: 'rgba(0,0,0,0.05)' },
+            },
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  const d = ctx.raw;
+                  return [
+                    d.icon + ' ' + d.label,
+                    'Median Savings: $' + fmtMoney(d.savings) + '/yr',
+                    'Median Payback: ' + fmtPayback(d.payback),
+                    'Implementation Rate: ' + Math.round((d.implRate || 0) * 100) + '%',
+                  ];
+                }
+              }
+            }
+          },
+        },
+        plugins: [quadrantPlugin],
+      });
+    }
+
+    /* ── Savings Breakdown Donut ──────────── */
+    function renderSavingsDonut(recs) {
+      const ctx = document.getElementById('savings-donut-chart').getContext('2d');
+      if (savingsDonutChart) savingsDonutChart.destroy();
+
+      const sorted = [...recs].sort((a, b) => (b.median_savings_usd || 0) - (a.median_savings_usd || 0));
+      const labels = sorted.map(r => r.arc_icon + ' ' + r.arc_label);
+      const values = sorted.map(r => r.median_savings_usd || 0);
+      const total = values.reduce((a, b) => a + b, 0);
+
+      savingsDonutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: values,
+            backgroundColor: sorted.map((_, i) => CHART_COLORS[i % CHART_COLORS.length]),
+            borderWidth: 2,
+            borderColor: '#fff',
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '50%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                font: { size: 11 },
+                padding: 8,
+                boxWidth: 12,
+                usePointStyle: true,
+                pointStyle: 'circle',
+                generateLabels: function(chart) {
+                  const data = chart.data;
+                  return data.labels.map((label, i) => {
+                    const val = data.datasets[0].data[i];
+                    const pct = total > 0 ? ((val / total) * 100).toFixed(0) : 0;
+                    return {
+                      text: label + ' (' + pct + '%)',
+                      fillStyle: data.datasets[0].backgroundColor[i],
+                      strokeStyle: '#fff',
+                      lineWidth: 1,
+                      hidden: false,
+                      index: i,
+                      pointStyle: 'circle',
+                    };
+                  });
+                },
+              },
+            },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  const val = ctx.raw;
+                  const pct = total > 0 ? ((val / total) * 100).toFixed(1) : 0;
+                  return ctx.label + ': $' + fmtMoney(val) + '/yr (' + pct + '%)';
+                }
+              }
+            }
+          },
+        },
+      });
+    }
+
+    /* ── Implementation Rate Bar Chart ────── */
+    function renderImplRateChart(recs) {
+      const ctx = document.getElementById('impl-rate-chart').getContext('2d');
+      if (implRateChart) implRateChart.destroy();
+
+      const sorted = [...recs].sort((a, b) => (b.implementation_rate || 0) - (a.implementation_rate || 0));
+      const labels = sorted.map(r => r.arc_icon + ' ' + r.arc_label);
+      const values = sorted.map(r => Math.round((r.implementation_rate || 0) * 100));
+
+      implRateChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Implementation Rate',
+            data: values,
+            backgroundColor: sorted.map((r) => {
+              const rate = r.implementation_rate || 0;
+              if (rate >= 0.6) return 'rgba(0, 168, 120, 0.75)';
+              if (rate >= 0.4) return 'rgba(27, 79, 138, 0.65)';
+              return 'rgba(113, 128, 150, 0.5)';
+            }),
+            borderRadius: 4,
+            barThickness: 18,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          scales: {
+            x: {
+              min: 0, max: 100,
+              title: { display: true, text: 'Implementation Rate (%)', font: { size: 11, weight: '600' } },
+              ticks: { callback: v => v + '%', font: { size: 11 } },
+              grid: { color: 'rgba(0,0,0,0.05)' },
+            },
+            y: {
+              ticks: {
+                font: { size: 10 },
+                callback: function(value, index) {
+                  const label = this.getLabelForValue(value);
+                  // Truncate long labels
+                  return label.length > 28 ? label.substring(0, 26) + '\u2026' : label;
+                },
+              },
+              afterFit: function(axis) { axis.width = 150; },
+              grid: { display: false },
+            },
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                title: function(items) { return labels[items[0].dataIndex]; },
+                label: function(ctx) {
+                  const r = sorted[ctx.dataIndex];
+                  return ctx.raw + '% implemented (' + fmtN(r.n) + ' assessments)';
+                }
+              }
+            }
+          },
+        },
+      });
+    }
+
+    /* ── Payback Period Chart ─────────────── */
+    function renderPaybackChart(recs) {
+      const ctx = document.getElementById('payback-chart').getContext('2d');
+      if (paybackChart) paybackChart.destroy();
+
+      const withPayback = recs.filter(r => r.median_payback_years != null);
+      const sorted = [...withPayback].sort((a, b) => (a.median_payback_years || 0) - (b.median_payback_years || 0));
+      const labels = sorted.map(r => r.arc_icon + ' ' + r.arc_label);
+      const medians = sorted.map(r => r.median_payback_years);
+      const lows = sorted.map(r => r.p25_payback_years || 0);
+      const highs = sorted.map(r => r.p75_payback_years || r.median_payback_years);
+
+      paybackChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Fast Payback (25th percentile)',
+              data: lows,
+              backgroundColor: 'rgba(0, 168, 120, 0.25)',
+              borderColor: 'rgba(0, 168, 120, 0.4)',
+              borderWidth: 0,
+              borderRadius: 4,
+              barThickness: 18,
+            },
+            {
+              label: 'Median Payback',
+              data: medians.map((m, i) => m - lows[i]),
+              backgroundColor: 'rgba(0, 168, 120, 0.7)',
+              borderColor: 'rgba(0, 168, 120, 0.9)',
+              borderWidth: 0,
+              borderRadius: 4,
+              barThickness: 18,
+            },
+            {
+              label: 'Slow Payback (75th percentile)',
+              data: highs.map((h, i) => h - medians[i]),
+              backgroundColor: 'rgba(27, 79, 138, 0.25)',
+              borderColor: 'rgba(27, 79, 138, 0.5)',
+              borderWidth: 1,
+              borderRadius: 4,
+              barThickness: 18,
+            },
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          scales: {
+            x: {
+              stacked: true,
+              title: { display: true, text: 'Payback Period in Years (shorter is better \u2192)', font: { size: 11, weight: '600' } },
+              ticks: { font: { size: 11 } },
+              grid: { color: 'rgba(0,0,0,0.05)' },
+            },
+            y: {
+              stacked: true,
+              ticks: {
+                font: { size: 10 },
+                callback: function(value, index) {
+                  const label = this.getLabelForValue(value);
+                  return label.length > 28 ? label.substring(0, 26) + '\u2026' : label;
+                },
+              },
+              afterFit: function(axis) { axis.width = 150; },
+              grid: { display: false },
+            },
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                font: { size: 10 },
+                padding: 10,
+                boxWidth: 12,
+                usePointStyle: true,
+                pointStyle: 'rect',
+              },
+            },
+            tooltip: {
+              callbacks: {
+                title: function(items) { return labels[items[0].dataIndex]; },
+                label: function(ctx) {
+                  const i = ctx.dataIndex;
+                  return 'Payback: ' + fmtPayback(lows[i]) + ' \u2013 ' + fmtPayback(highs[i]) + ' (median ' + fmtPayback(medians[i]) + ')';
+                }
+              }
+            }
+          },
+        },
+      });
+    }
+
+    /* ── Recommendation Cards ─────────────── */
+    function renderRecs(recs, sortBy) {
+      const sorted = [...recs].sort((a, b) => {
+        if (sortBy === 'savings') return (b.median_savings_usd || 0) - (a.median_savings_usd || 0);
+        if (sortBy === 'payback') return (a.median_payback_years || 999) - (b.median_payback_years || 999);
+        if (sortBy === 'impl') return (b.implementation_rate || 0) - (a.implementation_rate || 0);
+        return (b.rank_score || 0) - (a.rank_score || 0); // default: rank
+      });
+
+      const grid = document.getElementById('recs-grid');
+      grid.innerHTML = sorted.map((r, i) => {
+        const rank = i + 1;
+        const rankClass = rank <= 3 ? 'rank-' + rank : (rank <= 6 ? 'rank-4' : 'rank-default');
+        const impact = r.rank_score > 0.6 ? 'HIGH' : (r.rank_score > 0.4 ? 'MEDIUM' : 'LOW');
+        const impactClass = r.rank_score > 0.6 ? 'impact-high' : (r.rank_score > 0.4 ? 'impact-medium' : 'impact-low');
+        const implPct = Math.round((r.implementation_rate || 0) * 100);
+        const nCases = (r.enms_case_ids || []).length;
+
+        return (
+          '<div class="flip-card" onclick="flipCard(this)">' +
+            '<div class="flip-card-inner">' +
+              '<div class="flip-card-front">' +
+                '<div class="rec-card">' +
+                  '<div class="card-header">' +
+                    '<div class="rank-badge ' + rankClass + '">#' + rank + '</div>' +
+                    '<div class="card-title-area">' +
+                      '<span class="arc-icon">' + (r.arc_icon || '') + '</span>' +
+                      '<span class="arc-label">' + esc(r.arc_label) + '</span>' +
+                    '</div>' +
+                    '<span class="impact-badge ' + impactClass + '">' + impact + '</span>' +
+                  '</div>' +
+                  '<div class="body">' +
+                    '<div class="metrics">' +
+                      metricEl('$' + fmtMoney(r.p25_savings_usd) + '\u2013$' + fmtMoney(r.p75_savings_usd), 'Savings/yr', true) +
+                      metricEl(fmtPayback(r.median_payback_years), 'Payback', false) +
+                      metricEl(r.median_implementation_cost != null ? '$' + fmtMoney(r.median_implementation_cost) : 'N/A', 'Impl. Cost', false) +
+                    '</div>' +
+                    '<div class="impl-bar-wrap">' +
+                      '<div class="impl-bar-bg"><div class="impl-bar-fill" style="width:' + implPct + '%"></div></div>' +
+                      '<span class="impl-label">' + implPct + '% implemented</span>' +
+                    '</div>' +
+                    '<div class="sample-size">Based on ' + fmtN(r.n) + ' assessments' +
+                      (r.confidence < 1 ? ' <span style="color:#e2a000">(limited data)</span>' : '') +
+                    '</div>' +
+                    (nCases > 0 ? '<span class="enms-link" onclick="event.stopPropagation(); scrollToEnms()">\u25B8 See ' + nCases + ' EnMS case ' + (nCases === 1 ? 'study' : 'studies') + '</span>' : '') +
+                  '</div>' +
+                  '<div class="flip-indicator">' +
+                    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>' +
+                    ' Click for details' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+              '<div class="flip-card-back">' +
+                generateBackContent(r) +
+              '</div>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    function metricEl(val, label, isSavings) {
+      return '<div class="metric"><div class="val' + (isSavings ? ' savings' : '') + '">' + val + '</div><div class="lbl">' + label + '</div></div>';
+    }
+
+    /* ── EnMS Case Studies ────────────────── */
+    function renderEnmsCases(cases) {
+      const section = document.getElementById('enms-section');
+      const grid = document.getElementById('enms-grid');
+      if (!cases || !cases.length) { section.style.display = 'none'; return; }
+
+      section.style.display = 'block';
+      grid.innerHTML = cases.map(c => {
+        const sourceClass = c.source === 'iso' ? 'source-iso' :
+                            c.source === 'sep' ? 'source-sep' :
+                            c.source === 'ready' ? 'source-ready' : 'source-default';
+        const sourceLabel = c.source === 'iso' ? 'ISO 50001' :
+                            c.source === 'sep' ? 'SEP' :
+                            c.source === 'ready' ? '50001 Ready' : (c.source || 'EnMS');
+        const improvement = c.annualEnergyImprovementPct;
+        const impStr = improvement != null ? (improvement * 100).toFixed(1) + '%' : 'N/A';
+        const costSavings = c.annualCostSavingsUSD;
+        const flag = countryFlag(c.country);
+
+        return (
+          '<div class="enms-card">' +
+            '<div class="company">' + esc(c.company) + '</div>' +
+            '<div class="industry-line">' + flag + ' ' + esc(c.industry || '') + ' \u00B7 ' + esc(c.country || '') + '</div>' +
+            '<span class="source-badge ' + sourceClass + '">' + sourceLabel + '</span>' +
+            '<div class="savings-line">Annual energy improvement: <span class="improvement">' + impStr + '</span></div>' +
+            (costSavings ? '<div class="savings-line">Annual cost savings: <strong>$' + fmtMoney(costSavings) + '</strong></div>' : '') +
+            '<div class="year-line">Year: ' + (c.year || 'N/A') + '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    function scrollToEnms() {
+      const el = document.getElementById('enms-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ── Formatting Helpers ────────────────── */
+    function fmtN(n) {
+      if (n == null) return 'N/A';
+      return Math.round(Number(n)).toLocaleString('en-US');
+    }
+
+    function fmtMoney(n) {
+      if (n == null) return 'N/A';
+      n = Number(n);
+      if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'm';
+      if (n >= 1000) return Math.round(n / 1000) + 'k';
+      return Math.round(n).toString();
+    }
+
+    function fmtPayback(years) {
+      if (years == null) return 'N/A';
+      if (years < 1) return Math.round(years * 12) + ' mo';
+      return years.toFixed(1).replace(/\.0$/, '') + ' yr';
+    }
+
+    function esc(s) {
+      if (s == null) return '';
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function countryFlag(country) {
+      if (!country) return '';
+      const flags = {
+        'United States': '\uD83C\uDDFA\uD83C\uDDF8', 'USA': '\uD83C\uDDFA\uD83C\uDDF8',
+        'Canada': '\uD83C\uDDE8\uD83C\uDDE6', 'Germany': '\uD83C\uDDE9\uD83C\uDDEA',
+        'France': '\uD83C\uDDEB\uD83C\uDDF7', 'Japan': '\uD83C\uDDEF\uD83C\uDDF5',
+        'China': '\uD83C\uDDE8\uD83C\uDDF3', 'India': '\uD83C\uDDEE\uD83C\uDDF3',
+        'United Kingdom': '\uD83C\uDDEC\uD83C\uDDE7', 'UK': '\uD83C\uDDEC\uD83C\uDDE7',
+        'Mexico': '\uD83C\uDDF2\uD83C\uDDFD', 'Brazil': '\uD83C\uDDE7\uD83C\uDDF7',
+        'Australia': '\uD83C\uDDE6\uD83C\uDDFA', 'South Korea': '\uD83C\uDDF0\uD83C\uDDF7',
+        'Italy': '\uD83C\uDDEE\uD83C\uDDF9', 'Spain': '\uD83C\uDDEA\uD83C\uDDF8',
+        'Netherlands': '\uD83C\uDDF3\uD83C\uDDF1', 'Sweden': '\uD83C\uDDF8\uD83C\uDDEA',
+        'Argentina': '\uD83C\uDDE6\uD83C\uDDF7', 'Colombia': '\uD83C\uDDE8\uD83C\uDDF4',
+        'Thailand': '\uD83C\uDDF9\uD83C\uDDED', 'Turkey': '\uD83C\uDDF9\uD83C\uDDF7',
+        'Indonesia': '\uD83C\uDDEE\uD83C\uDDE9', 'South Africa': '\uD83C\uDDFF\uD83C\uDDE6',
+      };
+      return flags[country] || '\uD83C\uDF10';
+    }
+  </script>
+
+</body>
+</html>
