@@ -816,7 +816,9 @@
               <label for="state">State</label>
               <select id="state">
                 <option value="">Select state&hellip;</option>
+                <option value="_national">National (All US)</option>
               </select>
+              <div class="naics-suggestions" id="state-suggestions"></div>
             </div>
 
             <div class="form-group">
@@ -1124,15 +1126,35 @@
       if (!PROCESSED) return { sample_size: 0 };
       const naics3 = naics && naics.length >= 3 ? naics.substring(0, 3) : '';
       const suggestStats = PROCESSED.suggest_stats || {};
+      const isNational = state === '_national';
+      const effectiveState = isNational ? null : state;
       let stats = null;
-      if (state && naics3 && suggestStats[state]) stats = suggestStats[state][naics3];
-      if (!stats && state && suggestStats[state]) stats = suggestStats[state]._all;
+      if (effectiveState && naics3 && suggestStats[effectiveState]) stats = suggestStats[effectiveState][naics3];
+      if (!stats && effectiveState && suggestStats[effectiveState]) stats = suggestStats[effectiveState]._all;
       if (!stats && naics3) stats = (suggestStats._global || {})[naics3];
+      if (!stats && isNational) {
+        // Aggregate _all across all states for national view
+        let totalN = 0, allEmployees = [], allArea = [], allSales = [], allEnergy = [];
+        Object.entries(suggestStats).forEach(([st, data]) => {
+          if (st === '_global') return;
+          if (data._all) totalN += data._all.n || 0;
+        });
+        if (totalN > 0) stats = { n: totalN };
+      }
       if (!stats) return { sample_size: 0, employees: null, plant_area: null, sales: null, energy_cost: null, top_naics: [] };
       const topNaics = [];
-      if (!naics && state && suggestStats[state]) {
-        Object.entries(suggestStats[state]).forEach(([k, v]) => {
+      if (!naics && effectiveState && suggestStats[effectiveState]) {
+        Object.entries(suggestStats[effectiveState]).forEach(([k, v]) => {
           if (k.startsWith('_')) return;
+          const label = (PROCESSED.naics_groups[k] || {}).label || k;
+          topNaics.push({ code: k, name: label, count: v.n || 0 });
+        });
+        topNaics.sort((a, b) => b.count - a.count);
+      }
+      if (!naics && isNational) {
+        // Show top industries nationally
+        const globalStats = suggestStats._global || {};
+        Object.entries(globalStats).forEach(([k, v]) => {
           const label = (PROCESSED.naics_groups[k] || {}).label || k;
           topNaics.push({ code: k, name: label, count: v.n || 0 });
         });
@@ -1714,6 +1736,7 @@
       updateHint('sales',       s.sales,       s.sample_size, '$');
       updateHint('energy-cost', s.energy_cost, s.sample_size, '$');
       renderNaicsSuggestions(s.top_naics);
+      renderStateSuggestions(naics);
     }
 
     function updateHint(fieldId, stats, sampleSize, prefix) {
@@ -1748,6 +1771,8 @@
       });
       const ns = document.getElementById('naics-suggestions');
       if (ns) { ns.classList.remove('visible'); ns.innerHTML = ''; }
+      const ss = document.getElementById('state-suggestions');
+      if (ss) { ss.classList.remove('visible'); ss.innerHTML = ''; }
     }
 
     function renderNaicsSuggestions(topNaics) {
@@ -1767,6 +1792,40 @@
         chip.addEventListener('click', () => {
           selectedNaics = chip.dataset.code;
           document.getElementById('naics-search').value = chip.dataset.code + ' \u2013 ' + chip.dataset.name;
+          wrap.classList.remove('visible'); wrap.innerHTML = '';
+          fetchSuggestions();
+        });
+      });
+    }
+
+    function renderStateSuggestions(naics) {
+      const wrap = document.getElementById('state-suggestions');
+      if (!wrap) return;
+      const stateVal = document.getElementById('state').value;
+      if (!naics || stateVal) {
+        wrap.classList.remove('visible'); wrap.innerHTML = ''; return;
+      }
+      if (!PROCESSED || !PROCESSED.suggest_stats) return;
+      const naics3 = naics.length >= 3 ? naics.substring(0, 3) : naics;
+      const ss = PROCESSED.suggest_stats;
+      const topStates = [];
+      Object.keys(ss).forEach(st => {
+        if (st === '_global') return;
+        const entry = ss[st][naics3];
+        if (entry && entry.n > 0) topStates.push({ code: st, name: STATE_NAMES[st] || st, count: entry.n });
+      });
+      topStates.sort((a, b) => b.count - a.count);
+      if (!topStates.length) { wrap.classList.remove('visible'); wrap.innerHTML = ''; return; }
+      wrap.innerHTML = '<span style="font-size:.75rem;color:var(--muted);width:100%;margin-bottom:2px">Top states for this industry:</span>' +
+        topStates.slice(0, 8).map(s =>
+          '<span class="naics-chip" data-code="' + esc(s.code) + '">' +
+          esc(s.name) + ' (' + esc(s.code) + ')<span class="chip-count">(' + s.count + ')</span></span>'
+        ).join('');
+      wrap.classList.add('visible');
+
+      wrap.querySelectorAll('.naics-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          document.getElementById('state').value = chip.dataset.code;
           wrap.classList.remove('visible'); wrap.innerHTML = '';
           fetchSuggestions();
         });
