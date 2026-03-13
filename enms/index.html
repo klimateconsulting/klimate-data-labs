@@ -164,6 +164,57 @@
       width: 16px; height: 16px; accent-color: var(--teal);
     }
 
+    /* ── Advanced Details Accordion ────────── */
+    .advanced-accordion {
+      grid-column: 1 / -1;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 2px;
+    }
+    .accordion-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #fff;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .15s;
+    }
+    .accordion-toggle:hover { background: var(--teal-light); }
+    .accordion-toggle-left {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .accordion-toggle-title {
+      font-weight: 600; font-size: .88rem; color: var(--navy);
+    }
+    .accordion-fill-count {
+      font-size: .75rem; font-weight: 500; color: var(--muted);
+      background: var(--bg); border-radius: 10px; padding: 2px 9px;
+    }
+    .accordion-fill-count.has-values { background: var(--teal-light); color: var(--teal); }
+    .accordion-chevron {
+      width: 18px; height: 18px; color: var(--muted);
+      transition: transform .25s ease;
+    }
+    .advanced-accordion.open .accordion-chevron { transform: rotate(180deg); }
+    .accordion-body {
+      display: none;
+      padding: 4px 16px 16px;
+    }
+    .advanced-accordion.open .accordion-body { display: block; }
+    .accordion-body .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .accordion-caption {
+      font-size: .75rem; color: var(--muted); margin-bottom: 12px; line-height: 1.4;
+    }
+
     /* Submit + Reset */
     .btn-row { margin-top: 24px; display: flex; gap: 12px; }
     #submit-btn {
@@ -459,6 +510,118 @@
     .enms-card .improvement { color: var(--teal); font-weight: 700; }
     .enms-card .year-line { font-size: .78rem; color: var(--muted); margin-top: 4px; }
 
+    /* ── Page Tab Navigation ─────────────── */
+    .page-tabs {
+      display: flex; gap: 0; margin-bottom: 24px;
+      border-bottom: 2px solid var(--border);
+    }
+    .page-tab {
+      padding: 12px 24px; font-size: .92rem; font-weight: 600;
+      color: var(--muted); background: none; border: none;
+      cursor: pointer; position: relative; transition: color .2s;
+      font-family: inherit;
+    }
+    .page-tab:hover { color: var(--navy); }
+    .page-tab.active {
+      color: var(--teal);
+    }
+    .page-tab.active::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 2px; background: var(--teal); border-radius: 2px 2px 0 0;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── Insights Tab ────────────────────── */
+    .insights-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .insights-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 700px) {
+      .insights-2col { grid-template-columns: 1fr; }
+    }
+
+    /* Industry comparison table */
+    .industry-table-wrap {
+      overflow-x: auto;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+    .industry-table {
+      width: 100%; border-collapse: collapse; font-size: .82rem;
+    }
+    .industry-table th {
+      position: sticky; top: 0;
+      background: var(--navy); color: #fff;
+      padding: 10px 12px; text-align: left; font-weight: 600;
+      cursor: pointer; user-select: none; white-space: nowrap;
+    }
+    .industry-table th:hover { background: var(--blue); }
+    .industry-table th .sort-arrow { opacity: 0.4; margin-left: 4px; font-size: .7rem; }
+    .industry-table th.sorted .sort-arrow { opacity: 1; }
+    .industry-table td {
+      padding: 9px 12px; border-bottom: 1px solid var(--border);
+    }
+    .industry-table tr:hover td { background: var(--teal-light); }
+    .industry-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .industry-table .bar-cell { width: 80px; }
+    .mini-bar {
+      height: 8px; border-radius: 4px; background: var(--teal);
+      transition: width .3s;
+    }
+
+    /* Stat cards row */
+    .insight-stat-row {
+      display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px;
+    }
+    .insight-stat-card {
+      flex: 1; min-width: 140px;
+      background: var(--white); border-radius: var(--radius);
+      box-shadow: var(--card-shadow); padding: 18px;
+      text-align: center;
+    }
+    .insight-stat-card .stat-value {
+      font-size: 1.5rem; font-weight: 700; color: var(--teal);
+    }
+    .insight-stat-card .stat-label {
+      font-size: .78rem; color: var(--muted); margin-top: 4px;
+    }
+
+    /* ── Insights Callout & Footnote ────────── */
+    .insights-callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--teal-light);
+      border-left: 4px solid var(--teal);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: .83rem;
+      color: var(--navy);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .insights-callout strong { font-weight: 700; }
+    .insights-footnote {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: 12px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .insights-caption {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
     /* Loading */
     .loader { display: none; text-align: center; padding: 40px; }
     .spinner {
@@ -710,6 +873,12 @@
       .sector-chip { padding: 3px 8px; font-size: .7rem; }
       .map-header { flex-direction: column; align-items: flex-start; gap: 4px; }
       .bubble-label { font-size: 7px; }
+      .accordion-body .form-grid { grid-template-columns: 1fr; }
+      .page-tabs { gap: 0; }
+      .page-tab { padding: 10px 16px; font-size: .85rem; }
+      .insight-stat-row { gap: 8px; }
+      .insight-stat-card { min-width: 100px; padding: 12px; }
+      .insight-stat-card .stat-value { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -821,30 +990,6 @@
               <div class="naics-suggestions" id="state-suggestions"></div>
             </div>
 
-            <div class="form-group">
-              <label for="employees">Number of Employees</label>
-              <input type="number" id="employees" placeholder="e.g. 150" min="1">
-              <div class="hint" id="employees-hint"></div>
-            </div>
-
-            <div class="form-group">
-              <label for="plant-area">Facility Size (sq ft)</label>
-              <input type="number" id="plant-area" placeholder="e.g. 50000" min="1">
-              <div class="hint" id="plant-area-hint"></div>
-            </div>
-
-            <div class="form-group">
-              <label for="sales">Annual Revenue ($)</label>
-              <input type="number" id="sales" placeholder="e.g. 10000000" min="0">
-              <div class="hint" id="sales-hint"></div>
-            </div>
-
-            <div class="form-group">
-              <label for="energy-cost">Annual Energy Cost ($) <span class="optional">optional</span></label>
-              <input type="number" id="energy-cost" placeholder="e.g. 500000" min="0">
-              <div class="hint" id="energy-cost-hint"></div>
-            </div>
-
             <div class="energy-types">
               <label class="group-label">Energy Types Used <span class="optional">optional — filters results</span></label>
               <div class="checkbox-row">
@@ -852,6 +997,44 @@
                 <label><input type="checkbox" name="energy_type" value="natural_gas"> Natural Gas</label>
                 <label><input type="checkbox" name="energy_type" value="steam"> Steam</label>
                 <label><input type="checkbox" name="energy_type" value="fuel_oil"> Fuel Oil / Propane</label>
+              </div>
+            </div>
+
+            <div class="advanced-accordion" id="advanced-accordion">
+              <button type="button" class="accordion-toggle" onclick="toggleAdvanced()">
+                <span class="accordion-toggle-left">
+                  <span class="accordion-toggle-title">Advanced Details</span>
+                  <span class="accordion-fill-count" id="accordion-fill-count">0 of 4 filled</span>
+                </span>
+                <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="accordion-body">
+                <p class="accordion-caption">These fields help contextualize results but don't change recommendations. Fill them for industry benchmarks.</p>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="employees">Number of Employees</label>
+                    <input type="number" id="employees" placeholder="e.g. 150" min="1">
+                    <div class="hint" id="employees-hint"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="plant-area">Facility Size (sq ft)</label>
+                    <input type="number" id="plant-area" placeholder="e.g. 50000" min="1">
+                    <div class="hint" id="plant-area-hint"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="sales">Annual Revenue ($)</label>
+                    <input type="number" id="sales" placeholder="e.g. 10000000" min="0">
+                    <div class="hint" id="sales-hint"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="energy-cost">Annual Energy Cost ($) <span class="optional">optional</span></label>
+                    <input type="number" id="energy-cost" placeholder="e.g. 500000" min="0">
+                    <div class="hint" id="energy-cost-hint"></div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -875,6 +1058,15 @@
       <div class="container">
 
         <div class="summary-banner" id="summary"></div>
+
+        <!-- Tab Navigation -->
+        <div class="page-tabs" id="page-tabs">
+          <button class="page-tab active" data-tab="recommendations" onclick="switchTab('recommendations')">Recommendations</button>
+          <button class="page-tab" data-tab="insights" onclick="switchTab('insights')">Industry Insights</button>
+        </div>
+
+        <!-- ═══ Recommendations Tab ═══ -->
+        <div class="tab-content active" id="tab-recommendations">
 
         <!-- Chart Selector Cards -->
         <div class="chart-selector-row" id="chart-selector-row">
@@ -1001,6 +1193,125 @@
           <div class="enms-grid" id="enms-grid"></div>
         </div>
 
+        </div><!-- /tab-recommendations -->
+
+        <!-- ═══ Industry Insights Tab ═══ -->
+        <div class="tab-content" id="tab-insights">
+
+          <!-- Global stat cards -->
+          <div class="insight-stat-row" id="insight-stats"></div>
+
+          <!-- Two-column layout: bubble chart + table -->
+          <div class="insights-2col">
+
+            <!-- ARC Category ROI Bubble Chart -->
+            <div class="chart-section">
+              <div class="chart-header">
+                <h3>Improvement Categories: Savings vs. Payback</h3>
+                <button class="info-btn" onclick="toggleChartInfo('insight-bubble-info')" title="About this chart">i</button>
+              </div>
+              <div class="chart-info-panel" id="insight-bubble-info">
+                <div class="chart-info-section"><strong>What this shows:</strong> Each bubble represents an ARC improvement category aggregated across all industries. X-axis = median payback, Y-axis = median savings, bubble size = total recommendations.</div>
+              </div>
+              <div class="chart-container-sm">
+                <canvas id="insight-bubble-chart"></canvas>
+              </div>
+            </div>
+
+            <!-- Top Improvement Areas Bar Chart -->
+            <div class="chart-section">
+              <div class="chart-header">
+                <h3>Top Improvement Areas by Total Savings</h3>
+                <button class="info-btn" onclick="toggleChartInfo('insight-top-areas-info')" title="About this chart">i</button>
+              </div>
+              <div class="chart-info-panel" id="insight-top-areas-info">
+                <div class="chart-info-section"><strong>What this shows:</strong> The total median savings potential across all industries for each improvement category, showing where the biggest opportunities lie regardless of industry.</div>
+              </div>
+              <div class="chart-container-sm">
+                <canvas id="insight-top-areas-chart"></canvas>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Industry Comparison Table -->
+          <div class="chart-section" style="margin-top:24px">
+            <div class="chart-header">
+              <h3>Industry Comparison</h3>
+              <button class="info-btn" onclick="toggleChartInfo('insight-table-info')" title="About this table">i</button>
+            </div>
+            <div class="chart-info-panel" id="insight-table-info">
+              <div class="chart-info-section"><strong>What this shows:</strong> A comparison of all industries in the IAC database, sortable by assessments, savings potential, implementation rates, and number of improvement categories. Click any column header to sort.</div>
+            </div>
+            <div class="industry-table-wrap">
+              <table class="industry-table" id="industry-table">
+                <thead>
+                  <tr>
+                    <th data-col="label" onclick="sortInsightTable('label')">Industry <span class="sort-arrow">&#x25B2;</span></th>
+                    <th data-col="naics" onclick="sortInsightTable('naics')" class="num">NAICS <span class="sort-arrow">&#x25B2;</span></th>
+                    <th data-col="assessments" onclick="sortInsightTable('assessments')" class="num">Assessments <span class="sort-arrow">&#x25B2;</span></th>
+                    <th data-col="categories" onclick="sortInsightTable('categories')" class="num">Categories <span class="sort-arrow">&#x25B2;</span></th>
+                    <th data-col="totalSavings" onclick="sortInsightTable('totalSavings')" class="num">Total Savings/yr <span class="sort-arrow">&#x25B2;</span></th>
+                    <th data-col="avgImpl" onclick="sortInsightTable('avgImpl')" class="num">Avg Impl. Rate <span class="sort-arrow">&#x25B2;</span></th>
+                    <th class="bar-cell">Impl.</th>
+                  </tr>
+                </thead>
+                <tbody id="industry-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Panel: Savings by Facility Size -->
+          <div class="chart-section" style="margin-top:24px" id="insights-size-panel">
+            <div class="chart-header">
+              <h3>Does Facility Size Affect Savings Potential?</h3>
+              <button class="info-btn" onclick="toggleChartInfo('insight-size-info')" title="About this chart">i</button>
+            </div>
+            <div class="chart-info-panel" id="insight-size-info">
+              <div class="chart-info-section"><strong>What this shows:</strong> Median annual savings by recommendation category, grouped by facility size (employee-count quartiles). Larger facilities save more — but get recommended the same categories regardless of size.</div>
+            </div>
+            <p class="insights-caption">
+              Larger facilities save more per recommendation — but receive the <em>same category recommendations</em> regardless of size.
+              The top categories are identical at every size.
+            </p>
+            <div class="insights-callout" id="size-callout"></div>
+            <div class="chart-container-sm" style="height:360px; margin-top:16px">
+              <canvas id="insights-size-chart"></canvas>
+            </div>
+            <p class="insights-footnote">
+              Based on all IAC assessments with employee data. Categories shown are the top 6
+              by savings for large facilities. Payback periods are nearly identical across
+              all size groups (~0.8–0.9 yr median).
+            </p>
+          </div>
+
+          <!-- Panel: Energy Cost → Savings -->
+          <div class="chart-section" style="margin-top:24px" id="insights-energy-panel">
+            <div class="chart-header">
+              <h3>Annual Energy Cost Predicts Savings Potential</h3>
+              <button class="info-btn" onclick="toggleChartInfo('insight-energy-info')" title="About this chart">i</button>
+            </div>
+            <div class="chart-info-panel" id="insight-energy-info">
+              <div class="chart-info-section"><strong>What this shows:</strong> Median recommendation savings by facility annual energy spend quintile — all industries combined. Facilities with higher energy bills have proportionally larger savings opportunities across every category.</div>
+            </div>
+            <p class="insights-caption">
+              Facilities with higher energy bills have proportionally larger savings opportunities.
+              Annual energy cost is the strongest facility-level predictor of savings magnitude in the IAC database.
+            </p>
+            <div class="insights-callout" id="energy-callout"></div>
+            <div class="chart-container-sm" style="height:260px; margin-top:16px">
+              <canvas id="insights-energy-chart"></canvas>
+            </div>
+            <p class="insights-footnote">
+              Annual energy cost (Spearman r &asymp; 0.38–0.56 per category) is the strongest
+              facility-level predictor of savings magnitude in the IAC database —
+              stronger than employee count, plant area, or revenue.
+              Enter your annual energy cost in the Advanced section for a personalized estimate.
+            </p>
+          </div>
+
+        </div><!-- /tab-insights -->
+
       </div>
     </section>
   </main>
@@ -1017,6 +1328,18 @@
     function dismissWelcome() {
       sessionStorage.setItem('kc_enms_welcomed', 'true');
       document.getElementById('welcomePopup').classList.remove('visible');
+    }
+
+    function toggleAdvanced() {
+      document.getElementById('advanced-accordion').classList.toggle('open');
+    }
+
+    function updateAccordionCount() {
+      const fields = ['employees', 'plant-area', 'sales', 'energy-cost'];
+      const filled = fields.filter(id => document.getElementById(id).value.trim() !== '').length;
+      const el = document.getElementById('accordion-fill-count');
+      el.textContent = filled + ' of 4 filled';
+      el.classList.toggle('has-values', filled > 0);
     }
 
     let PROCESSED = null;
@@ -1703,10 +2026,11 @@
       // Wire up suggest triggers
       document.getElementById('state').addEventListener('change', () => fetchSuggestions());
       ['employees', 'plant-area', 'sales', 'energy-cost'].forEach(id => {
-        document.getElementById(id).addEventListener('change', () => fetchSuggestions());
+        document.getElementById(id).addEventListener('change', () => { fetchSuggestions(); updateAccordionCount(); });
         document.getElementById(id).addEventListener('input', () => {
           clearTimeout(suggestTimer);
           suggestTimer = setTimeout(fetchSuggestions, 600);
+          updateAccordionCount();
         });
       });
 
@@ -1918,10 +2242,13 @@
       document.getElementById('energy-cost').value = '';
       document.querySelectorAll('input[name="energy_type"]').forEach(cb => cb.checked = false);
       clearAllHints();
+      document.getElementById('advanced-accordion').classList.remove('open');
+      updateAccordionCount();
       document.getElementById('results').style.display = 'none';
       // Destroy charts to free memory
-      [priorityChart, savingsDonutChart, implRateChart, paybackChart].forEach(c => { if (c) c.destroy(); });
-      priorityChart = savingsDonutChart = implRateChart = paybackChart = null;
+      [priorityChart, savingsDonutChart, implRateChart, paybackChart, insightBubbleChart, insightTopAreasChart, insightSizeChart, insightEnergyChart].forEach(c => { if (c) c.destroy(); });
+      priorityChart = savingsDonutChart = implRateChart = paybackChart = insightBubbleChart = insightTopAreasChart = insightSizeChart = insightEnergyChart = null;
+      insightsRendered = false;
       // Reset map to All Sectors
       activeSector = null;
       document.querySelectorAll('.sector-chip').forEach(c => {
@@ -1939,6 +2266,9 @@
     /* ── Render Results ───────────────────── */
     function renderResults(d) {
       document.getElementById('results').style.display = 'block';
+      // Reset to recommendations tab
+      switchTab('recommendations');
+      insightsRendered = false;
       renderSummary(d);
       updateCardStats(d.recommendations);
 
@@ -2527,6 +2857,477 @@
         'Indonesia': '\uD83C\uDDEE\uD83C\uDDE9', 'South Africa': '\uD83C\uDDFF\uD83C\uDDE6',
       };
       return flags[country] || '\uD83C\uDF10';
+    }
+
+    /* ═══════════════════════════════════════════
+       INDUSTRY INSIGHTS TAB
+       ═══════════════════════════════════════════ */
+
+    let insightBubbleChart = null;
+    let insightTopAreasChart = null;
+    let insightsRendered = false;
+    let insightTableData = [];
+    let insightTableSortCol = 'totalSavings';
+    let insightTableSortAsc = false;
+
+    function switchTab(tabKey) {
+      document.querySelectorAll('.page-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabKey));
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.toggle('active', t.id === 'tab-' + tabKey));
+      if (tabKey === 'insights' && !insightsRendered) {
+        renderInsights();
+        insightsRendered = true;
+      }
+      // Resize charts when switching tabs
+      if (tabKey === 'insights') {
+        setTimeout(() => {
+          if (insightBubbleChart) insightBubbleChart.resize();
+          if (insightTopAreasChart) insightTopAreasChart.resize();
+        }, 50);
+      }
+      if (tabKey === 'recommendations') {
+        const activeChart = document.querySelector('.chart-card.active');
+        if (activeChart) selectChart(activeChart.dataset.chart);
+      }
+    }
+
+    function computeInsightsData() {
+      if (!PROCESSED || !PROCESSED.naics_groups) return { arcGlobal: [], industries: [] };
+
+      // Aggregate ARC categories across ALL industries
+      const arcAgg = {};
+      const industries = [];
+
+      Object.entries(PROCESSED.naics_groups).forEach(([naics, group]) => {
+        const recs = group.recommendations || [];
+        let totalSavings = 0;
+        let totalImpl = 0;
+        let implCount = 0;
+
+        recs.forEach(rec => {
+          const arc = rec.arc;
+          if (!arcAgg[arc]) {
+            arcAgg[arc] = {
+              arc: arc,
+              label: rec.arc_label,
+              icon: rec.arc_icon,
+              totalN: 0,
+              savingsSum: 0,
+              implRateSum: 0,
+              implCount: 0,
+              paybackSum: 0,
+              paybackCount: 0,
+              industries: 0,
+            };
+          }
+          arcAgg[arc].totalN += rec.n;
+          arcAgg[arc].savingsSum += rec.median_savings_usd || 0;
+          arcAgg[arc].implRateSum += rec.implementation_rate || 0;
+          arcAgg[arc].implCount++;
+          if (rec.median_payback_years != null) {
+            arcAgg[arc].paybackSum += rec.median_payback_years;
+            arcAgg[arc].paybackCount++;
+          }
+          arcAgg[arc].industries++;
+
+          totalSavings += rec.median_savings_usd || 0;
+          totalImpl += rec.implementation_rate || 0;
+          implCount++;
+        });
+
+        industries.push({
+          naics: naics,
+          label: group.label || ('NAICS ' + naics),
+          assessments: group.n_assessments || 0,
+          categories: recs.length,
+          totalSavings: totalSavings,
+          avgImpl: implCount > 0 ? totalImpl / implCount : 0,
+        });
+      });
+
+      // Compute averages for ARC global
+      const arcGlobal = Object.values(arcAgg).map(a => ({
+        arc: a.arc,
+        label: a.label,
+        icon: a.icon,
+        totalN: a.totalN,
+        avgSavings: a.implCount > 0 ? a.savingsSum / a.implCount : 0,
+        totalSavings: a.savingsSum,
+        avgImplRate: a.implCount > 0 ? a.implRateSum / a.implCount : 0,
+        avgPayback: a.paybackCount > 0 ? a.paybackSum / a.paybackCount : null,
+        industries: a.industries,
+      }));
+
+      arcGlobal.sort((a, b) => b.totalSavings - a.totalSavings);
+      industries.sort((a, b) => b.totalSavings - a.totalSavings);
+
+      return { arcGlobal, industries };
+    }
+
+    function renderInsights() {
+      const { arcGlobal, industries } = computeInsightsData();
+      insightTableData = industries;
+
+      // Stat cards
+      const totalAssessments = industries.reduce((s, i) => s + i.assessments, 0);
+      const totalIndustries = industries.length;
+      const topArc = arcGlobal[0];
+      const avgImpl = industries.length > 0 ?
+        industries.reduce((s, i) => s + i.avgImpl, 0) / industries.length : 0;
+
+      document.getElementById('insight-stats').innerHTML =
+        '<div class="insight-stat-card"><div class="stat-value">' + fmtN(totalIndustries) + '</div><div class="stat-label">Industries Covered</div></div>' +
+        '<div class="insight-stat-card"><div class="stat-value">' + fmtN(totalAssessments) + '</div><div class="stat-label">Total Assessments</div></div>' +
+        '<div class="insight-stat-card"><div class="stat-value">' + arcGlobal.length + '</div><div class="stat-label">Improvement Categories</div></div>' +
+        '<div class="insight-stat-card"><div class="stat-value">' + Math.round(avgImpl * 100) + '%</div><div class="stat-label">Avg Implementation Rate</div></div>';
+
+      renderInsightBubbleChart(arcGlobal);
+      renderInsightTopAreasChart(arcGlobal);
+      renderInsightTable();
+      renderSizeBinsPanel();
+      renderEnergyCostPanel();
+    }
+
+    function renderInsightBubbleChart(arcGlobal) {
+      const ctx = document.getElementById('insight-bubble-chart').getContext('2d');
+      if (insightBubbleChart) insightBubbleChart.destroy();
+
+      const data = arcGlobal
+        .filter(a => a.avgPayback != null)
+        .map(a => ({
+          x: a.avgPayback,
+          y: a.avgSavings,
+          r: Math.max(5, Math.min(25, Math.sqrt(a.totalN) / 3)),
+          label: a.label,
+          icon: a.icon,
+          totalN: a.totalN,
+          avgImpl: a.avgImplRate,
+          industries: a.industries,
+        }));
+
+      insightBubbleChart = new Chart(ctx, {
+        type: 'bubble',
+        data: {
+          datasets: [{
+            data: data,
+            backgroundColor: data.map((_, i) => {
+              const c = CHART_COLORS[i % CHART_COLORS.length];
+              return c.replace(')', ', 0.65)').replace('rgb', 'rgba');
+            }).map((_, i) => CHART_COLORS[i % CHART_COLORS.length] + 'A6'),
+            borderColor: data.map((_, i) => CHART_COLORS[i % CHART_COLORS.length]),
+            borderWidth: 1.5,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              title: { display: true, text: 'Avg Payback Period (years)', font: { size: 11, weight: '600' } },
+              ticks: { font: { size: 10 } },
+              grid: { color: 'rgba(0,0,0,0.05)' },
+              beginAtZero: true,
+            },
+            y: {
+              title: { display: true, text: 'Avg Median Savings ($/yr)', font: { size: 11, weight: '600' } },
+              ticks: { font: { size: 10 }, callback: v => '$' + fmtMoney(v) },
+              grid: { color: 'rgba(0,0,0,0.05)' },
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  const d = ctx.raw;
+                  return [
+                    d.icon + ' ' + d.label,
+                    'Avg Savings: $' + fmtMoney(d.y) + '/yr',
+                    'Avg Payback: ' + fmtPayback(d.x),
+                    'Total Recommendations: ' + fmtN(d.totalN),
+                    'Avg Implementation: ' + Math.round(d.avgImpl * 100) + '%',
+                    'Found in ' + d.industries + ' industry groups',
+                  ];
+                }
+              }
+            }
+          },
+        },
+      });
+    }
+
+    function renderInsightTopAreasChart(arcGlobal) {
+      const ctx = document.getElementById('insight-top-areas-chart').getContext('2d');
+      if (insightTopAreasChart) insightTopAreasChart.destroy();
+
+      const top10 = arcGlobal.slice(0, 10);
+      const labels = top10.map(a => a.icon + ' ' + a.label);
+      const values = top10.map(a => a.totalSavings);
+
+      insightTopAreasChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Total Median Savings Across Industries',
+            data: values,
+            backgroundColor: top10.map((_, i) => CHART_COLORS[i % CHART_COLORS.length] + 'B3'),
+            borderRadius: 4,
+            barThickness: 20,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          scales: {
+            x: {
+              title: { display: true, text: 'Cumulative Median Savings ($)', font: { size: 11, weight: '600' } },
+              ticks: { font: { size: 10 }, callback: v => '$' + fmtMoney(v) },
+              grid: { color: 'rgba(0,0,0,0.05)' },
+              beginAtZero: true,
+            },
+            y: {
+              ticks: {
+                font: { size: 10 },
+                callback: function(value) {
+                  const label = this.getLabelForValue(value);
+                  return label.length > 26 ? label.substring(0, 24) + '\u2026' : label;
+                },
+              },
+              afterFit: function(axis) { axis.width = 155; },
+              grid: { display: false },
+            },
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  const a = top10[ctx.dataIndex];
+                  return [
+                    'Total: $' + fmtMoney(ctx.raw),
+                    'Avg per industry: $' + fmtMoney(a.avgSavings) + '/yr',
+                    'Avg payback: ' + fmtPayback(a.avgPayback),
+                    fmtN(a.totalN) + ' total recommendations',
+                  ];
+                }
+              }
+            }
+          },
+        },
+      });
+    }
+
+    function renderInsightTable() {
+      const tbody = document.getElementById('industry-table-body');
+      const maxImpl = Math.max(...insightTableData.map(i => i.avgImpl), 0.01);
+
+      // Sort
+      const sorted = [...insightTableData].sort((a, b) => {
+        let va = a[insightTableSortCol];
+        let vb = b[insightTableSortCol];
+        if (typeof va === 'string') {
+          return insightTableSortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+        }
+        return insightTableSortAsc ? va - vb : vb - va;
+      });
+
+      tbody.innerHTML = sorted.map(row => {
+        const implPct = Math.round(row.avgImpl * 100);
+        const barW = Math.round((row.avgImpl / maxImpl) * 100);
+        return '<tr>' +
+          '<td>' + esc(row.label) + '</td>' +
+          '<td class="num">' + esc(row.naics) + '</td>' +
+          '<td class="num">' + fmtN(row.assessments) + '</td>' +
+          '<td class="num">' + row.categories + '</td>' +
+          '<td class="num">$' + fmtMoney(row.totalSavings) + '/yr</td>' +
+          '<td class="num">' + implPct + '%</td>' +
+          '<td class="bar-cell"><div class="mini-bar" style="width:' + barW + '%"></div></td>' +
+          '</tr>';
+      }).join('');
+
+      // Update sort arrows
+      document.querySelectorAll('.industry-table th').forEach(th => {
+        th.classList.toggle('sorted', th.dataset.col === insightTableSortCol);
+        const arrow = th.querySelector('.sort-arrow');
+        if (arrow && th.dataset.col === insightTableSortCol) {
+          arrow.innerHTML = insightTableSortAsc ? '&#x25B2;' : '&#x25BC;';
+        } else if (arrow) {
+          arrow.innerHTML = '&#x25B2;';
+        }
+      });
+    }
+
+    function sortInsightTable(col) {
+      if (insightTableSortCol === col) {
+        insightTableSortAsc = !insightTableSortAsc;
+      } else {
+        insightTableSortCol = col;
+        insightTableSortAsc = col === 'label' || col === 'naics';
+      }
+      renderInsightTable();
+    }
+
+    /* ── Panel: Savings by Facility Size ──── */
+    let insightSizeChart = null;
+    function renderSizeBinsPanel() {
+      const ins = PROCESSED.insights || {};
+      const sb = ins.size_bins;
+      const panelEl = document.getElementById('insights-size-panel');
+      if (!sb) { if (panelEl) panelEl.style.display = 'none'; return; }
+
+      // Callout
+      const ratio = sb.small_to_large_ratio || '2\u20133';
+      const largeCutoff = sb.breakpoints[2] || 225;
+      document.getElementById('size-callout').innerHTML =
+        '<span>Large facilities (' + (largeCutoff + 1) + '+ employees) save roughly <strong>' + ratio +
+        'x more</strong> per recommendation than small ones \u2014 but receive the ' +
+        '<strong>same category recommendations</strong> regardless of size. ' +
+        'The top categories are identical at every size.</span>';
+
+      // Chart: grouped horizontal bar — top 6 ARC categories, 4 size bins
+      const largeBin = sb.bins[sb.bins.length - 1];
+      const topArcs = largeBin.arc_medians.slice(0, 6).map(function(a) { return a.arc_label; });
+
+      const style = getComputedStyle(document.documentElement);
+      const binColors = [
+        style.getPropertyValue('--navy').trim() || '#0A2342',
+        style.getPropertyValue('--blue').trim() || '#1B4F8A',
+        style.getPropertyValue('--teal').trim() || '#00A878',
+        '#63B3ED',
+      ];
+
+      const sizeDatasets = sb.bins.map(function(bin, i) {
+        return {
+          label: bin.label,
+          backgroundColor: binColors[i] + (i === 3 ? '' : 'CC'),
+          data: topArcs.map(function(arcLbl) {
+            var match = bin.arc_medians.find(function(a) { return a.arc_label === arcLbl; });
+            return match ? match.median_savings_usd : 0;
+          }),
+        };
+      });
+
+      if (insightSizeChart) insightSizeChart.destroy();
+      insightSizeChart = new Chart(document.getElementById('insights-size-chart'), {
+        type: 'bar',
+        data: { labels: topArcs, datasets: sizeDatasets },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          plugins: {
+            legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12 } },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  return ctx.dataset.label + ': $' + fmtMoney(ctx.raw);
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { callback: function(v) { return '$' + fmtMoney(v); }, font: { size: 10 } },
+              grid: { color: 'rgba(0,0,0,0.05)' },
+              title: { display: true, text: 'Median Annual Savings (USD)', font: { size: 11, weight: '600' } },
+              beginAtZero: true,
+            },
+            y: {
+              ticks: {
+                font: { size: 10 },
+                callback: function(value) {
+                  var label = this.getLabelForValue(value);
+                  return label.length > 22 ? label.substring(0, 20) + '\u2026' : label;
+                },
+              },
+              afterFit: function(axis) { axis.width = 145; },
+              grid: { display: false },
+            },
+          }
+        }
+      });
+    }
+
+    /* ── Panel: Energy Cost Quintiles ─────── */
+    let insightEnergyChart = null;
+    function renderEnergyCostPanel() {
+      const ins = PROCESSED.insights || {};
+      const eq = ins.energy_cost_quintiles;
+      const panelEl = document.getElementById('insights-energy-panel');
+      if (!eq) { if (panelEl) panelEl.style.display = 'none'; return; }
+
+      // Callout
+      const eqRatio = eq.ratio || '7';
+      const bp = eq.breakpoints || [];
+      var hiFmt = bp.length >= 4 ? '$' + fmtMoney(bp[3]) : 'high';
+      var loFmt = bp.length >= 1 ? '$' + fmtMoney(bp[0]) : 'low';
+      document.getElementById('energy-callout').innerHTML =
+        '<span>Facilities with energy bills above <strong>' + hiFmt + '/yr</strong> see ' +
+        '<strong>' + eqRatio + 'x higher</strong> median recommendation savings than ' +
+        'facilities below <strong>' + loFmt + '/yr</strong>. ' +
+        'Enter your annual energy cost in the Advanced section to see where you stand.</span>';
+
+      // Chart: vertical bar — 5 quintiles
+      var quintileLabels = eq.quintiles.map(function(q) { return q.label; });
+      var quintileValues = eq.quintiles.map(function(q) { return q.median_savings_usd; });
+      var barColors = ['#B2DFDB', '#4DB6AC', '#00A878', '#1B4F8A', '#0A2342'];
+
+      if (insightEnergyChart) insightEnergyChart.destroy();
+      insightEnergyChart = new Chart(document.getElementById('insights-energy-chart'), {
+        type: 'bar',
+        data: {
+          labels: quintileLabels,
+          datasets: [{
+            label: 'Median Recommendation Savings',
+            data: quintileValues,
+            backgroundColor: barColors,
+            borderRadius: 4,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                title: function(items) {
+                  var i = items[0].dataIndex;
+                  var bps = eq.breakpoints;
+                  var ranges = [
+                    'Below $' + fmtMoney(bps[0]) + '/yr',
+                    '$' + fmtMoney(bps[0]) + ' \u2013 $' + fmtMoney(bps[1]) + '/yr',
+                    '$' + fmtMoney(bps[1]) + ' \u2013 $' + fmtMoney(bps[2]) + '/yr',
+                    '$' + fmtMoney(bps[2]) + ' \u2013 $' + fmtMoney(bps[3]) + '/yr',
+                    'Above $' + fmtMoney(bps[3]) + '/yr',
+                  ];
+                  return (quintileLabels[i] || '') + ' energy cost\n' + (ranges[i] || '');
+                },
+                label: function(ctx) {
+                  return 'Median savings: $' + fmtMoney(ctx.raw);
+                },
+                afterLabel: function(ctx) {
+                  return 'n = ' + fmtN(eq.quintiles[ctx.dataIndex].n) + ' recommendations';
+                },
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              title: { display: true, text: 'Annual Energy Cost Quintile', font: { size: 11, weight: '600' } },
+            },
+            y: {
+              ticks: { callback: function(v) { return '$' + fmtMoney(v); }, font: { size: 10 } },
+              grid: { color: 'rgba(0,0,0,0.05)' },
+              title: { display: true, text: 'Median Savings (USD)', font: { size: 11, weight: '600' } },
+              beginAtZero: true,
+            }
+          }
+        }
+      });
     }
   </script>
 
