@@ -1027,10 +1027,19 @@
       '321': '#8D6E63', '322': '#009688', '_other': '#9E9E9E'
     };
     const SECTOR_SHORT_LABELS = {
-      '332': 'Fabricated Metal', '311': 'Food', '326': 'Plastics & Rubber',
-      '333': 'Machinery', '336': 'Transportation', '334': 'Electronics',
-      '331': 'Primary Metal', '325': 'Chemical', '321': 'Wood Products', '322': 'Paper'
+      '311': 'Food', '312': 'Beverage & Tobacco', '313': 'Textile Mills',
+      '314': 'Textile Products', '315': 'Apparel', '316': 'Leather',
+      '321': 'Wood Products', '322': 'Paper', '323': 'Printing',
+      '324': 'Petroleum & Coal', '325': 'Chemical', '326': 'Plastics & Rubber',
+      '327': 'Nonmetallic Mineral', '331': 'Primary Metal', '332': 'Fabricated Metal',
+      '333': 'Machinery', '334': 'Electronics', '335': 'Electrical Equipment',
+      '336': 'Transportation', '337': 'Furniture', '339': 'Miscellaneous Mfg'
     };
+    function getSectorLabel(code) {
+      if (SECTOR_SHORT_LABELS[code]) return SECTOR_SHORT_LABELS[code];
+      if (PROCESSED && PROCESSED.naics_groups && PROCESSED.naics_groups[code]) return PROCESSED.naics_groups[code].label || ('NAICS ' + code);
+      return 'NAICS ' + code;
+    }
     const STATE_NAMES = {
       'AL':'Alabama','AK':'Alaska','AZ':'Arizona','AR':'Arkansas','CA':'California',
       'CO':'Colorado','CT':'Connecticut','DE':'Delaware','FL':'Florida','GA':'Georgia',
@@ -1368,13 +1377,13 @@
       const count = getDisplayCount(d, activeSector);
       let html = '<div class="tt-state">' + (STATE_NAMES[d.s] || d.s) + ' (' + d.s + ')</div>';
       if (activeSector) {
-        const label = SECTOR_SHORT_LABELS[activeSector] || activeSector;
+        const label = getSectorLabel(activeSector);
         html += '<div class="tt-total">' + fmtN(count) + ' ' + label + ' facilities</div>';
       } else {
         html += '<div class="tt-total">' + fmtN(d.n) + ' facilities assessed</div>';
         const topSectors = Object.entries(d.sectors).sort((a, b) => b[1] - a[1]).slice(0, 3);
         topSectors.forEach(([code, n]) => {
-          const label = SECTOR_SHORT_LABELS[code] || code;
+          const label = getSectorLabel(code);
           const color = SECTOR_COLORS[code] || SECTOR_COLORS['_other'];
           html += '<div class="tt-sector"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + color + ';margin-right:5px"></span>' + label + ': ' + n + '</div>';
         });
@@ -1416,7 +1425,7 @@
       const sectorCode = activeSector || d.d;
       const autofillNote = document.getElementById('naics-autofill-note');
       if (sectorCode) {
-        const label = SECTOR_SHORT_LABELS[sectorCode] || '';
+        const label = getSectorLabel(sectorCode);
         selectedNaics = sectorCode;
         document.getElementById('naics-search').value = sectorCode + (label ? ' \u2013 ' + label : '');
         // Show inline warning about auto-filled NAICS
