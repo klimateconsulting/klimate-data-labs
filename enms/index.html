@@ -423,13 +423,6 @@
       font-size: .75rem; color: var(--muted); margin-top: 8px;
     }
 
-    /* EnMS links in rec card */
-    .enms-link {
-      display: inline-block; margin-top: 8px; font-size: .78rem;
-      color: var(--blue); cursor: pointer; font-weight: 500;
-    }
-    .enms-link:hover { color: var(--teal); text-decoration: underline; }
-
     /* ── Flip Card 3D ─────────────────────────── */
     .flip-card {
       perspective: 1000px; min-height: 430px; cursor: pointer;
@@ -489,29 +482,6 @@
       margin-top: auto; text-align: center; font-size: .68rem; color: var(--muted);
       padding-top: 8px; opacity: 0.6;
     }
-
-    /* ── EnMS Case Studies Section ──────────────── */
-    .enms-section { margin-top: 36px; }
-    .enms-section h3 { font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 16px; }
-    .enms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-    .enms-card {
-      background: var(--white); border-radius: var(--radius);
-      box-shadow: var(--card-shadow); padding: 18px;
-      border-left: 4px solid var(--teal);
-    }
-    .enms-card .company { font-weight: 600; font-size: .95rem; margin-bottom: 4px; }
-    .enms-card .industry-line { font-size: .82rem; color: var(--muted); margin-bottom: 8px; }
-    .enms-card .source-badge {
-      display: inline-block; padding: 2px 8px; border-radius: 10px;
-      font-size: .7rem; font-weight: 600;
-    }
-    .source-iso { background: #dbeafe; color: #1e40af; }
-    .source-sep { background: #fef3c7; color: #92400e; }
-    .source-ready { background: #d1fae5; color: #065f46; }
-    .source-default { background: #f1f5f9; color: var(--muted); }
-    .enms-card .savings-line { margin-top: 8px; font-size: .85rem; }
-    .enms-card .improvement { color: var(--teal); font-weight: 700; }
-    .enms-card .year-line { font-size: .78rem; color: var(--muted); margin-top: 4px; }
 
     /* ── Context Card (above results) ─────── */
     .context-card {
@@ -793,7 +763,6 @@
     @media (max-width: 700px) {
       .form-grid { grid-template-columns: 1fr; }
       .recs-grid { grid-template-columns: 1fr; }
-      .enms-grid { grid-template-columns: 1fr; }
       .summary-stats { gap: 16px; }
       .stat { min-width: 80px; }
       header { padding: 36px 0 44px; }
@@ -1118,13 +1087,6 @@
 
         <div class="recs-grid" id="recs-grid"></div>
 
-        <!-- EnMS Case Studies -->
-        <div class="enms-section" id="enms-section" style="display:none">
-          <h3>Global EnMS Implementation Examples</h3>
-          <p style="font-size:.82rem;color:var(--muted);margin-bottom:14px;line-height:1.5">These case studies are drawn from the international ISO 50001 database and illustrate EnMS implementation approaches worldwide.</p>
-          <div class="enms-grid" id="enms-grid"></div>
-        </div>
-
       </div>
     </section>
   </main>
@@ -1319,7 +1281,7 @@
       const [naicsKey, group] = findNaicsGroup(naicsInput);
       if (!group) return {
         matched_naics: null, naics_label: 'All Industries (no exact match)',
-        n_assessments: null, recommendations: [], enms_cases: [],
+        n_assessments: null, recommendations: [],
         message: 'No ITAC data found for NAICS ' + naicsInput + '. Try a 2-3 digit code like 311, 332, 325, etc.'
       };
       let recs = [...group.recommendations];
@@ -1341,7 +1303,6 @@
         naics_label: group.label || ('NAICS ' + naicsKey),
         n_assessments: group.n_assessments || 0,
         recommendations: recs.slice(0, 15),
-        enms_cases: (group.enms_cases || []).slice(0, 6),
       };
     }
 
@@ -2102,7 +2063,6 @@
       selectChart('priority');
 
       renderRecs(d.recommendations, 'rank');
-      renderEnmsCases(d.enms_cases);
       renderContextCard(d);
       document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
     }
@@ -2545,7 +2505,6 @@
         const impact = r.rank_score > 0.6 ? 'HIGH' : (r.rank_score > 0.4 ? 'MEDIUM' : 'LOW');
         const impactClass = r.rank_score > 0.6 ? 'impact-high' : (r.rank_score > 0.4 ? 'impact-medium' : 'impact-low');
         const implPct = Math.round((r.implementation_rate || 0) * 100);
-        const nCases = (r.enms_case_ids || []).length;
 
         return (
           '<div class="flip-card" onclick="flipCard(this)">' +
@@ -2581,7 +2540,6 @@
                     '<div class="sample-size">Based on ' + fmtN(r.n) + ' assessments' +
                       (r.confidence < 1 ? ' <span style="color:#e2a000">(limited data)</span>' : '') +
                     '</div>' +
-                    (nCases > 0 ? '<span class="enms-link" onclick="event.stopPropagation(); scrollToEnms()">\u25B8 See ' + nCases + ' EnMS case ' + (nCases === 1 ? 'study' : 'studies') + '</span>' : '') +
                   '</div>' +
                   '<div class="flip-indicator">' +
                     '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>' +
@@ -2600,43 +2558,6 @@
 
     function metricEl(val, label, isSavings) {
       return '<div class="metric"><div class="val' + (isSavings ? ' savings' : '') + '">' + val + '</div><div class="lbl">' + label + '</div></div>';
-    }
-
-    /* ── EnMS Case Studies ────────────────── */
-    function renderEnmsCases(cases) {
-      const section = document.getElementById('enms-section');
-      const grid = document.getElementById('enms-grid');
-      if (!cases || !cases.length) { section.style.display = 'none'; return; }
-
-      section.style.display = 'block';
-      grid.innerHTML = cases.map(c => {
-        const sourceClass = c.source === 'iso' ? 'source-iso' :
-                            c.source === 'sep' ? 'source-sep' :
-                            c.source === 'ready' ? 'source-ready' : 'source-default';
-        const sourceLabel = c.source === 'iso' ? 'ISO 50001' :
-                            c.source === 'sep' ? 'SEP' :
-                            c.source === 'ready' ? '50001 Ready' : (c.source || 'EnMS');
-        const improvement = c.annualEnergyImprovementPct;
-        const impStr = improvement != null ? (improvement * 100).toFixed(1) + '%' : 'N/A';
-        const costSavings = c.annualCostSavingsUSD;
-        const flag = countryFlag(c.country);
-
-        return (
-          '<div class="enms-card">' +
-            '<div class="company">' + esc(c.company) + '</div>' +
-            '<div class="industry-line">' + flag + ' ' + esc(c.industry || '') + ' \u00B7 ' + esc(c.country || '') + '</div>' +
-            '<span class="source-badge ' + sourceClass + '">' + sourceLabel + '</span>' +
-            '<div class="savings-line">Annual energy improvement: <span class="improvement">' + impStr + '</span></div>' +
-            (costSavings ? '<div class="savings-line">Annual cost savings: <strong>$' + fmtMoney(costSavings) + '</strong></div>' : '') +
-            '<div class="year-line">Year: ' + (c.year || 'N/A') + '</div>' +
-          '</div>'
-        );
-      }).join('');
-    }
-
-    function scrollToEnms() {
-      const el = document.getElementById('enms-section');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
     /* ── Formatting Helpers ────────────────── */
