@@ -167,55 +167,31 @@
       width: 16px; height: 16px; accent-color: var(--teal);
     }
 
-    /* ── Advanced Details Accordion ────────── */
-    .advanced-accordion {
+    /* ── Optional context accordion ──────────────── */
+    .optional-context {
       grid-column: 1 / -1;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: 2px;
+      margin-top: 4px;
     }
-    .accordion-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      background: #fff;
-      border: none;
-      width: 100%;
+    .optional-context summary {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--teal);
       cursor: pointer;
-      font-family: inherit;
-      transition: background .15s;
+      user-select: none;
+      padding: 4px 0;
+      list-style: none;
     }
-    .accordion-toggle:hover { background: var(--teal-light); }
-    .accordion-toggle-left {
-      display: flex; align-items: center; gap: 8px;
+    .optional-context summary::before {
+      content: '\25B8 ';
+      font-size: .75rem;
     }
-    .accordion-toggle-title {
-      font-weight: 600; font-size: .88rem; color: var(--navy);
+    .optional-context[open] summary::before {
+      content: '\25BE ';
     }
-    .accordion-fill-count {
-      font-size: .75rem; font-weight: 500; color: var(--muted);
-      background: var(--bg); border-radius: 10px; padding: 2px 9px;
-    }
-    .accordion-fill-count.has-values { background: var(--teal-light); color: var(--teal); }
-    .accordion-chevron {
-      width: 18px; height: 18px; color: var(--muted);
-      transition: transform .25s ease;
-    }
-    .advanced-accordion.open .accordion-chevron { transform: rotate(180deg); }
-    .accordion-body {
-      display: none;
-      padding: 4px 16px 16px;
-    }
-    .advanced-accordion.open .accordion-body { display: block; }
-    .accordion-body .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-    .accordion-caption {
-      font-size: .75rem; color: var(--muted); margin-bottom: 12px; line-height: 1.4;
+    .optional-context summary::-webkit-details-marker { display: none; }
+    .optional-context summary:hover { text-decoration: underline; }
+    .optional-field {
+      margin-top: 10px;
     }
 
     /* Submit + Reset */
@@ -809,7 +785,6 @@
       .sector-chip { padding: 3px 8px; font-size: .7rem; }
       .map-header { flex-direction: column; align-items: flex-start; gap: 4px; }
       .bubble-label { font-size: 7px; }
-      .accordion-body .form-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -932,30 +907,19 @@
             </div>
 
             <div class="form-group">
-              <label for="energy-cost">Annual Energy Cost ($) <span class="optional">personalizes savings estimates</span></label>
+              <label for="energy-cost">Annual Energy Cost ($)</label>
               <input type="number" id="energy-cost" placeholder="e.g. 500000" min="0">
               <div class="hint" id="energy-cost-hint"></div>
             </div>
 
-            <div class="advanced-accordion" id="advanced-accordion">
-              <button type="button" class="accordion-toggle" onclick="toggleAdvanced()">
-                <span class="accordion-toggle-left">
-                  <span class="accordion-toggle-title">Optional Context</span>
-                  <span class="accordion-fill-count" id="accordion-fill-count"></span>
-                </span>
-                <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              </button>
-              <div class="accordion-body">
-                <p class="accordion-caption">Adds a personalized savings estimate based on your energy spend.</p>
-                <div class="form-grid">
-                  <div class="form-group">
-                    <label for="employees">Number of Employees</label>
-                    <input type="number" id="employees" placeholder="e.g. 150" min="1">
-                    <div class="hint" id="employees-hint"></div>
-                  </div>
-                </div>
+            <details class="optional-context" id="optional-context">
+              <summary>Optional: Facility Size</summary>
+              <div class="form-group optional-field">
+                <label for="employees">Number of Employees</label>
+                <input type="number" id="employees" placeholder="e.g. 150" min="1">
+                <div class="hint" id="employees-hint"></div>
               </div>
-            </div>
+            </details>
 
           </div>
           <div class="btn-row">
@@ -983,7 +947,7 @@
         <div class="chart-selector-row" id="chart-selector-row">
           <div class="chart-card active" data-chart="priority" onclick="selectChart('priority')">
             <span class="chart-card-icon">&#x1F3AF;</span>
-            <div class="chart-card-title">Priority Matrix</div>
+            <div class="chart-card-title">Savings vs. Payback</div>
             <div class="chart-card-stat" id="card-stat-priority"></div>
             <div class="chart-card-stat-label" id="card-stat-label-priority"></div>
           </div>
@@ -1005,12 +969,6 @@
             <div class="chart-card-stat" id="card-stat-payback"></div>
             <div class="chart-card-stat-label" id="card-stat-label-payback"></div>
           </div>
-          <div class="chart-card" data-chart="savpay" onclick="selectChart('savpay')">
-            <span class="chart-card-icon">&#x1F4CA;</span>
-            <div class="chart-card-title">Savings vs. Payback</div>
-            <div class="chart-card-stat" id="card-stat-savpay"></div>
-            <div class="chart-card-stat-label" id="card-stat-savpay-label"></div>
-          </div>
         </div>
 
         <!-- Expanded Chart Area (one chart at a time) -->
@@ -1019,11 +977,11 @@
           <!-- Priority Matrix Panel -->
           <div class="chart-panel active" id="panel-priority">
             <div class="chart-header">
-              <h3>Priority Matrix: Where Should You Focus?</h3>
+              <h3>Savings vs. Payback</h3>
               <button class="info-btn" onclick="toggleChartInfo('priority-info')" title="Learn more about this chart">i</button>
             </div>
             <div class="chart-info-panel" id="priority-info">
-              <div class="chart-info-section"><strong>What this shows:</strong> Each bubble is a recommendation category, placed by how quickly it pays back (X-axis) vs. how much it saves (Y-axis). Bigger bubbles mean more facilities implemented that recommendation.</div>
+              <div class="chart-info-section"><strong>What this shows:</strong> Each bubble is an improvement category plotted by how quickly it pays back (X-axis, shorter payback = further right) vs. how much it saves annually (Y-axis, higher savings = further up). Bubble size reflects how often facilities actually implemented that recommendation.</div>
               <div class="chart-info-section"><strong>How it's calculated:</strong> Categories are ranked relative to each other in this result set. X-axis uses percentile rank of payback period (shorter payback = further right). Y-axis uses percentile rank of median annual savings (higher savings = further up). Bubble size reflects implementation rate.</div>
               <div class="chart-info-section"><strong>Key takeaways:</strong>
                 <ul>
@@ -1090,21 +1048,6 @@
             </div>
           </div>
 
-          <!-- Savings vs Payback Bubble Panel -->
-          <div class="chart-panel" id="panel-savpay">
-            <div class="chart-header">
-              <h3>Savings vs. Payback: All Categories</h3>
-              <button class="info-btn" onclick="toggleChartInfo('savpay-info')" title="Learn more about this chart">i</button>
-            </div>
-            <div class="chart-info-panel" id="savpay-info">
-              <div class="chart-info-section"><strong>What this shows:</strong> Each bubble is an improvement category aggregated across all industries. X-axis = average payback period, Y-axis = average median savings. Bubble size = total recommendations in that category.</div>
-              <div class="chart-info-section"><strong>Key takeaways:</strong> Categories in the top-left (high savings, short payback) offer the best ROI. Larger bubbles mean the category appears more frequently across facility assessments.</div>
-            </div>
-            <div class="chart-container">
-              <canvas id="savpay-chart"></canvas>
-            </div>
-          </div>
-
         </div>
 
         <!-- Sort controls -->
@@ -1141,17 +1084,6 @@
     function dismissWelcome() {
       sessionStorage.setItem('kc_enms_welcomed', 'true');
       document.getElementById('welcomePopup').classList.remove('visible');
-    }
-
-    function toggleAdvanced() {
-      document.getElementById('advanced-accordion').classList.toggle('open');
-    }
-
-    function updateAccordionCount() {
-      const filled = document.getElementById('employees').value.trim() !== '';
-      const el = document.getElementById('accordion-fill-count');
-      el.textContent = filled ? '1 filled' : '';
-      el.classList.toggle('has-values', filled);
     }
 
     let PROCESSED = null;
@@ -1762,7 +1694,6 @@
         savings: savingsDonutChart,
         impl: implRateChart,
         payback: paybackChart,
-        savpay: insightBubbleChart,
       };
       const chart = chartMap[chartKey];
       if (chart) setTimeout(() => chart.resize(), 50);
@@ -1798,8 +1729,6 @@
       document.getElementById('card-stat-label-payback').textContent = 'median payback';
 
       // Savings vs Payback: show count of categories
-      document.getElementById('card-stat-savpay').textContent = recs.length + ' Categories';
-      document.getElementById('card-stat-savpay-label').textContent = 'across all industries';
     }
 
     /* ── Init ──────────────────────────────── */
@@ -1849,11 +1778,10 @@
         suggestTimer = setTimeout(fetchSuggestions, 600);
       });
       // Employees (accordion)
-      document.getElementById('employees').addEventListener('change', () => { fetchSuggestions(); updateAccordionCount(); });
+      document.getElementById('employees').addEventListener('change', () => fetchSuggestions());
       document.getElementById('employees').addEventListener('input', () => {
         clearTimeout(suggestTimer);
         suggestTimer = setTimeout(fetchSuggestions, 600);
-        updateAccordionCount();
       });
 
       document.getElementById('submit-btn').addEventListener('click', handleSubmit);
@@ -2060,14 +1988,14 @@
       document.getElementById('energy-cost').value = '';
       document.querySelectorAll('input[name="energy_type"]').forEach(cb => cb.checked = false);
       clearAllHints();
-      document.getElementById('advanced-accordion').classList.remove('open');
-      updateAccordionCount();
+      var optCtx = document.getElementById('optional-context');
+      if (optCtx) optCtx.removeAttribute('open');
       document.getElementById('results').style.display = 'none';
       var cc = document.getElementById('context-card');
       if (cc) { cc.style.display = 'none'; cc.innerHTML = ''; }
       // Destroy charts to free memory
-      [priorityChart, savingsDonutChart, implRateChart, paybackChart, insightBubbleChart].forEach(c => { if (c) c.destroy(); });
-      priorityChart = savingsDonutChart = implRateChart = paybackChart = insightBubbleChart = null;
+      [priorityChart, savingsDonutChart, implRateChart, paybackChart].forEach(c => { if (c) c.destroy(); });
+      priorityChart = savingsDonutChart = implRateChart = paybackChart = null;
       // Reset map to All Sectors
       activeSector = null;
       document.querySelectorAll('.sector-chip').forEach(c => {
@@ -2095,7 +2023,6 @@
       renderSavingsDonut(d.recommendations);
       renderImplRateChart(d.recommendations);
       renderPaybackChart(d.recommendations);
-      renderSavPayChart();
 
       // Re-hide all, then activate the default (Priority Matrix)
       document.querySelectorAll('.chart-panel').forEach(p => p.style.display = '');
@@ -2688,87 +2615,6 @@
     /* ═══════════════════════════════════════════
        SAVINGS VS PAYBACK CHART + CONTEXT CARD
        ═══════════════════════════════════════════ */
-
-    let insightBubbleChart = null;
-
-    function renderSavPayChart() {
-      if (!PROCESSED || !PROCESSED.naics_groups) return;
-
-      // Aggregate ARC categories across ALL industries
-      const arcAgg = {};
-      Object.entries(PROCESSED.naics_groups).forEach(([naics, group]) => {
-        (group.recommendations || []).forEach(rec => {
-          const arc = rec.arc;
-          if (!arcAgg[arc]) {
-            arcAgg[arc] = { label: rec.arc_label, icon: rec.arc_icon, totalN: 0,
-              savingsSum: 0, implCount: 0, paybackSum: 0, paybackCount: 0 };
-          }
-          arcAgg[arc].totalN += rec.n;
-          arcAgg[arc].savingsSum += rec.median_savings_usd || 0;
-          arcAgg[arc].implCount++;
-          if (rec.median_payback_years != null) {
-            arcAgg[arc].paybackSum += rec.median_payback_years;
-            arcAgg[arc].paybackCount++;
-          }
-        });
-      });
-
-      const arcGlobal = Object.values(arcAgg).filter(a => a.paybackCount > 0).map(a => ({
-        x: a.paybackSum / a.paybackCount,
-        y: a.implCount > 0 ? a.savingsSum / a.implCount : 0,
-        r: Math.max(5, Math.min(25, Math.sqrt(a.totalN) / 3)),
-        label: a.label, icon: a.icon, totalN: a.totalN,
-      }));
-
-      const ctx = document.getElementById('savpay-chart').getContext('2d');
-      if (insightBubbleChart) insightBubbleChart.destroy();
-
-      insightBubbleChart = new Chart(ctx, {
-        type: 'bubble',
-        data: {
-          datasets: [{
-            data: arcGlobal,
-            backgroundColor: arcGlobal.map((_, i) => CHART_COLORS[i % CHART_COLORS.length] + 'A6'),
-            borderColor: arcGlobal.map((_, i) => CHART_COLORS[i % CHART_COLORS.length]),
-            borderWidth: 1.5,
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            x: {
-              title: { display: true, text: 'Avg Payback Period (years)', font: { size: 11, weight: '600' } },
-              ticks: { font: { size: 10 } },
-              grid: { color: 'rgba(0,0,0,0.05)' },
-              beginAtZero: true,
-            },
-            y: {
-              title: { display: true, text: 'Avg Median Savings ($/yr)', font: { size: 11, weight: '600' } },
-              ticks: { font: { size: 10 }, callback: v => '$' + fmtMoney(v) },
-              grid: { color: 'rgba(0,0,0,0.05)' },
-              beginAtZero: true,
-            },
-          },
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: function(ctx) {
-                  const d = ctx.raw;
-                  return [
-                    d.icon + ' ' + d.label,
-                    'Avg Savings: $' + fmtMoney(d.y) + '/yr',
-                    'Avg Payback: ' + fmtPayback(d.x),
-                    'Total Recommendations: ' + fmtN(d.totalN),
-                  ];
-                }
-              }
-            }
-          },
-        },
-      });
-    }
 
     function renderContextCard(d) {
       const card = document.getElementById('context-card');
