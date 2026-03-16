@@ -423,6 +423,46 @@
       font-size: .75rem; color: var(--muted); margin-top: 8px;
     }
 
+    /* ── Sub-recommendations ───────────────────── */
+    .sr-section {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .sr-toggle {
+      background: none;
+      border: none;
+      font-size: .77rem;
+      font-weight: 600;
+      color: var(--teal);
+      cursor: pointer;
+      padding: 0;
+      text-align: left;
+      width: 100%;
+    }
+    .sr-toggle:hover { text-decoration: underline; }
+    .sr-content { margin-top: 8px; overflow-x: auto; }
+    .sr-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .73rem;
+    }
+    .sr-table th {
+      text-align: left;
+      padding: 3px 6px;
+      font-size: .67rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .sr-table td { padding: 5px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .sr-table tr:last-child td { border-bottom: none; }
+    .sr-table tr:hover td { background: var(--teal-light); }
+    .sr-label { color: var(--text); line-height: 1.35; }
+    .sr-n, .sr-sav, .sr-impl { color: var(--muted); white-space: nowrap; text-align: right; }
+
     /* ── Flip Card 3D ─────────────────────────── */
     .flip-card {
       perspective: 1000px; min-height: 430px; cursor: pointer;
@@ -1662,8 +1702,8 @@
           '<p>' + insight + '</p>' +
         '</div>' +
         '<div class="flip-back-section">' +
-          '<h4>Common Actions</h4>' +
-          '<ul>' + info.actions.map(a => '<li>' + esc(a) + '</li>').join('') + '</ul>' +
+          '<h4>Specific Improvements</h4>' +
+          '<p>Flip back and expand \u201CSpecific improvements\u201D to see the most common actions for your industry, with real savings data from the IAC database.</p>' +
         '</div>' +
         '<div class="flip-back-tap">\u21BA Click to flip back</div>'
       );
@@ -2541,6 +2581,7 @@
                       (r.confidence < 1 ? ' <span style="color:#e2a000">(limited data)</span>' : '') +
                     '</div>' +
                   '</div>' +
+                  buildSubRecsHtml(r) +
                   '<div class="flip-indicator">' +
                     '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>' +
                     ' Click for details' +
@@ -2554,6 +2595,38 @@
           '</div>'
         );
       }).join('');
+    }
+
+    function buildSubRecsHtml(rec) {
+      var subs = rec.sub_recommendations || [];
+      if (!subs.length) return '';
+      var rows = subs.map(function(s) {
+        return '<tr>' +
+          '<td class="sr-label">' + esc(s.label) + '</td>' +
+          '<td class="sr-n">' + fmtN(s.n) + '</td>' +
+          '<td class="sr-sav">$' + fmtMoney(s.median_savings_usd) + '</td>' +
+          '<td class="sr-impl">' + Math.round(s.implementation_rate * 100) + '%</td>' +
+          '</tr>';
+      }).join('');
+      return (
+        '<div class="sr-section">' +
+        '<button class="sr-toggle" onclick="toggleSR(event,this)" aria-expanded="false">' +
+        '\u25B8 Specific improvements (' + subs.length + ')</button>' +
+        '<div class="sr-content" style="display:none">' +
+        '<table class="sr-table">' +
+        '<thead><tr><th>Improvement</th><th>Count</th><th>Med. Savings</th><th>Impl.</th></tr></thead>' +
+        '<tbody>' + rows + '</tbody>' +
+        '</table></div></div>'
+      );
+    }
+
+    function toggleSR(e, btn) {
+      e.stopPropagation();
+      var content = btn.nextElementSibling;
+      var isOpen = content.style.display === 'none';
+      content.style.display = isOpen ? 'block' : 'none';
+      btn.setAttribute('aria-expanded', String(isOpen));
+      btn.innerHTML = (isOpen ? '\u25BE' : '\u25B8') + btn.innerHTML.slice(1);
     }
 
     function metricEl(val, label, isSavings) {
