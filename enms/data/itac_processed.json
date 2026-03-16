@@ -1,6 +1,6 @@
 {
  "metadata": {
-  "generated_at": "2026-03-11T23:02:03.662282",
+  "generated_at": "2026-03-13T15:48:11.066219",
   "total_recommendations": 166814,
   "valid_recommendations": 146309,
   "total_assessments": 22457,
@@ -41260,6 +41260,277 @@
      "p75": 90957
     }
    }
+  }
+ },
+ "insights": {
+  "size_bins": {
+   "breakpoints": [
+    0,
+    70,
+    125,
+    225
+   ],
+   "bin_labels": [
+    "Small (1\u201370 emp.)",
+    "Medium-Small (71\u2013125 emp.)",
+    "Medium-Large (126\u2013225 emp.)",
+    "Large (226+ emp.)"
+   ],
+   "bins": [
+    {
+     "label": "Small (1\u201370 emp.)",
+     "n_facilities": 6278,
+     "arc_medians": [
+      {
+       "arc": "2.9",
+       "arc_label": "Electrical Distribution",
+       "median_savings_usd": 29466,
+       "n": 614
+      },
+      {
+       "arc": "2.13",
+       "arc_label": "Refrigeration Systems",
+       "median_savings_usd": 6581,
+       "n": 600
+      },
+      {
+       "arc": "2.5",
+       "arc_label": "Electric Motors & Drives",
+       "median_savings_usd": 5832,
+       "n": 169
+      },
+      {
+       "arc": "2.3",
+       "arc_label": "HVAC Systems",
+       "median_savings_usd": 5270,
+       "n": 1751
+      },
+      {
+       "arc": "2.8",
+       "arc_label": "Steam & Boiler Systems",
+       "median_savings_usd": 4140,
+       "n": 1031
+      },
+      {
+       "arc": "2.2",
+       "arc_label": "Building Envelope",
+       "median_savings_usd": 2714,
+       "n": 5107
+      },
+      {
+       "arc": "2.12",
+       "arc_label": "Heat Recovery & Exchangers",
+       "median_savings_usd": 2434,
+       "n": 1100
+      },
+      {
+       "arc": "2.11",
+       "arc_label": "Renewables & Cogeneration",
+       "median_savings_usd": 2154,
+       "n": 409
+      }
+     ]
+    },
+    {
+     "label": "Medium-Small (71\u2013125 emp.)",
+     "n_facilities": 5324,
+     "arc_medians": [
+      {
+       "arc": "2.9",
+       "arc_label": "Electrical Distribution",
+       "median_savings_usd": 41629,
+       "n": 372
+      },
+      {
+       "arc": "2.5",
+       "arc_label": "Electric Motors & Drives",
+       "median_savings_usd": 9120,
+       "n": 117
+      },
+      {
+       "arc": "2.13",
+       "arc_label": "Refrigeration Systems",
+       "median_savings_usd": 6240,
+       "n": 507
+      },
+      {
+       "arc": "2.3",
+       "arc_label": "HVAC Systems",
+       "median_savings_usd": 5757,
+       "n": 1686
+      },
+      {
+       "arc": "2.8",
+       "arc_label": "Steam & Boiler Systems",
+       "median_savings_usd": 5396,
+       "n": 903
+      },
+      {
+       "arc": "2.2",
+       "arc_label": "Building Envelope",
+       "median_savings_usd": 3414,
+       "n": 4815
+      },
+      {
+       "arc": "2.12",
+       "arc_label": "Heat Recovery & Exchangers",
+       "median_savings_usd": 3276,
+       "n": 1019
+      },
+      {
+       "arc": "2.11",
+       "arc_label": "Renewables & Cogeneration",
+       "median_savings_usd": 2830,
+       "n": 383
+      }
+     ]
+    },
+    {
+     "label": "Medium-Large (126\u2013225 emp.)",
+     "n_facilities": 5141,
+     "arc_medians": [
+      {
+       "arc": "2.9",
+       "arc_label": "Electrical Distribution",
+       "median_savings_usd": 53722,
+       "n": 275
+      },
+      {
+       "arc": "2.5",
+       "arc_label": "Electric Motors & Drives",
+       "median_savings_usd": 11396,
+       "n": 127
+      },
+      {
+       "arc": "2.13",
+       "arc_label": "Refrigeration Systems",
+       "median_savings_usd": 9101,
+       "n": 588
+      },
+      {
+       "arc": "2.8",
+       "arc_label": "Steam & Boiler Systems",
+       "median_savings_usd": 7930,
+       "n": 858
+      },
+      {
+       "arc": "2.3",
+       "arc_label": "HVAC Systems",
+       "median_savings_usd": 7194,
+       "n": 1754
+      },
+      {
+       "arc": "2.2",
+       "arc_label": "Building Envelope",
+       "median_savings_usd": 4174,
+       "n": 4828
+      },
+      {
+       "arc": "2.12",
+       "arc_label": "Heat Recovery & Exchangers",
+       "median_savings_usd": 4068,
+       "n": 1061
+      },
+      {
+       "arc": "2.11",
+       "arc_label": "Renewables & Cogeneration",
+       "median_savings_usd": 3591,
+       "n": 407
+      }
+     ]
+    },
+    {
+     "label": "Large (226+ emp.)",
+     "n_facilities": 5203,
+     "arc_medians": [
+      {
+       "arc": "2.9",
+       "arc_label": "Electrical Distribution",
+       "median_savings_usd": 69570,
+       "n": 334
+      },
+      {
+       "arc": "2.5",
+       "arc_label": "Electric Motors & Drives",
+       "median_savings_usd": 14990,
+       "n": 165
+      },
+      {
+       "arc": "2.8",
+       "arc_label": "Steam & Boiler Systems",
+       "median_savings_usd": 13592,
+       "n": 753
+      },
+      {
+       "arc": "2.13",
+       "arc_label": "Refrigeration Systems",
+       "median_savings_usd": 13234,
+       "n": 519
+      },
+      {
+       "arc": "2.3",
+       "arc_label": "HVAC Systems",
+       "median_savings_usd": 10643,
+       "n": 1774
+      },
+      {
+       "arc": "2.11",
+       "arc_label": "Renewables & Cogeneration",
+       "median_savings_usd": 6836,
+       "n": 426
+      },
+      {
+       "arc": "2.2",
+       "arc_label": "Building Envelope",
+       "median_savings_usd": 6116,
+       "n": 5382
+      },
+      {
+       "arc": "2.12",
+       "arc_label": "Heat Recovery & Exchangers",
+       "median_savings_usd": 4968,
+       "n": 1282
+      }
+     ]
+    }
+   ],
+   "small_to_large_ratio": 2.4
+  },
+  "energy_cost_quintiles": {
+   "quintiles": [
+    {
+     "label": "Very Low",
+     "median_savings_usd": 1087,
+     "n": 29256
+    },
+    {
+     "label": "Low",
+     "median_savings_usd": 1880,
+     "n": 29249
+    },
+    {
+     "label": "Medium",
+     "median_savings_usd": 2726,
+     "n": 29256
+    },
+    {
+     "label": "High",
+     "median_savings_usd": 4019,
+     "n": 29248
+    },
+    {
+     "label": "Very High",
+     "median_savings_usd": 8235,
+     "n": 29251
+    }
+   ],
+   "breakpoints": [
+    141000,
+    274032,
+    515031,
+    1064891
+   ],
+   "ratio": 7.6
   }
  }
 }
