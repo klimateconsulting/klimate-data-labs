@@ -167,33 +167,6 @@
       width: 16px; height: 16px; accent-color: var(--teal);
     }
 
-    /* ── Optional context accordion ──────────────── */
-    .optional-context {
-      grid-column: 1 / -1;
-      margin-top: 4px;
-    }
-    .optional-context summary {
-      font-size: .82rem;
-      font-weight: 600;
-      color: var(--teal);
-      cursor: pointer;
-      user-select: none;
-      padding: 4px 0;
-      list-style: none;
-    }
-    .optional-context summary::before {
-      content: '\25B8 ';
-      font-size: .75rem;
-    }
-    .optional-context[open] summary::before {
-      content: '\25BE ';
-    }
-    .optional-context summary::-webkit-details-marker { display: none; }
-    .optional-context summary:hover { text-decoration: underline; }
-    .optional-field {
-      margin-top: 10px;
-    }
-
     /* Submit + Reset */
     .btn-row { margin-top: 24px; display: flex; gap: 12px; }
     #submit-btn {
@@ -488,51 +461,6 @@
     .enms-card .savings-line { margin-top: 8px; font-size: .85rem; }
     .enms-card .improvement { color: var(--teal); font-weight: 700; }
     .enms-card .year-line { font-size: .78rem; color: var(--muted); margin-top: 4px; }
-
-    /* ── Context Card (above results) ─────── */
-    .context-card {
-      background: var(--teal-light);
-      border-left: 4px solid var(--teal);
-      border-radius: 6px;
-      padding: 12px 16px;
-      font-size: .83rem;
-      color: var(--navy);
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-    .context-card strong { font-weight: 700; }
-    .context-card .est-label {
-      font-size: .72rem; color: var(--muted); font-style: italic;
-    }
-
-    /* ── Insights Callout & Footnote ────────── */
-    .insights-callout {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      background: var(--teal-light);
-      border-left: 4px solid var(--teal);
-      border-radius: 6px;
-      padding: 10px 14px;
-      font-size: .83rem;
-      color: var(--navy);
-      line-height: 1.5;
-      margin-bottom: 4px;
-    }
-    .insights-callout strong { font-weight: 700; }
-    .insights-footnote {
-      font-size: .75rem;
-      color: var(--muted);
-      margin-top: 12px;
-      line-height: 1.5;
-      font-style: italic;
-    }
-    .insights-caption {
-      font-size: .85rem;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 12px;
-    }
 
     /* Loading */
     .loader { display: none; text-align: center; padding: 40px; }
@@ -896,6 +824,30 @@
               <div class="naics-suggestions" id="state-suggestions"></div>
             </div>
 
+            <div class="form-group">
+              <label for="employees">Number of Employees</label>
+              <input type="number" id="employees" placeholder="e.g. 150" min="1">
+              <div class="hint" id="employees-hint"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="plant-area">Facility Size (sq ft)</label>
+              <input type="number" id="plant-area" placeholder="e.g. 50000" min="1">
+              <div class="hint" id="plant-area-hint"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="sales">Annual Revenue ($)</label>
+              <input type="number" id="sales" placeholder="e.g. 10000000" min="0">
+              <div class="hint" id="sales-hint"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="energy-cost">Annual Energy Cost ($) <span class="optional">optional</span></label>
+              <input type="number" id="energy-cost" placeholder="e.g. 500000" min="0">
+              <div class="hint" id="energy-cost-hint"></div>
+            </div>
+
             <div class="energy-types">
               <label class="group-label">Energy Types Used <span class="optional">optional — filters results</span></label>
               <div class="checkbox-row">
@@ -905,21 +857,6 @@
                 <label><input type="checkbox" name="energy_type" value="fuel_oil"> Fuel Oil / Propane</label>
               </div>
             </div>
-
-            <div class="form-group">
-              <label for="energy-cost">Annual Energy Cost ($)</label>
-              <input type="number" id="energy-cost" placeholder="e.g. 500000" min="0">
-              <div class="hint" id="energy-cost-hint"></div>
-            </div>
-
-            <details class="optional-context" id="optional-context">
-              <summary>Optional: Facility Size</summary>
-              <div class="form-group optional-field">
-                <label for="employees">Number of Employees</label>
-                <input type="number" id="employees" placeholder="e.g. 150" min="1">
-                <div class="hint" id="employees-hint"></div>
-              </div>
-            </details>
 
           </div>
           <div class="btn-row">
@@ -941,13 +878,12 @@
       <div class="container">
 
         <div class="summary-banner" id="summary"></div>
-        <div class="context-card" id="context-card" style="display:none"></div>
 
         <!-- Chart Selector Cards -->
         <div class="chart-selector-row" id="chart-selector-row">
           <div class="chart-card active" data-chart="priority" onclick="selectChart('priority')">
             <span class="chart-card-icon">&#x1F3AF;</span>
-            <div class="chart-card-title">Savings vs. Payback</div>
+            <div class="chart-card-title">Priority Matrix</div>
             <div class="chart-card-stat" id="card-stat-priority"></div>
             <div class="chart-card-stat-label" id="card-stat-label-priority"></div>
           </div>
@@ -977,11 +913,11 @@
           <!-- Priority Matrix Panel -->
           <div class="chart-panel active" id="panel-priority">
             <div class="chart-header">
-              <h3>Savings vs. Payback</h3>
+              <h3>Priority Matrix: Where Should You Focus?</h3>
               <button class="info-btn" onclick="toggleChartInfo('priority-info')" title="Learn more about this chart">i</button>
             </div>
             <div class="chart-info-panel" id="priority-info">
-              <div class="chart-info-section"><strong>What this shows:</strong> Each bubble is an improvement category plotted by how quickly it pays back (X-axis, shorter payback = further right) vs. how much it saves annually (Y-axis, higher savings = further up). Bubble size reflects how often facilities actually implemented that recommendation.</div>
+              <div class="chart-info-section"><strong>What this shows:</strong> Each bubble is a recommendation category, placed by how quickly it pays back (X-axis) vs. how much it saves (Y-axis). Bigger bubbles mean more facilities implemented that recommendation.</div>
               <div class="chart-info-section"><strong>How it's calculated:</strong> Categories are ranked relative to each other in this result set. X-axis uses percentile rank of payback period (shorter payback = further right). Y-axis uses percentile rank of median annual savings (higher savings = further up). Bubble size reflects implementation rate.</div>
               <div class="chart-info-section"><strong>Key takeaways:</strong>
                 <ul>
@@ -1727,8 +1663,6 @@
       const medPb = pbVals.length > 0 ? pbVals[Math.floor(pbVals.length / 2)] : null;
       document.getElementById('card-stat-payback').textContent = fmtPayback(medPb);
       document.getElementById('card-stat-label-payback').textContent = 'median payback';
-
-      // Savings vs Payback: show count of categories
     }
 
     /* ── Init ──────────────────────────────── */
@@ -1771,17 +1705,12 @@
 
       // Wire up suggest triggers
       document.getElementById('state').addEventListener('change', () => fetchSuggestions());
-      // Energy cost (primary form field)
-      document.getElementById('energy-cost').addEventListener('change', () => fetchSuggestions());
-      document.getElementById('energy-cost').addEventListener('input', () => {
-        clearTimeout(suggestTimer);
-        suggestTimer = setTimeout(fetchSuggestions, 600);
-      });
-      // Employees (accordion)
-      document.getElementById('employees').addEventListener('change', () => fetchSuggestions());
-      document.getElementById('employees').addEventListener('input', () => {
-        clearTimeout(suggestTimer);
-        suggestTimer = setTimeout(fetchSuggestions, 600);
+      ['employees', 'plant-area', 'sales', 'energy-cost'].forEach(id => {
+        document.getElementById(id).addEventListener('change', () => fetchSuggestions());
+        document.getElementById(id).addEventListener('input', () => {
+          clearTimeout(suggestTimer);
+          suggestTimer = setTimeout(fetchSuggestions, 600);
+        });
       });
 
       document.getElementById('submit-btn').addEventListener('click', handleSubmit);
@@ -1806,6 +1735,8 @@
       if (s.sample_size === 0 && !s.employees) { clearAllHints(); return; }
 
       updateHint('employees',   s.employees,   s.sample_size);
+      updateHint('plant-area',  s.plant_area,  s.sample_size);
+      updateHint('sales',       s.sales,       s.sample_size, '$');
       updateHint('energy-cost', s.energy_cost, s.sample_size, '$');
       renderNaicsSuggestions(s.top_naics);
       renderStateSuggestions(naics);
@@ -1837,7 +1768,7 @@
     }
 
     function clearAllHints() {
-      ['employees-hint', 'energy-cost-hint'].forEach(id => {
+      ['employees-hint', 'plant-area-hint', 'sales-hint', 'energy-cost-hint'].forEach(id => {
         const el = document.getElementById(id);
         if (el) { el.classList.remove('visible'); el.innerHTML = ''; }
       });
@@ -1985,14 +1916,12 @@
       document.getElementById('naics-search').value = '';
       document.getElementById('state').value = '';
       document.getElementById('employees').value = '';
+      document.getElementById('plant-area').value = '';
+      document.getElementById('sales').value = '';
       document.getElementById('energy-cost').value = '';
       document.querySelectorAll('input[name="energy_type"]').forEach(cb => cb.checked = false);
       clearAllHints();
-      var optCtx = document.getElementById('optional-context');
-      if (optCtx) optCtx.removeAttribute('open');
       document.getElementById('results').style.display = 'none';
-      var cc = document.getElementById('context-card');
-      if (cc) { cc.style.display = 'none'; cc.innerHTML = ''; }
       // Destroy charts to free memory
       [priorityChart, savingsDonutChart, implRateChart, paybackChart].forEach(c => { if (c) c.destroy(); });
       priorityChart = savingsDonutChart = implRateChart = paybackChart = null;
@@ -2030,7 +1959,6 @@
 
       renderRecs(d.recommendations, 'rank');
       renderEnmsCases(d.enms_cases);
-      renderContextCard(d);
       document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -2497,14 +2425,6 @@
                       '<div class="impl-bar-bg"><div class="impl-bar-fill" style="width:' + implPct + '%"></div></div>' +
                       '<span class="impl-label">' + implPct + '% implemented</span>' +
                     '</div>' +
-                    (function() {
-                      var sf = getEnergyCostScaleFactor();
-                      if (sf !== null) {
-                        var est = Math.round((r.median_savings_usd || 0) * sf);
-                        return '<div style="font-size:.78rem;color:var(--teal);margin-top:6px;font-weight:600">Est. for your facility: $' + fmtMoney(est) + '/yr</div>';
-                      }
-                      return '';
-                    })() +
                     '<div class="sample-size">Based on ' + fmtN(r.n) + ' assessments' +
                       (r.confidence < 1 ? ' <span style="color:#e2a000">(limited data)</span>' : '') +
                     '</div>' +
@@ -2610,79 +2530,6 @@
         'Indonesia': '\uD83C\uDDEE\uD83C\uDDE9', 'South Africa': '\uD83C\uDDFF\uD83C\uDDE6',
       };
       return flags[country] || '\uD83C\uDF10';
-    }
-
-    /* ═══════════════════════════════════════════
-       SAVINGS VS PAYBACK CHART + CONTEXT CARD
-       ═══════════════════════════════════════════ */
-
-    function renderContextCard(d) {
-      const card = document.getElementById('context-card');
-      if (!card) return;
-      const parts = [];
-
-      // Energy cost quintile context
-      const ecVal = parseFloat(document.getElementById('energy-cost').value) || 0;
-      if (ecVal > 0) {
-        const eq = (PROCESSED.insights || {}).energy_cost_quintiles;
-        if (eq && eq.breakpoints) {
-          const bp = eq.breakpoints;
-          let qLabel = 'Very Low';
-          let qMedian = eq.quintiles[0].median_savings_usd;
-          if (ecVal >= bp[3]) { qLabel = 'Very High'; qMedian = eq.quintiles[4].median_savings_usd; }
-          else if (ecVal >= bp[2]) { qLabel = 'High'; qMedian = eq.quintiles[3].median_savings_usd; }
-          else if (ecVal >= bp[1]) { qLabel = 'Medium'; qMedian = eq.quintiles[2].median_savings_usd; }
-          else if (ecVal >= bp[0]) { qLabel = 'Low'; qMedian = eq.quintiles[1].median_savings_usd; }
-          parts.push('Your <strong>$' + fmtMoney(ecVal) + '/yr</strong> energy spend is in the <strong>' + qLabel + '</strong> range \u2014 facilities like yours typically see <strong>$' + fmtMoney(qMedian) + '</strong> savings per recommendation.');
-        }
-      }
-
-      // Employee size bin context
-      const empVal = parseInt(document.getElementById('employees').value) || 0;
-      if (empVal > 0) {
-        const sb = (PROCESSED.insights || {}).size_bins;
-        if (sb && sb.breakpoints) {
-          const bp = sb.breakpoints;
-          let binLabel = sb.bin_labels[0];
-          if (empVal > bp[2]) binLabel = sb.bin_labels[3];
-          else if (empVal > bp[1]) binLabel = sb.bin_labels[2];
-          else if (empVal > bp[0]) binLabel = sb.bin_labels[1];
-          parts.push('At <strong>' + fmtN(empVal) + ' employees</strong>, you\u2019re in the <strong>' + binLabel + '</strong> bracket.');
-        }
-      }
-
-      if (parts.length > 0) {
-        card.innerHTML = parts.join('<br>');
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    }
-
-    function getEnergyCostScaleFactor() {
-      const ecVal = parseFloat(document.getElementById('energy-cost').value) || 0;
-      if (ecVal <= 0) return null;
-      // Get industry median energy cost from suggest_stats
-      const naics3 = selectedNaics ? selectedNaics.substring(0, 3) : '';
-      const ss = PROCESSED.suggest_stats || {};
-      let medianEC = null;
-      if (naics3 && ss._global && ss._global[naics3] && ss._global[naics3].energy_cost) {
-        medianEC = ss._global[naics3].energy_cost.median;
-      }
-      if (!medianEC) {
-        // Fallback: use overall median from all states
-        let totalEC = 0, countEC = 0;
-        Object.entries(ss).forEach(([st, data]) => {
-          if (st === '_global') return;
-          if (data._all && data._all.energy_cost && data._all.energy_cost.median) {
-            totalEC += data._all.energy_cost.median;
-            countEC++;
-          }
-        });
-        if (countEC > 0) medianEC = totalEC / countEC;
-      }
-      if (!medianEC || medianEC <= 0) return null;
-      return Math.min(3.0, ecVal / medianEC); // cap at 3x
     }
   </script>
 
