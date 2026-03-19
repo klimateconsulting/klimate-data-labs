@@ -258,12 +258,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Energy Saving: A Profitable Way To Reduce Global Warming And To Remain Sustainable.”",
-        "name": "H.M. Bangur",
-        "title": "MD",
-        "compelling": false
-      },
-      {
         "text": "“Clean & Green is Always Profitable.”",
         "name": "Prashant Bangur",
         "title": "Jt. MD",
@@ -347,12 +341,6 @@
         "name": "Andrew Hejnar",
         "title": "Energy Manager",
         "compelling": true
-      },
-      {
-        "text": "\"Since embarking on our ISO 50001 journey in Decatur we have seen an 8% reduction in energy usage. In addition to the savings, the value this program brings is in the implementation of the measurement and management systems that are needed for sustainable year on year improvements. The enterprise-wide approach has enabled us to learn from the other participating locations and to leverage best practices. Implementation does take management commitment of resources, but the payback in the end is well worth the effort.\"",
-        "name": "Robin Higgs",
-        "title": "Decatur Site Manager",
-        "compelling": false
       }
     ],
     "themes": {
@@ -499,12 +487,6 @@
         "name": "Michael Crochon",
         "title": "Executive VP Strategy & Technology",
         "compelling": true
-      },
-      {
-        "text": "“Energy management is part of our DNA at Schneider Electric. We continue to be strongly committed to reduce our energy and CO2 footprints through behaviors, processes, technology and use of our own products. The ISO 50001 and Superior Energy Performance frameworks not only build upon our energy management systems, but also help us drive consistency and performance improvements across our locations.”",
-        "name": "Steve Sacco",
-        "title": "Vice President, Safety, Environment & Real Estate",
-        "compelling": false
       },
       {
         "text": "\"We've found that Superior Energy Performance is a great way to drive down energy use and costs across the company. With each plant, it becomes easier to apply the SEP framework and generate real savings that persist over time.\"",
@@ -669,12 +651,6 @@
         "name": "Juan Diego Carrasco",
         "title": "Property Management Director",
         "compelling": false
-      },
-      {
-        "text": "“Our EnMS has helped us to become more efficient as a team, eliminating time-consuming processes with no real value to focus on our main goal: save energy and reduce CO2 emissions.”",
-        "name": "Mario Cabezos",
-        "title": "Risk Prevention & Environment",
-        "compelling": true
       },
       {
         "text": "“Correct definition of critical operating parameters has helped us understand our use of energy to react quickly and increase savings.”",
@@ -1017,12 +993,6 @@
         "compelling": false
       },
       {
-        "text": "“For our company is critical to keep a track record of our fuel consumption not only for the costs related but also because we recognize we are part of a contaminating industry, for us is critical to reduce as much as possible our emissions.”",
-        "name": "Felipe Barriga",
-        "title": "Operations Director",
-        "compelling": false
-      },
-      {
         "text": "\"The ISO 50001 and EnMS gave us the structure and tools but overall, the systematicity to focus our efforts and achieve results never seen before.\"",
         "name": "Jose Luis Vasquez",
         "title": "Maintenance Manager",
@@ -1168,12 +1138,6 @@
     "paybackPeriodYears": 0.83,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Effective execution in energy management system is the foundation of sustainable development.”",
-        "name": "Mongkol Hengrojanasophon",
-        "title": "Managing Director",
-        "compelling": false
-      },
       {
         "text": "“The best way to save the world is saving energy and the best way to save energy is effective implementation EnMS.”",
         "name": "Wuttichai Sangsomchaipipat",
@@ -1416,20 +1380,7 @@
     "implementationCostUSD": 100000.0,
     "paybackPeriodYears": 1.666666666666667,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"Within Curtiss-Wright, we work hard all year to conduct business in an environmentally responsible manner, [...] sustainability initiatives are truly becoming 'a way of life' for us.\"",
-        "name": "David Adams",
-        "title": "Chairman & CEO",
-        "compelling": false
-      },
-      {
-        "text": "\"Energy savings prior to this effort were always kind of hit or miss. When people 'had time' to pay attention to energy conservation, we did an O.K. job. ISO 50001 really gave us the systematic approach we needed to ensure sustainability.\"",
-        "name": "Darren Keller",
-        "title": "Facilities Manager",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": true,
@@ -1490,12 +1441,6 @@
     "paybackPeriodYears": 1.0,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "\"The improvements identified through the implementation of ISO 50001 helped reduce our CO2 emissions by 40% and reduce our energy costs by 36%.\"",
-        "name": "Connor Murphy",
-        "title": "Site Director",
-        "compelling": true
-      },
       {
         "text": "“The implementation of ISO 50001 has enhanced the analysis of data from our energy management system and leveraged advantages in energy efficiency projects and ongoing energy management.”",
         "name": "Peter De Bie",
@@ -1862,12 +1807,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "\"The main drivers of the certified EnMS program are to Improve Energy Efficiency, reduce the CO2 Footprint & the Overall Energy Cost through Sustainable Development with a philosophy of continuous improvement.\"",
-        "name": "Peter Moran",
-        "title": "Energy Manager",
-        "compelling": false
-      },
-      {
         "text": "\"A certified EnMS is now seen as the minimum standard within the AbbVie Manufacturing network. AbbVie Ireland led the way and were the first in the network (and in Ireland) to achieve ISO 50001 certification. All AbbVie plants are now required to achieve certification by 2017.\"",
         "name": "Peter Moran",
         "title": "Energy Manager",
@@ -1936,12 +1875,6 @@
     "testimonials": [
       {
         "text": "“Save Energy – Stay Competitive - Save Life.”",
-        "name": "Stanley Sutrisno",
-        "title": "MR",
-        "compelling": false
-      },
-      {
-        "text": "\"With reduced energy consumption, we are directly involved with the government's program to reduce C02 Emissions.\"",
         "name": "Stanley Sutrisno",
         "title": "MR",
         "compelling": false
@@ -2389,12 +2322,6 @@
         "name": "Gabriel Kelly",
         "title": "Group Environmental, Health and Safety Manager",
         "compelling": false
-      },
-      {
-        "text": "“The ISO 50001 Energy Management Systems are key to Dairygold’s sustainability as our business sector continues to expand in the years to come.”",
-        "name": "Daire McKiernan",
-        "title": "Energy Engineer",
-        "compelling": false
       }
     ],
     "themes": {
@@ -2779,12 +2706,6 @@
     "paybackPeriodYears": 4.702517162471396,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Reducing energy use make perfect business sense as it reduces costs, reduces greenhouse gas emission and help with security of energy supply by reducing dependency on imported energy sources.”",
-        "name": "Sergio Alcantria",
-        "title": "CEO",
-        "compelling": true
-      },
       {
         "text": "\"It is worth to mention that alternative fuel hot disk was an opportunity and challenge to ACC.\"",
         "name": "Sergio Alcantria",
@@ -3179,18 +3100,6 @@
         "name": "José Almeida",
         "title": "Chairman & Chief Executive Officer",
         "compelling": false
-      },
-      {
-        "text": "“The ISO 50001 implements a Management System which provides Baxter achieve the Business Sustainability and the lowest Environmental Footprint.”",
-        "name": "Daniel Coelho",
-        "title": "Brazil Plant Manager",
-        "compelling": false
-      },
-      {
-        "text": "“An Energy Management System Based on the ISO 50001 is Key to achieve Sustainability Goals and Business Sustainability.”",
-        "name": "Leandro Corral",
-        "title": "Engineering Manager",
-        "compelling": false
       }
     ],
     "themes": {
@@ -3253,12 +3162,6 @@
     "paybackPeriodYears": 1.15,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Energy Saving: A profitable Way to reduce Global Warming and to remain Sustainable.”",
-        "name": "Susheel Ka",
-        "title": "CEO",
-        "compelling": false
-      },
       {
         "text": "\"Implementing ISO 50001 has provided measurable results and raised the visibility of the energy program at Arvind Limited.\"",
         "name": "Harvinder Rathee",
@@ -3446,12 +3349,6 @@
         "name": "Phil Giroux",
         "title": "Production Manager",
         "compelling": false
-      },
-      {
-        "text": "“ISO 50001 validates our existing energy management systems and ensures our routine management is more deeply ingrained to provide long term sustainability and improvements.”",
-        "name": "Jim Storey",
-        "title": "Operations Manager",
-        "compelling": false
       }
     ],
     "themes": {
@@ -3514,12 +3411,6 @@
     "paybackPeriodYears": 0.43,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Implementation of EnMS ISO 50001 has meet with the company objectives for sustainable growth to achieve low cost and high yield without abandon the responsibility to the environment.”",
-        "name": "Ruslan Krisno",
-        "title": "Sustainability Director",
-        "compelling": true
-      },
       {
         "text": "“Continuous improvement is the best way to make the Energy Saving become a culture of organization.”",
         "name": "Wayan Ardana",
@@ -3719,12 +3610,6 @@
         "name": "Mohammed Sadek",
         "title": "Director Lubes Marketing",
         "compelling": true
-      },
-      {
-        "text": "“Apart from the commercial benefits The Energy Management system brings, we believe our contribution towards clean and safe environment through reduced carbon emission holds more value that will have an impact on future generations.”",
-        "name": "Mohammed Yunus",
-        "title": "Plant Manager, ELOMP",
-        "compelling": false
       }
     ],
     "themes": {
@@ -3860,12 +3745,6 @@
     "paybackPeriodYears": 0.17,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Effective execution in energy management system is the foundation of sustainable development.”",
-        "name": "Mongkol Hengrojanasophon",
-        "title": "Managing Director",
-        "compelling": false
-      },
       {
         "text": "“The best way to save the world is saving energy and the best way to save energy is effective implementation EnMS.”",
         "name": "Wuttichai Sangsomchaipipat",
@@ -4226,12 +4105,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“I swell with pride to say that SEWA has accomplished ISO 50001(Energy Management System) certification. This is a big step towards prosperity and sustainable growth.”",
-        "name": "Rashid Alleem",
-        "title": "Chariman",
-        "compelling": false
-      },
-      {
         "text": "“SEWA as a multi-dimensional and multi-service provider having corporate type organization structure under Government entity is very optimistic about their future energy road map, especially in line with the ISO 50001 achievement, objectives and requirements. The management support and efforts from the Energy Team leads the organization towards the success and required benchmark.”",
         "name": "Doreb Ebrahim",
         "title": "Technical Advisor-Chairman Office",
@@ -4384,12 +4257,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“The effort to reduce energy consumption is part of our global business strategy. After all, the most important reason why we are doing this is for a more sustainable world.”",
-        "name": "Eduardo Pons",
-        "title": "Energy Director",
-        "compelling": false
-      },
-      {
         "text": "“Having the 9001 and 14001, quality and environment teams, helped us to understand how a 50001 based system could benefit our energy performance.”",
         "name": "Joseph Jurado",
         "title": "Solid Plant EnMS Manager",
@@ -4461,20 +4328,7 @@
     "implementationCostUSD": 960000.0,
     "paybackPeriodYears": 0.02557953637090328,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Clean And No Leakage has been our drive in electric power generation business. In this tough competition, Energy Management System through 5E program enables us to be more competitive and ultimately secure our business sustainability.”",
-        "name": "Eri Prabowo",
-        "title": "Operation-1 Director",
-        "compelling": false
-      },
-      {
-        "text": "“Energy Management System has proven to be beneficial to company performance and would be a competitive edge for long term company sustainabilty.”",
-        "name": "Mochamad Soleh",
-        "title": "Certified Energy Auditor",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -4613,12 +4467,6 @@
         "name": "Jānis Lāčplēsis",
         "title": "Mayor of the City of Daugavpils",
         "compelling": true
-      },
-      {
-        "text": "\"EnMS for us is a green thinking tool that helps targeted CO2 reduction.\"",
-        "name": "Pēteris Dzalbe",
-        "title": "Vice-Mayor of Daugavpils",
-        "compelling": false
       },
       {
         "text": "\"Initially it was a tough explanatory work with employees. But I couldn't be happier that afterwards I got tips from them for further improvements of EnMS.\"",
@@ -4986,12 +4834,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“The ISO 50.001 certifications of our plants are the confirmation that the Energy Management routines are effective and deliver sustainable results.”",
-        "name": "Luiz C. Peres",
-        "title": "GM South America Mfg. VP",
-        "compelling": false
-      },
-      {
         "text": "“Energy Efficiency and natural resources conservation is deeply embedded in our culture.”",
         "name": "Alicia Boler Davis",
         "title": "Exeutive VP of Global Manufacturing",
@@ -5069,14 +4911,7 @@
     "implementationCostUSD": 50000.0,
     "paybackPeriodYears": 0.0646166113368983,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Implementation of ISO 50001 has ensured that GSK Cork has a sustainable process to drive energy reduction in the years ahead.”",
-        "name": "Edmund Collins",
-        "title": "Energy, Utilities & Engineering Quality Improvement Lead",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -5685,12 +5520,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Prevention of business-related risks due to climate change through environmental conservation activities such as energy-saving activity.”",
-        "name": null,
-        "title": null,
-        "compelling": false
-      },
-      {
         "text": "“Improving energy efficiency through one-person saving investment.”",
         "name": null,
         "title": null,
@@ -5831,12 +5660,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“ISO 50001 makes energy consumption more efficient and reduces CO2 emissions, hence helping CJ Pasuruan goal of World Best Green Bio Factory, Global no. 1.”",
-        "name": "Lee Jun Won",
-        "title": "VP Director",
-        "compelling": true
-      },
-      {
         "text": "“Energy management system is very helpful in developing energy projects at CJI Pasuruan. It proven by the results of a new coal boiler install analysis in May 2017 reducing the cost of energy that has an effect on production costs. Our success story is the result of implementing ISO 50001.”",
         "name": "Lee Jun Won",
         "title": "VP Director",
@@ -5904,21 +5727,9 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“RTA is committed to continue excellent sustainability approach which serves the Public, and brings happiness to them by effectively contributing to shaping the future of ‘Green Dubai’ by developing an ‘Energy Efficient Public Transportation’ in Dubai.”",
-        "name": "Matar Al Tayer",
-        "title": "Director General & Chairman of the Board of Executive Directors",
-        "compelling": false
-      },
-      {
         "text": "“The optimal utilization of technology is the key step towards developing the Energy Efficient Public Transportation in Dubai.”",
         "name": "Nasser Abu Shehab",
         "title": "Chief Executive Officer",
-        "compelling": false
-      },
-      {
-        "text": "“RTA is committed to develop Dubai as a global role player with Energy Efficient and Sustainable transportation infrastructure, by promoting usage of public transportation and make Dubai Emirate a Green City.”",
-        "name": null,
-        "title": null,
         "compelling": false
       }
     ],
@@ -5981,20 +5792,7 @@
     "implementationCostUSD": 48188.0,
     "paybackPeriodYears": 0.43,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"Plan, develop and manage an excellent city that provides the essence of success and sustainable prosperity.\"",
-        "name": "Dubai Municipality",
-        "title": "Mission",
-        "compelling": false
-      },
-      {
-        "text": "\"Dubai Municipality supports the leadership's sustainability commitment in every aspect of operations, from sustainable urban planning to waste management and green buildings – and everything in between. The strategic plan is in line with the Government's goals, and with the long-term fision of building 'an excellent city that provides the essence of success and comfort of sustainable living.'\"",
-        "name": "Hussain Nasser Lootah",
-        "title": "Director General",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -6116,21 +5914,9 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "\"Build green factories, make energy saving vehicles, and take the road of sustainable development.\"",
-        "name": "Wang Bozhi",
-        "title": "Chairman",
-        "compelling": false
-      },
-      {
         "text": "\"Construction of the energy management system provides the guarantee for the completion of the task of reducing manufacturing costs.\"",
         "name": "Chen Shiming",
         "title": "Director of Casting Workshop",
-        "compelling": false
-      },
-      {
-        "text": "\"Continuously & deeply to make EnMs forward, and contribute to sustainable development of enterprise!\"",
-        "name": "Wang Bozhi",
-        "title": "Chairman",
         "compelling": false
       }
     ],
@@ -6564,14 +6350,7 @@
     "implementationCostUSD": 214960.2,
     "paybackPeriodYears": 0.6,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"We want AIB to become a leader in sustainability, both in thought and practice.\"",
-        "name": "Bernard Byrne",
-        "title": "Chief Executive Officer",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": true,
@@ -6633,21 +6412,9 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "\"Energy Efficiency is the path to sustainable manufacturing operations and driver for innovation culture.\"",
-        "name": "Fabricio Erazo",
-        "title": "GM OBB Global Facilities Supervisor",
-        "compelling": false
-      },
-      {
         "text": "\"The EMS has allowed energy efficiency to be integrated into the culture of our people, extending its positive impact.\"",
         "name": "Fabricio Erazo",
         "title": "GM Global Facilities Supervisor",
-        "compelling": false
-      },
-      {
-        "text": "\"At General Motors, we are working to create a company that all stakeholders value, people aspire to work for and communitiess are proud to embrace, creating sustainable solutions to improve the communities in which we live and work.\"",
-        "name": "Mary Barra",
-        "title": "Chairman & CEO",
         "compelling": false
       }
     ],
@@ -6856,20 +6623,7 @@
     "implementationCostUSD": 1400000.0,
     "paybackPeriodYears": 0.5185185185185185,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“A systematic energy management approach gives Profit increase, Energy cost saving, Reduced greenhouse-gas emissions, Reduced exposure to changing energy prices, informed decision-making processes and Increased energy awareness among staff and greater participation.\"",
-        "name": "Ibrahim Abd Al-Salam",
-        "title": "Chairman & CEO",
-        "compelling": true
-      },
-      {
-        "text": "“Energy Saving approach is an easy way to increase profitability and reduce Global warming and it is considered as a sustainable improvement approach.”",
-        "name": "Ibrahim Abd Al-Salam",
-        "title": "Chairman & CEO",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -6935,12 +6689,6 @@
         "name": "Aloke Sarkar",
         "title": "VP & Head Operations",
         "compelling": true
-      },
-      {
-        "text": "“Sustainability is all about preserving our natural Environment which is the source of our survival and well-being.”",
-        "name": "S.N. Roy",
-        "title": "CEO & MD, Whole Time Director",
-        "compelling": false
       }
     ],
     "themes": {
@@ -7081,12 +6829,6 @@
         "name": "Maxime Verstraete",
         "title": "VP of Corporate Responsibility",
         "compelling": false
-      },
-      {
-        "text": "“Hilton is a shining example of how companies can use ISO to manage their operations in the most efficient, effective, and sustainable way possible. Improving energy performance through ISO 50001 not only reduces greenhouse gases, but reduces costs. Hilton is leading the industry in showing that this isn’t just an environmentally friendly thing to do, it is good for the bottom line.”",
-        "name": "Cem O. Onus",
-        "title": "Managing Director of Systems for DEKRA Certification, Inc.",
-        "compelling": false
       }
     ],
     "themes": {
@@ -7165,12 +6907,6 @@
         "text": "“Bci has opted to extend its energy efficiency policy to all its business endeavors.\"",
         "name": "Cristian Báez",
         "title": "Head of Maintenance & Energy Efficiency",
-        "compelling": false
-      },
-      {
-        "text": "“Sustainability is a permanent challenge that we must continue to face with creativity and innovation.”",
-        "name": "Eugenio Von Chrismar",
-        "title": "GM",
         "compelling": false
       }
     ],
@@ -7307,18 +7043,6 @@
     "paybackPeriodYears": 0.6838462469852891,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“ISO 50001 has made organization management easier while process on the continuous improvements, integrating with energy management in to our overall efforts to cost reduction, conserve resources and tackle climate changes.”",
-        "name": "Samantha Senevirathna",
-        "title": "Operational Director",
-        "compelling": true
-      },
-      {
-        "text": "“ISO 50001 is an invisible hand to drive business to a well-planned end goal achieving sustainable use of energy resources.”",
-        "name": "Lakmal Jayawardana",
-        "title": "Energy Manager",
-        "compelling": false
-      },
       {
         "text": "“If you cannot measure, you cannot manage. ISO 50001 directs you what to measure and when to measure. Then only you can manage.”",
         "name": "Binara Kariyawasam",
@@ -7537,12 +7261,6 @@
         "name": "Richard Kelley",
         "title": "Estates Manager",
         "compelling": false
-      },
-      {
-        "text": "“In addition to the recent renewal of our Green Flag status, and news we have achieved ISO 50001 certification for efficient energy management, this success is clear evidence of our progress to place sustainability at the core of DCU.”",
-        "name": "Brian MacCraith",
-        "title": "President",
-        "compelling": false
       }
     ],
     "themes": {
@@ -7671,20 +7389,7 @@
     "implementationCostUSD": 12600000.0,
     "paybackPeriodYears": 1.25,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“In CMPC sustainability is essential and energy efficiency has played a key role in this driver since the implementation of EnMS.”",
-        "name": "Hernan Rodriguez",
-        "title": "CEO",
-        "compelling": false
-      },
-      {
-        "text": "“Our EnMS has allowed us to align our goals of efficiency, productivity and sustainability by providing real data on the effects of changes in processes and consequently promoting \ncontinuous improvements in our facilities on a daily basis.”",
-        "name": "Roland Haemmerli",
-        "title": "COO",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -7902,12 +7607,6 @@
         "name": "Bagya Sugihartana",
         "title": "Production Director",
         "compelling": false
-      },
-      {
-        "text": "“Through continuous improvement and implementation of energy management systembased on ISO 50001, the corporate sustainability objectives involving Triple P (Profit, People, and Planet) can always be achieved.”",
-        "name": "Sri Mukartiningsih",
-        "title": "Management Representative",
-        "compelling": false
       }
     ],
     "themes": {
@@ -7969,26 +7668,7 @@
     "implementationCostUSD": 338000.0,
     "paybackPeriodYears": 1.69,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Energy efficiency is an integral part of our Biofactory transformation plan and with it we are going to enhance to our goals: zero emission, zero waste, environment friendly and long term sustainable.”",
-        "name": "Narciso Berberana",
-        "title": "CEO",
-        "compelling": false
-      },
-      {
-        "text": "“With the main issue that is energy in water cycle, an EnMS let us think in an energetic-sufficiency and 100% renewable source.”",
-        "name": "Manuel Baurier",
-        "title": "Operations & Circular Economy Director",
-        "compelling": false
-      },
-      {
-        "text": "“Through the EnMS we could improve largely our energy consumption and our CO2e emissions... those are really our goals.”",
-        "name": "Maximiliano Mardoff",
-        "title": "Head of Energy Management",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -8059,12 +7739,6 @@
         "text": "\"having a detailed understanding of our processes has allowed us to make better decisions.\"",
         "name": "Matías Ríos",
         "title": "Enology Director",
-        "compelling": false
-      },
-      {
-        "text": "\"This seal is not only a source of pride for our company, but also evidence of our vineyard's commitment to the environment and a constant search for developing renewable energies.\"",
-        "name": "Adolfo Hurtado",
-        "title": "GM",
         "compelling": false
       }
     ],
@@ -8275,12 +7949,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“The EnMS certification is aligned with our mission to become industrial referents, and, at the same time, to contribute to the development and sustainability of the region, the country and the energy policies.”",
-        "name": "Jorge Vugdelija",
-        "title": "GM",
-        "compelling": false
-      },
-      {
         "text": "“OLDELVAL contribute to optimizing the use of energy by sharing their experience with the  industrial sector.”",
         "name": "Carlos Colavita",
         "title": "Cipolleti Municipality Economic Development Agency Director",
@@ -8445,22 +8113,10 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "\"Energy management has helped us understand the importance of Energy Saving and the need to attain sustainable development.\"",
-        "name": "Harish K. Chatterjee",
-        "title": "VP, Manufacturing",
-        "compelling": false
-      },
-      {
         "text": "\"Save energy equates to save money. Energy and Business go hand in hand. EnMS is the best tool to achieve energy conservation.\"",
         "name": "A.A. Bambardekar",
         "title": "Works Director",
         "compelling": false
-      },
-      {
-        "text": "\"With the passing of every year, we are losing more and more non-renewable resources. It's time to wake up and ISO 50001 and PAT gave us the perfect start towards achieving our goals.\"",
-        "name": "Surendra Tiwari",
-        "title": "GM - Works, Vapi",
-        "compelling": true
       },
       {
         "text": "\"Energy consumption in a plant is a very robust topic. EnMS has helped us understand this topic in various levels- be it at a system level, process level or even an equipment level.\"",
@@ -8529,12 +8185,6 @@
     "paybackPeriodYears": 0.71,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“In Vedanta-We empower people to drive excellence & innovation to create values for our stakeholders, we demonstrate world class standard of governance, safety, sustainability & social responsibility.”",
-        "name": "Anil Agarwal",
-        "title": "Chairman, Vedanta",
-        "compelling": false
-      },
       {
         "text": "“A nation that can’t control its energy source can’t control its Future-In line we have energy conservation Vision for our organization.”",
         "name": "Barack Obama",
@@ -9071,18 +8721,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Energy performance is the key factor in Sustainable development, ISO 50001 will definitely add value towards our journey to excellence.”",
-        "name": "H.S. Dagur",
-        "title": "Unit Head",
-        "compelling": false
-      },
-      {
-        "text": "“ISO 50001:2011 is an effective tool to address climate change issue by saving energy.”",
-        "name": "M.D. Sharma",
-        "title": "Head Power Plant",
-        "compelling": false
-      },
-      {
         "text": "“Energy is one of the key factors to control cost and environmental impact. ISO 50001 is providing systematic approach for the organization growth.\"",
         "name": "Pankaj Srivastava",
         "title": "Functional Head: QA",
@@ -9151,12 +8789,6 @@
     "testimonials": [
       {
         "text": "“The Best Eco-friendly Resort Construction through Energy Management System Certification.”",
-        "name": null,
-        "title": null,
-        "compelling": false
-      },
-      {
-        "text": "“Energy Saving by Active Introduction of High-Efficiency Facilities and Renewable Energy.”",
         "name": null,
         "title": null,
         "compelling": false
@@ -9519,14 +9151,7 @@
     "implementationCostUSD": 400000.0,
     "paybackPeriodYears": 1.00334436176011,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“We have developed a robust ISO50001 certified energy management system which assists with our commitment to environmentally sustainable business practices, energy efficiency, to achieve zero waste and use sustainably managed renewable resources.”",
-        "name": "Paul van Rooij",
-        "title": "Factory Manager, Askeaton",
-        "compelling": true
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -9587,12 +9212,6 @@
     "paybackPeriodYears": 0.03,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“TRP decided to be part of the change focused in building sustainability, and our EnMS have become a fundamental pillar towards our mission.”",
-        "name": "Beatriz Cabella",
-        "title": "HSE & IMS Manager",
-        "compelling": false
-      },
       {
         "text": "“ISO 50001 allowed us to clearly identify uses and its potential improvements, track performance and efficiently gather human energies to reach our energy goals.”",
         "name": "Pablo Baseggio",
@@ -9738,12 +9357,6 @@
         "name": "Ruimin Zhang",
         "title": "CEO",
         "compelling": false
-      },
-      {
-        "text": "\"The change requires the support of management innovation. Establishment of energy management system is an innovation of Haier in energy management, which enables us to develop from a traditional high-energy consuming industrial park to a green and low-carbon park, and continuously improve energy efficiency.\"",
-        "name": "Ruimin Zhang",
-        "title": "CEO",
-        "compelling": false
       }
     ],
     "themes": {
@@ -9811,12 +9424,6 @@
         "name": "Liu Yao Zhou",
         "title": "Commissioner for Energy Conservation & Emission Reduction, Technology Research & Development Department",
         "compelling": false
-      },
-      {
-        "text": "\"Focusing on Green Development and Making Contributions to the Sustainable Development of Society.\"",
-        "name": "Yan Xiao Ping",
-        "title": "Chairman",
-        "compelling": false
       }
     ],
     "themes": {
@@ -9878,14 +9485,7 @@
     "implementationCostUSD": 10000000.0,
     "paybackPeriodYears": 1.333333333333333,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Production control, technology innovation, energy saving and low carbon emissions and sustainable development. EnMS is helpful to our energy management.”",
-        "name": "Xingxu Liu",
-        "title": "Chairman",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -9953,22 +9553,10 @@
         "compelling": true
       },
       {
-        "text": "“Putting sustainability at the heart of JK Tyre’s culture has undoubtedly given us a competitive edge and has made us one of the most sustainable companies in the industry.”",
-        "name": "S.K. Satpathy",
-        "title": "Engineering Head",
-        "compelling": false
-      },
-      {
         "text": "“Resource optimization with lower wastage is key to energy efficiency activities.”",
         "name": "B. Ramesh Kumar",
         "title": "Head EEI",
         "compelling": false
-      },
-      {
-        "text": "\"ISO 50001 gave us the clear understanding on Sustainable Energy Practices, which helped our Organization become more sustainable.\"",
-        "name": "A.K. Makkar",
-        "title": "Manufacturing Director",
-        "compelling": true
       }
     ],
     "themes": {
@@ -10104,12 +9692,6 @@
     "paybackPeriodYears": 0.7500879314079422,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Being part of an organization that is committed to sustainability generates motivation and satisfaction in its employees.”",
-        "name": "Jorge Martins",
-        "title": "Management Representative ISO 50001",
-        "compelling": false
-      },
       {
         "text": "“ISO 50001 made us realize that operational\ncontrol is more important than making great\ninvestments.”",
         "name": "Javier Diaz Saubidet",
@@ -10462,14 +10044,7 @@
     "implementationCostUSD": 3560000.0,
     "paybackPeriodYears": 3.536423841059603,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"Jing brand co.,Ltd insists on innovation and improvement, and takes 'Green Wisdom' as the ultimate pursuit of the company. It will play a positive role in the overall upgrade of intelligent production, energy saving and emission reduction, and process innovation in the whole industry, and promote the overall improvement of the image of the wine industry.\"",
-        "name": "Energy Saving Project",
-        "title": null,
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -10610,12 +10185,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“We want to constantly improve the energy performance and to reduce CO2 emissions.”",
-        "name": "Dragan Stajković",
-        "title": "GM",
-        "compelling": false
-      },
-      {
         "text": "“EnMS helped us to become more efficient, to eliminate the time we spent on discussions without any results and to focus on the main objective - how to preserve energy.”",
         "name": "Saša Milovanović",
         "title": "Energy Team Leader",
@@ -10699,20 +10268,7 @@
     "implementationCostUSD": 1350000.0,
     "paybackPeriodYears": 0.5908958272541582,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“As a energy production company, we should reduce the energy consumption ,Only in this way can we develop sustainably.”",
-        "name": "Fan Mingtao",
-        "title": "Representative of Yumen Oilfield Manager",
-        "compelling": false
-      },
-      {
-        "text": "“As a energy production company, we should reduce the energy consumption, Only in this way can we develop sustainably.”",
-        "name": "Chen Jianjun",
-        "title": "GM",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": true,
@@ -10772,14 +10328,7 @@
     "implementationCostUSD": 1811172.0,
     "paybackPeriodYears": 71.73242504653649,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"We are delighted to receive this important energy management system certificate. It supports our vision to become a leading sustainable innovative global corporation, and a role model for all public and private organisations in Dubai in the fields of sustainability, environmental and natural resource conservation, as per the UAE Vision 2021 and Dubai Plan 2021. It enables us to explore further opportunities for improvement and reducing operating costs in energy consumption.\"",
-        "name": "His Excellency Saeed Mohammed Al Tayer",
-        "title": "Managing Director & CEO",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -11039,20 +10588,7 @@
     "implementationCostUSD": 89400.0,
     "paybackPeriodYears": 0.02811320754716981,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“As a manufacturing company, energy usage has always been one of our major production cost, and so it is natural for us to implement ISO 50001 in order to reduce our cost. In addition, this aligns with our current sustainability efforts as we believe that we need to contribute to saving the planet for our future generations.”",
-        "name": "Erwin Ciputra",
-        "title": "President Director (CEO)",
-        "compelling": true
-      },
-      {
-        "text": "“We believe that adopting ISO 50001 and implementing continuous improvement in energy efficiency for our manufacturing process will reposition our cost curve and sustainably contribute to Profit, People and Planet.”",
-        "name": "Tery Lim",
-        "title": "Finance Director",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -11252,14 +10788,7 @@
     "implementationCostUSD": 95126.0,
     "paybackPeriodYears": 0.08955150816804723,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"We have set ourselves a new challenge: to evolve from a water utility to an environmental services company with a business model based on the principles of circular economy. That means zero waste, zero pollutant emissions, renewable energy self-sufficiency, preservation of biodivserity, and generation of positive social impact and healthy urban spaces.\"",
-        "name": "Narcías Berberana",
-        "title": "CEO",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -11635,20 +11164,7 @@
     "implementationCostUSD": 11300.0,
     "paybackPeriodYears": 3.299270072992701,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"This is a very important event for us; we recognize the objective of the financial sustainability and the Metro environment. We also look to extend the use of Non-Conventional Renewable Energies and having a system of efficiency. This policy is part of the Metro we want to build, a Metro that is sustainable and according to these times.”",
-        "name": "Rodolfo Jaramillo",
-        "title": "Energy Area Leader",
-        "compelling": false
-      },
-      {
-        "text": "“This important and historic initiative of Metro is aligned with the commitments and country challenges that have been agreed upon in the framework of the United Nations Conference on Climate Change 2015 (COP21).”",
-        "name": null,
-        "title": null,
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -11801,22 +11317,10 @@
         "compelling": true
       },
       {
-        "text": "“Putting sustainability at the heart of JK Tyre’s culture has undoubtedly given us a competitive edge and has made us one of the most sustainable companies in the industry.”",
-        "name": "Satheesha Kumar Shetty",
-        "title": "Engineering Head",
-        "compelling": false
-      },
-      {
         "text": "“Energy is time, and time is everything – Save Energy today to so that you can make life better tomorrow.”",
         "name": "Vinay",
         "title": "Head Mfg Excellence & System",
         "compelling": false
-      },
-      {
-        "text": "\"ISO 50001 gave us the clear understanding on Sustainable Energy Practices, which helped our Organization become more sustainable.\"",
-        "name": "A.K. Makkar",
-        "title": "Manufacturing Director",
-        "compelling": true
       }
     ],
     "themes": {
@@ -11883,12 +11387,6 @@
         "text": "“The value of an enterprise lies not in its profitability but in its contribution to society.”",
         "name": "Jeffrey Koo Sr.",
         "title": "Founder",
-        "compelling": false
-      },
-      {
-        "text": "“In line with the United Nations’ Sustainable Development Goals, Principles for Responsible Investment, and Principles for Sustainable Insurance, we have launched financial products and services specially tailored to protect the environment and the community. We also fulfill our CSR by investing in and organizing various public welfare activities.”",
-        "name": "Wen-Long Yen",
-        "title": "Chairman",
         "compelling": false
       }
     ],
@@ -12012,12 +11510,6 @@
     "paybackPeriodYears": 0.3894972217295981,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Certifying ISO 50.001 is a key evidence of FCA sustainability commitment.”",
-        "name": "Eduardo Borghi",
-        "title": "Energy Pilar & SGE ISO 50.001 Leader",
-        "compelling": false
-      },
       {
         "text": "\"The energy area knew how to find its own personality always with ambitious and challenging objectives, but especially with great efficiencies.”",
         "name": "Pamela Zanel",
@@ -12621,12 +12113,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "\"Developing a happy and sustainable city.\"",
-        "name": "Dubai Municipality",
-        "title": "Dubai Municipality – Mission",
-        "compelling": false
-      },
-      {
         "text": "\"The focus is to shift the UAE towards a knowledge Economy with a happy, Healthy population.\"",
         "name": "Dubai Municipality",
         "title": null,
@@ -13100,12 +12586,6 @@
         "compelling": false
       },
       {
-        "text": "“We are living in sustainable enough of energy, by EnMS we’ll made one of the most valued legacy for the children.”",
-        "name": "Ubaedi Susanto",
-        "title": "GM",
-        "compelling": false
-      },
-      {
         "text": "“I think every World Class Company implement EnMS as an obligation as human has to breath.”",
         "name": "Sunarsa",
         "title": "Operation Manager",
@@ -13347,14 +12827,7 @@
     "implementationCostUSD": 630000.0,
     "paybackPeriodYears": 0.1416876574307305,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Rational Scheduling, Optimized Manufacturing, Energy Saving and Emission Reduction, Costs Reduction and Benefits Increasing.”",
-        "name": "Zhiyong Zhang",
-        "title": "GM",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": true,
@@ -13635,22 +13108,10 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“What we need to do is really improve energy efficiency standards, develop in renewable and alternative energy and use the one resource which we have in abundance, for creativity.”",
-        "name": "R.K. Gupta",
-        "title": "Head – Sambalpur Cluster",
-        "compelling": false
-      },
-      {
         "text": "“Every little bit counts, so rather looking for one big way to save a ton of energy, save in lots of small ways and get yourself up for success.”",
         "name": "J.P. Nayak",
         "title": "Head - Smelter",
         "compelling": false
-      },
-      {
-        "text": "\"ISO 50001 facilitates the clear understanding of Sustainable Energy Practices which helped our Organization become more energy efficient & sustainable.\"",
-        "name": null,
-        "title": null,
-        "compelling": true
       }
     ],
     "themes": {
@@ -13993,12 +13454,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Just as years ago it became essential to have a quality system, an energy efficiency system is today a necessity of every company that wishes to be sustainable in a world that must preserve its resources and at the same time be profitable.”",
-        "name": "G.R. Olivera",
-        "title": "EnMS Responsible",
-        "compelling": false
-      },
-      {
         "text": "“The efficient use of energy has fundamental advantages for our Company: Take care of a resource that is scarce, thus optimizing costs and preserving the environment.”",
         "name": "Walter Formica",
         "title": "Director",
@@ -14145,12 +13600,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "\"To have accomplished with ISO 50001 and to achieve energy savings of over 30,000 kWh revitalizes out envrionmental commitment and the energy sustainability of the country.\"",
-        "name": "Juan Rafael Espinoza",
-        "title": "Head of Plant",
-        "compelling": true
-      },
-      {
         "text": "\"We are proud to be one of the main mining plants in Chile to accomplish this certification, it is an important achievment as a company that goes along with the future energy efficiency regulations to be implemented in the country.\"",
         "name": "Heliodoro Hurtado",
         "title": "Operation & Maintenance Director",
@@ -14283,20 +13732,7 @@
     "implementationCostUSD": 33402.0,
     "paybackPeriodYears": 0.3082573887363588,
     "isSME": true,
-    "testimonials": [
-      {
-        "text": "\"With the EnMS implementation I feel the satisfaction to be working on a sustainable competitiveness.\"",
-        "name": "Carina Pastore Pruzzo",
-        "title": "CEO",
-        "compelling": false
-      },
-      {
-        "text": "\"The implementation of the EnMS today is a direct contribution to the organization, not only in saving energy and promoting energy efficiency, but also in highlighting Grupo Liguria as a sustainable chemical manufacturer.\"",
-        "name": "Joselyn Ramirez Espejo",
-        "title": "EnMS leader",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -14361,12 +13797,6 @@
         "text": "“Our commitment is the continuous improvement in the energy performance with focus on the incorporation of energy efficient equipment and services.”",
         "name": "Julio Aguirre",
         "title": "Manufacturing Engineering Manager",
-        "compelling": false
-      },
-      {
-        "text": "“In addition to our renewable energy goal, we are committed to using less energy overall and reducing our carbon emissions globally. Since 2010, we have reduced our carbon intensity by over 20 percent, avoiding 1.5 million tons of carbon emissions — roughly the annual electric use of 260,000 homes.”",
-        "name": "Mary Barra",
-        "title": "General Motors Chairman & CEO",
         "compelling": false
       }
     ],
@@ -14435,12 +13865,6 @@
         "name": "John Allen",
         "title": "Operations Manager",
         "compelling": true
-      },
-      {
-        "text": "\"At Clinica Santa Maria we are proud of our strategy focused on the sustainability of our facilities, achieving, thanks to the EnMS and the recycling plan, a reduction of more than 2,500 tons of CO2 equivalent.\"",
-        "name": "John Allen",
-        "title": "Operations Manager",
-        "compelling": false
       }
     ],
     "themes": {
@@ -14520,12 +13944,6 @@
         "name": "Carlos Branco",
         "title": "Environmental Manager",
         "compelling": true
-      },
-      {
-        "text": "“Our success depends on becoming the world’s most sustainable bottler. We’ll also do more on carbon and water as we transition to low-carbon, zero-waste and circular business.”",
-        "name": "Damian Gammel",
-        "title": "CEO",
-        "compelling": false
       }
     ],
     "themes": {
@@ -14672,12 +14090,6 @@
         "name": "J.P. Bourke",
         "title": "EHS & Energy Manager",
         "compelling": false
-      },
-      {
-        "text": "“The implementation of ISO 50001 has brought a structured approach to the management of energy on- site. This structured approach has translated to better identification of energy related projects which will reduce the carbon footprint of the manufacturing business and has resulted in 10% reduction in energy usage for 2018. The Tipperary Co-Operative strategy has also expanded the scope of the sustainability program beyond of the site and have engaged with the local community to create an enhanced awareness at farm and school levels of the importance of better energy management, both from a business and society perspective.”",
-        "name": "J.P. Bourke",
-        "title": "EHS & Energy Manager",
-        "compelling": false
       }
     ],
     "themes": {
@@ -14750,12 +14162,6 @@
         "text": "“It may seem unambitious to propose reducing energy consumption by 1% or 2%, but when it translates to millions of kWh, it is really encouraging.”",
         "name": "Gabriel Markow",
         "title": "Maintenance Manager",
-        "compelling": false
-      },
-      {
-        "text": "“We know that by having awareness talks with staff members and institutions we have the chance to make an impact, not only in Mastellone Hnos. ́ consumption of energy, but in the communities’ carbon emissions.”",
-        "name": "Nicolás Ezequiel Nine",
-        "title": "EnMS Implementation Leader",
         "compelling": false
       }
     ],
@@ -14960,12 +14366,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“The multi-site group of the Tecnológico Nacional de México, is committed to improve its energy performance, having the firm commitment of caring the environment and mitigating the impact generated by CO2 emissions derived from the educational process that is carried out in the Technological Institutes.”",
-        "name": "Maria Luisa Lopeandia Urbina",
-        "title": "Quality Assurance Manager",
-        "compelling": false
-      },
-      {
         "text": "“The implementation of the Energy Management System ISO 50001:2018 in 2019 resulted in energy saving 19,800 GigaJoules and an estimated energy cost savings of 500,000 mexican pesos.”",
         "name": "Hugo Saul Sanchez Flores",
         "title": "Coordinator of EnMS",
@@ -15106,12 +14506,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“We have developed a robust ISO50001:2018 certified energy management system which assists with our commitment to environmentally sustainable business practices, energy efficiency, to achieve zero waste and use sustainably managed renewable resources.”",
-        "name": "Antonio Prochilo",
-        "title": "Factory Manager",
-        "compelling": false
-      },
-      {
         "text": "“Our ISO50001:2018 certified energy management system has been a huge success that continues to deliver energy savings and reduce our environmental impact.\"",
         "name": "Ian Ryan",
         "title": "Energy & Utilities Manager",
@@ -15178,18 +14572,6 @@
     "paybackPeriodYears": 0.4461322716595274,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“MMK strives to consume fewer resources and reduce the environmental burden. Our strategic commitments are created in accordance with the UN sustainable development goals, and we are creating everything necessary to support and implement them.”",
-        "name": "Pavel Shilyaev",
-        "title": "General Director",
-        "compelling": false
-      },
-      {
-        "text": "“MMK is a responsible organization. Our goal is to reduce CO2 emissions by 2.2 million tons by 2025.”",
-        "name": "Pavel Shilyaev",
-        "title": "General Director",
-        "compelling": false
-      },
       {
         "text": "“MMK’s investments in the environment in 2020 exceeded $ 90 million.”",
         "name": "Viktor Rashnikkov",
@@ -15270,12 +14652,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“ISO 50001 has helped Des Moines Water Works create and follow a systematic approach to reducing energy intensity. As a result, we continue to enjoy significant energy cost savings and reduced CO2 emissions.”",
-        "name": "Ted Corrigan",
-        "title": "CEO",
-        "compelling": true
-      },
-      {
         "text": "“ISO 50001 Energy Management System provides best route navigation to manage energy on the same level as finance, personnel, and processes. ”",
         "name": "Douglas Oscarson",
         "title": "Energy Manager",
@@ -15346,18 +14722,6 @@
         "text": "“ISO 50001 provides the best internationally- recognized framework for an energy management system to track and verify the energy performance of a private partner for a period of 35 years.”",
         "name": "Michael Burke",
         "title": "Senior Energy Engineer",
-        "compelling": true
-      },
-      {
-        "text": "“The private partner will deliver efficient heating and cooling services to the 80 Government of Canada buildings connected to the district energy system in the National Capital Area. Their compliance with ISO 50001 will help Canada to meet international and domestic commitments for emission reductions by ensuring continual energy performance improvement.”",
-        "name": "Tomasz Smetny-Sowa",
-        "title": "Sr. Director",
-        "compelling": false
-      },
-      {
-        "text": "“Our firm has helped many private sector firms to implement and certify ISO 50001, however this was the first time working with a public sector organization to implement ISO 50001. This process of working with PSPC to implement ISO 50001 helped me realize that the fundamental benefits that I had seen ISO 50001 bring to private sector organizations were equally applicable to a large public sector organization. It has been particularly rewarding to work with an organization that is so committed to CO2 reduction and is formalizing ISO 50001 as part of its strategy to drive continuous improvement in energy performance.”",
-        "name": "Peter Bassett",
-        "title": "President",
         "compelling": true
       }
     ],
@@ -15493,20 +14857,7 @@
     "implementationCostUSD": 460000.0,
     "paybackPeriodYears": 1.135189746966206,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"By prioritizing the ISO 50001 Energy Management System in every-day decisions, Astrazeneca's Gaithersburg Campus has improved energy savings, reduced costs, implemented site-wide environmental sustainability programs, and earned the site a Green Lab certification.\"",
-        "name": "Joe Ernstberger",
-        "title": "Executive Director",
-        "compelling": true
-      },
-      {
-        "text": "\"We take pride in our mission to produce innovative, life-saving medications and our commitment to pursue this mission in a sustainable manner. Our Gaithersburg Campus is committed to our Ambition Zero Carbon Initiative, integrating energy improvement strategies into our facilities, operations, design, and procurement practices through the ISO 50001 Energy Management System.\"",
-        "name": "Joe Ernstberger",
-        "title": "Executive Director",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -15712,14 +15063,7 @@
     "implementationCostUSD": 3330000.0,
     "paybackPeriodYears": 4.0,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Our mission is to reduce emission through ISO 50001 EnMS implementation which strives to save every possible quantum of energy to create environmental synergy and become the most energy efficient unit in power industry.”",
-        "name": "Sunil Kumar",
-        "title": "Head of Project",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -15781,22 +15125,10 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“The Gatineau plant is an energy management leader across our network of facilities. Our EMS and ISO 50001 energy efficiency certification have evolved our energy sources, enabling our company to grow our strategic sustainable action and conserve resources to make a positive difference now and far into the future.”",
-        "name": "Daniel Morneau",
-        "title": "GM",
-        "compelling": true
-      },
-      {
         "text": "“The continuous monitoring of our energy intensity and associated costs provides us with much more control. The data empowers our entire team to find improvements to operate more efficiently as a company, and it instills a sense of pride in our work.”",
         "name": "Dino Bianco",
         "title": "CEO",
         "compelling": false
-      },
-      {
-        "text": "“Sustainability is intricately tied to our corporate success and has always been a priority for Kruger Products. We were the first Canadian tissue products company to earn Forest Stewardship Council® (FCS®) chain of council certification, and today 100% of our fibre is third-party certified. The ISO 50001 energy efficiency certification reinforces our commitment that we continue to take tangible steps to protect our environment.”",
-        "name": "Steven Sage",
-        "title": "VP of Sustainability",
-        "compelling": true
       }
     ],
     "themes": {
@@ -15858,20 +15190,7 @@
     "implementationCostUSD": 10000.0,
     "paybackPeriodYears": null,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“As the first data center company to have enterprise-wide, global ISO 50001 certification, Iron Mountain Data Centers is proud to be leading the way to a more sustainable planet. With ISO 50001 we are able to utilize energy consumption in a responsible, meaningful, tracked and measurable way.”",
-        "name": "Jim Henry",
-        "title": "Senior Manager",
-        "compelling": false
-      },
-      {
-        "text": "“Recently, Iron Mountain Data Centers joined the EU Climate Neutral Data Centre Pact and announced all of our sites worldwide will be climate neutral by 2030. We are also one of 114 companies (to date) to join The Climate Pledge to be net-zero carbon by 2040, 10 years ahead of the Paris Agreement. ISO 50001 enables us to make continuous improvements, reach these goals and to change the way the world views data centers.”",
-        "name": "Chris Pennington",
-        "title": "Director of Energy & Sustainability",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -16000,12 +15319,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Marriott International has a corporate goal to reduce the environmental footprint, Water Intensity by 15% | Carbon Intensity by 30% | Waste to landfill by 45% across the Portfolio by 2025 and achieve a minimum of 30% renewable\nenergy use. At the JW Marriott Washington, DC, SEP 50001 and ISO 50001 are important tools to help reach these 2025 targets.”",
-        "name": "Tushaar Agrawal",
-        "title": "GM",
-        "compelling": false
-      },
-      {
         "text": "“Working toward SEP 50001 certification helped the hotel to merge existing resources and energy conservation best practices, provided by the Marriott International energy team, with SEP 50001 guidelines. The combination helped us save time and effort, establish robust processes and communication pathways, and hold ourselves accountable for consistently delivering results.”",
         "name": "Rajaram Srinivasan",
         "title": "Director of Engineering",
@@ -16091,12 +15404,6 @@
         "compelling": false
       },
       {
-        "text": "\"Sustainability is key to the future of leading companies. It must be understood as an essential part to carry out the business. It is part of the evolution of companies in conjunction with the environment.\"",
-        "name": "Anibal Vrdoljak",
-        "title": "Plant Manager",
-        "compelling": false
-      },
-      {
         "text": "“ISO 50001 certification not only generated an optimization in the processes and costs of plant operations, it's also part of the proposal and transmission of values to the client, allowing us to reach new markets.”",
         "name": "Luis Alberto Rodriguez",
         "title": "Lubricants Manager",
@@ -16163,12 +15470,6 @@
     "paybackPeriodYears": 0.08008248495950829,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“We seek to continually improve our processes with a focus on simplicity, efficiency and sustainability.”",
-        "name": "Aníbal Lazarte",
-        "title": "West Region Operations Manager",
-        "compelling": false
-      },
       {
         "text": "“It is extremely important to manage energy throughout our production chain, from our suppliers to our customers.”",
         "name": "Anibal Gac",
@@ -16320,12 +15621,6 @@
         "name": "Deirdre Carter",
         "title": "Energy Manager",
         "compelling": true
-      },
-      {
-        "text": "“I’m impressed by the extent to which the ISO 50001 Standard has harmonized communication within our team and improved the rigor of our energy and water management. We are now adapting processes inspired by our ISO 50001 management system in many other areas of our sustainability work.”",
-        "name": "John Elliott",
-        "title": "Chief Sustainability Officer",
-        "compelling": false
       }
     ],
     "themes": {
@@ -16390,12 +15685,6 @@
     "testimonials": [
       {
         "text": "\"Energy management is now in the global spotlight, Energy efficiency is the most consensual option to meet energy saving ... save energy means save money, environment and resources ... investment in energy efficiency can be seen as an investment for the future.\"",
-        "name": "Saad Abou El Maaty",
-        "title": "Chemist, Chairman & Managing Director",
-        "compelling": false
-      },
-      {
-        "text": "\"Improving Energy efficiency through the best practices technologies helps to save energy, reduce costs, optimize resources, reduce greenhouse gas emissions and increase profits. we invest to be fully integrated fertilizer complex.\"",
         "name": "Saad Abou El Maaty",
         "title": "Chemist, Chairman & Managing Director",
         "compelling": false
@@ -16535,12 +15824,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“ISO50001 significantly helped HdGP to introduce a structured global energy management system, to drive higher performance, not only in energy efficiency, but in GHG management.”",
-        "name": "Fahad AlDossary",
-        "title": "Energy Manager",
-        "compelling": true
-      },
-      {
         "text": "“Certifying the organization with ISO 50001 has motivated our employees to take an active role towards achieving HdGP energy efficiency targets.”",
         "name": "Abdulaziz Khamas",
         "title": "Operation Shift Superintendent",
@@ -16674,12 +15957,6 @@
         "compelling": false
       },
       {
-        "text": "“Energy Management System is helpful for KMK’s future growth and sustainability. A systemic approach on energy management system would be hugely beneficial to the company and its employees.”",
-        "name": "Erry Sunarli",
-        "title": "Senior Management",
-        "compelling": false
-      },
-      {
         "text": "“The challenge that we faced during implementation of Energy Management System is obtaining support from our workforce. To ensure the success of Energy Team’s plan we worked tirelessly to obtain collaboration from all levels within KMK.”",
         "name": "Rudi Cahyono",
         "title": "Energy Manager",
@@ -16745,20 +16022,7 @@
     "implementationCostUSD": 500000.0,
     "paybackPeriodYears": 1.726919293353605,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"Focusing on consistent decarbonization can be a strong competitive advantage. In any case, it offers the best setting of the course for the common path towards a secure and economically successful future on a planet worth living in.\"",
-        "name": "Georg Kell",
-        "title": "Spokesman for the Volkswagen Group's Sustainability Advisory Board",
-        "compelling": false
-      },
-      {
-        "text": "\"Climate and environmental protection affect us all. As the largest automobile dealer in Europe and a subsidary of Volkswagen AG, we contribute to climate protection with our options.\"",
-        "name": "Hans Peter Schuetzinger",
-        "title": "CEO Salzburg",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -17039,12 +16303,6 @@
         "compelling": false
       },
       {
-        "text": "\"An increase in employee engagement and knowledge in sustainability and energy efficiency subjects is one of many benefits from the ISO 50001 implementation.\"",
-        "name": "Rigoberto Mena",
-        "title": "Maintenance Manager",
-        "compelling": false
-      },
-      {
         "text": "\"Continuous improvement of our Energy Management System is the key for success in ISO 50001.\"",
         "name": "Riboberto Mena",
         "title": "Maintenance Manager",
@@ -17115,12 +16373,6 @@
         "text": "“Turn off the light and turn on the savings,\nthe UTEM is at stake for energy efficiency.”",
         "name": "Cristopher Toledo Puga",
         "title": "Coordinator Sustainabiity Program",
-        "compelling": false
-      },
-      {
-        "text": "“The EnMS allowed us to identify the potential that the university had in energy efficiency and to reinforce our commitment to sustainability.”",
-        "name": "Cristopher Toledo Puga",
-        "title": "Coordinator Sustainability Program",
         "compelling": false
       }
     ],
@@ -17256,20 +16508,7 @@
     "implementationCostUSD": 23775184.0,
     "paybackPeriodYears": 1.734549725805863,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"Our energy management system has allowed us to align our goals in efficiency, productivity and sustainability, providing us with real data on the effects of our changes to processes, and consequently, promoted continual improvements in our facilities on a daily basis.\"",
-        "name": "Enrique Donoso",
-        "title": "Energy Manager",
-        "compelling": false
-      },
-      {
-        "text": "\"Our proven model for operational excellence ensures support for business results and helps improve on them continually via cultural change. Therefore, I am convinced of the value of integrating EnMS to boost the demanding challenges of sustainability the company has committed to.\"",
-        "name": "Francisco Ruiz Tagle",
-        "title": "CEO",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -17404,12 +16643,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“The energy management principles helped us realize that the investment in a combined cycle would offset natural gas usage in 5 years, an important contribution to the sustainability.”",
-        "name": "Martín Mandarano",
-        "title": "CEO",
-        "compelling": true
-      },
-      {
         "text": "“The participation in the Energy Management Committee of representatives of all areas of the plant was key to promote a culture of energy improvement.”",
         "name": "Marcelo Sobico",
         "title": "North Region Operations Manager",
@@ -17483,18 +16716,6 @@
         "compelling": false
       },
       {
-        "text": "“RTA is the first transport authority in the Middle East & Africa Region, to develop in 2020 a comprehensive plan to achieve Zero emission public transport and related infrastructure in Dubai by 2050.”",
-        "name": null,
-        "title": null,
-        "compelling": false
-      },
-      {
-        "text": "“Our energy efficiency projects and initiatives are key to achieve our strategic vision of becoming world leaders in seamless and sustainable mobility and support our journey towards a carbon-neutral transport sector.”",
-        "name": "Nasser Abu Shehab",
-        "title": "CEO",
-        "compelling": false
-      },
-      {
         "text": "“RTA’s vision and energy performance are being met with the implementation of ISO 50001.”",
         "name": "Nada Jasim",
         "title": "Director of Safety & Risk Regulation & Planning",
@@ -17562,12 +16783,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“ADSSC has demonstrated a strong collective sense of commitment and action towards reducing energy consumption and mitigating carbon emissions. Aligning with the UAE National Energy Strategy 2050, ADSSC recognises the crucial role it plays, leading by example in the sustainable management of key infrastructure assets. The achievement of the ISO 50001 certification verifies and boost our steps on this journey as we seek to optimise our energy management and associated costs.”",
-        "name": "Ahmed Al Shamsi",
-        "title": "CEO",
-        "compelling": false
-      },
-      {
         "text": "“With an Integrated Management System (IMS) already in place and certified to a number of ISO standards, the ISO 50001 requirements were seamlessly embedded into the IMS, thus aligning with ADSSC’s well-defined PDCA processes and consistent reporting to Top Management. ”",
         "name": "Ismaeel Al Khouri",
         "title": "Projects Division Director, EnMS Management Representative",
@@ -17633,20 +16848,7 @@
     "implementationCostUSD": 94182.6087,
     "paybackPeriodYears": 2.163369694434053,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"A core objective of Tyndall's research strategy is to develop innovative technologies to help address some of the most pressing sustainability challenges facing society today including climate, energy & clean water, through Tyndall deep tech research. To align our internal operations with this objective, a logical step was to implement an energy management system which is aligned to ISO50001. The benefits of this accredited management system extend far beyond the significant energy and carbon savings which have been achieved to date. The sustainability credentials which have been garnered through the standard have significantly raised the profile of our institute both nationally and internationally, enabling investment from organisations from both the public and private sectors.\"",
-        "name": "William Scanlon",
-        "title": "CEO",
-        "compelling": false
-      },
-      {
-        "text": "\"ISO50001 has not only put a structure on our management of energy, but has assisted us in putting a better structure on our asset management as a whole. This not only reduces energy cost but also improves equipment reliability and assists us in achieving our carbon reduction targets.\"",
-        "name": "Derry Kelleher",
-        "title": "Facilities Manager",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -17706,14 +16908,7 @@
     "implementationCostUSD": 32500.0,
     "paybackPeriodYears": 0.2331241990091624,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“At Enoc, Sustainability has always been deeply rooted in our core values, we are leveraging talent and technology with prudence and foresight to co-create a shared future.”",
-        "name": "H.E. Saif Al Falasi",
-        "title": "Group CEO",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -17775,21 +16970,9 @@
     "isSME": true,
     "testimonials": [
       {
-        "text": "\"NTPC SIMHADRI's achievement in reducing the GHG and substantial energy saving has  become possible through the successful implementation of ISO 50001.\"",
-        "name": "Girish Chandra Choukse",
-        "title": "Head of the Plant",
-        "compelling": false
-      },
-      {
         "text": "\"Bridging energy gap, protecting earth, branding the business through ISO-50001.\"",
         "name": "Jhimli Dhar",
         "title": "AGM (EEMG)",
-        "compelling": false
-      },
-      {
-        "text": "\"An ISO:50001 Energy management standard promotes sustainability of the business.\"",
-        "name": null,
-        "title": null,
         "compelling": false
       }
     ],
@@ -17852,20 +17035,7 @@
     "implementationCostUSD": 550000.0,
     "paybackPeriodYears": 0.2650602409638554,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Our objective is to improve efficiency and reduce emission, thereby ensure sustainable growth through ISO 50001 EnMS implementation which strives to save every possible quantum of energy to create environmental synergy and become the most energy efficient unit in power industry.”",
-        "name": "Ghanshyam Prajapati",
-        "title": "Head of Project",
-        "compelling": true
-      },
-      {
-        "text": "“ISO 50001 is the true facilitator to improve\nsystem efficiency through EnMS ensuring\neconomical product & enhanced operational\nprofit with an eye on ecological balance,\nthereby leading to sustainable business\ngrowth.”",
-        "name": "Ramnath Pujari",
-        "title": "GM",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -17999,12 +17169,6 @@
     "paybackPeriodYears": 0.004925373134328359,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“The maritime industry is in the spotlight and our efforts towards decarbonization and achieving sustainable growth by means of ISO 50001 will shape our future and the way we serve our stakeholders.”",
-        "name": "Abdulkareem Al Masabi",
-        "title": "CEO",
-        "compelling": false
-      },
       {
         "text": "“The cost savings in environmental and energy management is projected to exceed 400 million by 2030.”",
         "name": "Mohamed Al Maflahi",
@@ -18225,12 +17389,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“I am glad to announce the ADNOC Onshore 2030 sustainability strategy, which focuses on climate, emissions, energy, and local environment. We are ISO 14001:2014 and ISO 50001:2018 certified company since many years with excellent performance in environment management and energy efficiency.”",
-        "name": "Omar Obaid Al Nasri",
-        "title": "Chief Executive Officer",
-        "compelling": false
-      },
-      {
         "text": "“ADNOC ONSHORE is committed to utilize the energy resources responsibly, constantly monitor and improve energy efficiency in our design and operations. ISO-50001 has assisted and guided enormously in developing Energy Management System at ADNOC ONSHORE.”",
         "name": "Sami Al Ankar",
         "title": "VP, Technical Center (Engineering)",
@@ -18298,12 +17456,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Apart from energy and cost efficiency, ISO 50001 is also a guidance to forming leadership and fostering sustainability culture to our employees.”",
-        "name": "Bobby Ariyanto",
-        "title": "Sr. VP Manufacturing",
-        "compelling": false
-      },
-      {
         "text": "\"We knew that ISO 50001 would add a positive financial impact on our financial and environmental aspect, but we never imagine it could also strengthened our corporate social and governance practices.\"",
         "name": "Andry Wiryanto",
         "title": "VP Engineering & Technology",
@@ -18369,20 +17521,7 @@
     "implementationCostUSD": 1225000.0,
     "paybackPeriodYears": 0.08399999999999999,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“The mindset and involvement of our employees has changed remarkably for the better with regard to sustainability.”",
-        "name": "Olaf Quade",
-        "title": "Manager EHSS&Q Assurance",
-        "compelling": false
-      },
-      {
-        "text": "“This certificate confirms our responsible and sustainable use of energy. And it also grants us a considerably lower charge under the EEG (Renewable Energies Law), which significantly reduces our electricity costs. This certificate is therefore twice as important for our site!”",
-        "name": "Jacques Slabbers",
-        "title": "Former Site Director Gelsenkirchen",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": true,
@@ -18729,18 +17868,6 @@
     "paybackPeriodYears": 0.4818794326241135,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Buildings of the future need to be sustainable, hyper-efficient, resilient and people-centric. Technology is available today to achieve it. At Schneider Electric, we walk the talk. ISO50001 certification is the result of implementing our own energy management solutions, and we have set ambitious target to have 100% of our sites certified by 2025. We look forward to working with our ecosystem of partners to strategize, digitize, decarbonize and optimize their building portfolio, in order to accelerate the transition to a net-zero future.”",
-        "name": "Olivier Blum",
-        "title": "Executive VP Energy Management Executive Committee Member",
-        "compelling": true
-      },
-      {
-        "text": "‘’The ISO 50001 certification (and the periodic audits carried out since 2011) have enabled us to engage le Hive site in a continuous improvement process, allowing us to go beyond the results in terms of reducing energy consumption and emissions of CO2, to analyze our practices, look for areas of optimization and benchmark ourselves with other Schneider Electric sites, to move towards the carbon neutrality of our headquarters.’’",
-        "name": "Luc DE CREMOUX",
-        "title": "Safety, Environment & Real Estate Director",
-        "compelling": false
-      },
       {
         "text": "“’We show on this site that, by deploying active energy efficiency solutions, it is possible to considerably improve and sustain building energy performance without affecting its structure. ISO50001 Energy Management System through the planning, action plan and Energy review provides a great tool to structure our execution to deliver our goals for continuous improvement.”",
         "name": "Régis Martin",
@@ -19093,12 +18220,6 @@
         "name": "Ramoncito S. Fernandez",
         "title": "President & CEO",
         "compelling": true
-      },
-      {
-        "text": "\"Our recertification to ISO 50001:2018 strengthens our drive to continue improving the implementation of our EnMS towards achieving our Climate Neutrality Target by 2037.\"",
-        "name": "John Emmanuel B. Martinez",
-        "title": "Sustainability Department Head",
-        "compelling": false
       }
     ],
     "themes": {
@@ -19165,12 +18286,6 @@
         "text": "“I applaud the landmark achievement of 10% energy efficiency improvement in just a couple of years. Supported by our robust EnMS and empowered with our determination, I’m sure we’ll continue this legacy.”",
         "name": "Ahmed Mohamed Al Abri",
         "title": "A/CEO",
-        "compelling": false
-      },
-      {
-        "text": "“ISO 50001 was the key enabler for AGP in successfully achieving its strategic objective of energy efficiency improvement. Now again, it will be a corner stone in shaping our decarbonization roadmap.”",
-        "name": "Ali Al Hendi",
-        "title": "VP Engineering & Technical Services Division",
         "compelling": false
       },
       {
@@ -19318,12 +18433,6 @@
         "name": "Jose Solis",
         "title": "LATAM Energy Manager",
         "compelling": true
-      },
-      {
-        "text": "“ISO 50001 was one of the core elements of 3Ms energy management roadmap. We envisaged benefits by operationalizing it for impact to sustainability metrics, improve competitiveness through lower costs, and raise employee awareness on efficient energy usage. We are reaping its benefits.”",
-        "name": "Ranjit Thakur",
-        "title": "Global Disruptive Technology & Energy Management Leader",
-        "compelling": false
       }
     ],
     "themes": {
@@ -19397,12 +18506,6 @@
         "name": "Jose Solis",
         "title": "LATAM Energy Manager",
         "compelling": false
-      },
-      {
-        "text": "“ISO 50001 was one of the core elements of 3Ms energy management roadmap. We envisaged benefits by operationalizing it for impact to sustainability metrics, improve competitiveness through lower costs, and raise employee awareness on efficient energy usage. We are reaping its benefits.”",
-        "name": "Ranjit Thakur",
-        "title": "Global Disruptive Technology & Energy Management Leader",
-        "compelling": true
       }
     ],
     "themes": {
@@ -20070,12 +19173,6 @@
         "compelling": false
       },
       {
-        "text": "\"50001 Ready creates a nurturing environment for cost-effective energy projects. It's like a nutrient that helps you sustainably grow more energy savings.\"",
-        "name": "Rishabh Bahel",
-        "title": "Energy Manager, ArcelorMittal Cleveland",
-        "compelling": false
-      },
-      {
         "text": "\"Aside from your time, getting started with 50001 Ready costs nothing, so it really accelerates the process and has so many benefits. The program empowers you to have a good team and good processes in place – the value proposition speaks for itself.\"",
         "name": "Rishabh Bahel",
         "title": "Energy Manager, Cleveland",
@@ -20216,12 +19313,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“The resources provided by the 50001 Ready Navigator helped us to initiate a systemic and organized approach to document the ORNL energy efficiency program. Best practices, policies, procedures, federal guidance, and quality energy data are now cataloged, organized, and accessible in a logical structure that is well-designed to advance our efforts in efficient and sustainable facility operations.”",
-        "name": "Ann Weaver",
-        "title": "Director Facilities Management Division",
-        "compelling": true
-      },
-      {
         "text": "“Due to the complexity and mission-specific nature of our facilities, obtaining the DOE 50001 Ready recognition is an impressive achievement that came after a lot of effort and collaboration among ORNL associates.”",
         "name": "Ann Weaver",
         "title": "Director Facilities Management Division",
@@ -20293,12 +19384,6 @@
         "name": "Chad Naugle",
         "title": "Sustainability Manager",
         "compelling": false
-      },
-      {
-        "text": "“50001 Ready is becoming the standard for getting our prisons focused on energy management and taking it to the next level. The 50001 Ready process provides us a means to control and reduce our agency’s energy consumption, carbon emissions, and costs. It’s an opportunity to educate staff and adults in custody on the importance of changing behaviors around the conservation of energy and water.”",
-        "name": "Chad Naugle",
-        "title": "Sustainability Manager",
-        "compelling": false
       }
     ],
     "themes": {
@@ -20361,12 +19446,6 @@
     "paybackPeriodYears": null,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Sustainability is a priority for Quad management, so our facility received strong support for our participation in the 50001 Ready Program. We look forward to seeing our savings grow as a result of our new awareness and daily use of energy-saving measures.”",
-        "name": "Ken Berg",
-        "title": "Quad Engineering Manager",
-        "compelling": false
-      },
       {
         "text": "“Quad’s West Allis facility was a prime candidate for 50001 Ready because they were already meeting much of the standard. We worked together to tie it all up and put the ribbon on top.\"",
         "name": "Tim Dantoin",
@@ -20639,26 +19718,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“The Cree Lighting energy team showed great discipline in staying on schedule to get their energy management system ready, which has become an integral part of the company’s broader sustainable strategy.”",
-        "name": "Mark Stover",
-        "title": "Program Operations Manager, Leidos Strategic Energy Management (SEM) Implementer for Wisconsin Focus on Energy",
-        "compelling": false
-      },
-      {
-        "text": "“Cree Lighting is dedicated to environmental sustainability—from producing sustainable solutions for our customers to making sure our facilities manage energy efficiently. Implementing 50001 Ready gave us the structure to continuously improve our energy performance.”",
-        "name": "Rick Rosser",
-        "title": "VP of Global Operations & Supply Chain",
-        "compelling": false
-      },
-      {
-        "text": "“Our employee suggestions program developed through our 50001 Ready implementation has helped the Green Team identify many of our best sustainability opportunities—with more than 300 suggestions implemented last year.”",
-        "name": "Tim Ulrich",
-        "title": "Environmental, Health & Safety Director",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": true,
@@ -20870,12 +19930,6 @@
         "name": "John Elliott",
         "title": "Chief Sustainability Officer",
         "compelling": false
-      },
-      {
-        "text": "“The responsibility for energy management should not fall on one or two people. Sustainable change across an organization is best achieved through a diverse team with clear roles.”",
-        "name": "Karen Salvini",
-        "title": "Sustainability Project Manager",
-        "compelling": false
       }
     ],
     "themes": {
@@ -21011,12 +20065,6 @@
     "paybackPeriodYears": null,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Participating in 50001 Ready helped Polaris Huntsville to lead the way in exceeding our energy reduction goals and reduce our carbon footprint for the world. We highly recommend participation in this program to any company striving for energy conservation and reduction.”",
-        "name": "Brian Vick",
-        "title": "EHSS Manager",
-        "compelling": true
-      },
       {
         "text": "“The DOE 50001 Ready Navigator is a real-time functioning tool that will help any company keep focus on energy reduction goals. Polaris found that its navigation structure was very user-friendly. This initiative can only be achieved with transparent communication and a great team like we have here.”",
         "name": "Brian Vick",
@@ -21308,20 +20356,7 @@
     "implementationCostUSD": 100000.0,
     "paybackPeriodYears": 1.666666666666667,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "\"Within Curtiss-Wright, we work hard all year to conduct business in an environmentally responsible manner, [...] sustainability initiatives are truly becoming a 'way of life' for us.\"",
-        "name": "David Adams",
-        "title": "Chairman & CEO",
-        "compelling": false
-      },
-      {
-        "text": "\"Energy savings prior to this effort were always kind of hit or miss. When people 'had time' to pay attention to energy conservation, we did an O.K. job. ISO 50001 really gave us the systematic approach we needed to ensure sustainability.\"",
-        "name": "Darren Keller",
-        "title": "Facilities Manager",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": true,
@@ -21405,12 +20440,6 @@
         "name": "Andrea Nance",
         "title": "Manager of Environmental Sustainability",
         "compelling": true
-      },
-      {
-        "text": "\"SEP-certified facilities are frontrunners in energy management and efficiency improvement. Our SEP certification distinguishes us as part of an innovative leadership movement to improve energy productivity and achieve a sustainable, globally competitive future.\"",
-        "name": "Andrea Nance",
-        "title": "Manager of Environmental Sustainability",
-        "compelling": true
       }
     ],
     "themes": {
@@ -21484,12 +20513,6 @@
         "name": "Steve Schultz",
         "title": "Corporate Energy Manager",
         "compelling": false
-      },
-      {
-        "text": "\"Since embarking on our ISO 50001 journey in Decatur as part of 3M’s enterprise-wide SEP, we have seen very significant reductions in our energy usage. In addition to the savings, the value this program brings is in the implementation of the measurement and management systems that are needed for sustainable year-on-year improvements. The enterprise-wide approach has enabled us to learn from the other participating locations of the company and to leverage best practices. Implementation does take management commitment of resources, management commitment of resources, but the payback in the end is well worth the effort.\"",
-        "name": "Robin Higgs",
-        "title": "Decatur Site Manager",
-        "compelling": true
       }
     ],
     "themes": {
@@ -21553,22 +20576,10 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "\"Implementing an EnMS through our Corporate Enterprise approach has yielded savings in cost, energy, and CO2, fortifyinf the company's energy leadership.\"",
-        "name": "Mark Dhennin",
-        "title": "Director, Energy & Environment",
-        "compelling": true
-      },
-      {
         "text": "\"The ISO 50001 and SEP Program development process drove a data driven approach which helped our site energy team focus our efforts and attain greater energy performance. Throughout this process, Columbus Technical Center employees demonstrated passion and hard work to make a positive impact on our internal processes, on the environment, and on Cummins' bottom line.\"",
         "name": "Wayne Eckerle",
         "title": "VP, Corporate Research & Technology",
         "compelling": false
-      },
-      {
-        "text": "\"Not only has the company obtained real cost savings and CO2 reductions, the Enterprise-wide approach makes the ISO 50001 EnMS implementation much more efficient and supports our progress towards Corporate Energy Goals.\"",
-        "name": "Sylvie Dore",
-        "title": "Corporate HSEMS Manager",
-        "compelling": true
       }
     ],
     "themes": {
@@ -22062,12 +21073,6 @@
         "name": "Rajaram Srinivasan",
         "title": "Director of Engineering",
         "compelling": true
-      },
-      {
-        "text": "“Marriott International has a corporate goal to achieve a minimum of 30% renewable energy use and reduce the environmental footprint by cutting water intensity by 15%, carbon intensity by 30%, and waste-to-landfill by 45% across the portfolio by 2025. At the JW Marriott Washington, DC, SEP 50001 and ISO 50001 are important tools to help reach these 2025 targets.”",
-        "name": "Tushaar Agrawal",
-        "title": "GM",
-        "compelling": false
       }
     ],
     "themes": {
@@ -22189,20 +21194,7 @@
     "implementationCostUSD": 21225.0,
     "paybackPeriodYears": 0.2151502250334509,
     "isSME": null,
-    "testimonials": [
-      {
-        "text": "“ISO 50.001 certification reinforces our commitment to the development of sustainability. For this reason we are planning on implementing this standard throughout the Company.”",
-        "name": "Tatiana Apstein",
-        "title": "Sustainability Team Leader",
-        "compelling": false
-      },
-      {
-        "text": "“We were able to reduce the energy intensity per sq. ft. produced for the third consecutive year, and even better, our percentage of renewable energy consumption increased, all these due to ISO 50001 implementation.”",
-        "name": "Alan & Viviana Leiser",
-        "title": "Executive Management Team",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -22274,12 +21266,6 @@
         "name": "Khalil Shorbaji",
         "title": "Operations Manager",
         "compelling": false
-      },
-      {
-        "text": "\"With effective use of ISO 50001, we achieve sustainable resuults in energy optimization with huge return on investment (ROI), making ISO 50001 a competitive system to be cost efficient.\"",
-        "name": "Abedalhade Alhader",
-        "title": "Technical Support Manager",
-        "compelling": false
       }
     ],
     "themes": {
@@ -22341,20 +21327,7 @@
     "implementationCostUSD": 47963.0,
     "paybackPeriodYears": 0.02280833509475408,
     "isSME": null,
-    "testimonials": [
-      {
-        "text": "“Implementing an energy management system that is ISO 50001 certified, aligns with Emirates Steel Arkan’s core values and demonstrates our commitment to sustainability and social responsibility. By investing in technologies and initiatives that enable us to reduce energy consumptions and lower emissions, we are creating new opportunities for growth and innovation while contributing to a more sustainable future.”",
-        "name": "Abdelaziz Asad",
-        "title": "Arkan GM",
-        "compelling": false
-      },
-      {
-        "text": "“Implementing an energy management system that is aligned to ISO 50001 is a crucial step towards reducing energy consumption and improving sustainability in Cement Manufacturing. By optimizing energy usage, Emirates Steel Arkan is reducing its environmental impact. In doing so, we are helping to protect the planet and creating a competitive advantage in a rapidly evolving market that is increasingly demanding for lower emission products and solutions.”",
-        "name": "Abdelaziz Asad",
-        "title": "Arkan GM",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -22415,12 +21388,6 @@
     "paybackPeriodYears": 0.9116275972296218,
     "isSME": null,
     "testimonials": [
-      {
-        "text": "“Our vision is integrated, effective, highly efficient & distinguished system that provides safe & healthy environment & achieve sustainable development.”",
-        "name": "Huda Khalifa Al Salmi",
-        "title": "EHS Department Manager & Chairperson of the Energy Management Team",
-        "compelling": false
-      },
       {
         "text": "“Granting the ISO 50001 accreditation & retaining it, is the valuing & appreciation of ADM’s role & programs in energy management leadership & its implementation of the best international practices in this domain.”",
         "name": null,
@@ -22487,14 +21454,7 @@
     "implementationCostUSD": 6985850.0,
     "paybackPeriodYears": 0.1520520590763447,
     "isSME": null,
-    "testimonials": [
-      {
-        "text": "“Not only has the company obtained real cost savings and CO2 reductions...the Enterprise-wide approach makes the ISO 50001 EnMS implementation much more efficient and supports our progress towards Corporate Energy Goals.”",
-        "name": "Sylvie Doré",
-        "title": "Director- Facility, Environmental Centre of Excellence",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -22555,12 +21515,6 @@
     "paybackPeriodYears": 0.001907485335406841,
     "isSME": null,
     "testimonials": [
-      {
-        "text": "“ISO 50001 not only helps us improve energy and cost efficiency, but also lead us closer toward Net Zero Emission.”",
-        "name": "Maryono",
-        "title": "Senior Manager Muara Karang Power Plant",
-        "compelling": true
-      },
       {
         "text": "“EnMS guides us to realize our energy efficiency target and increase our awareness and commitment on energy efficiency.”",
         "name": "Sarita",
@@ -22718,12 +21672,6 @@
         "name": "Faik Fahmi",
         "title": "President Director of PT Angkasa Pura I",
         "compelling": false
-      },
-      {
-        "text": "“All the efforts to implement ISO 50001 are expected to provide tangible benefits for the environment in a sustainable manner at Bali’s I Gusti Ngurah Rai Airport.”",
-        "name": "Faik Fahmi",
-        "title": "President Director of PT Angkasa Pura I",
-        "compelling": false
       }
     ],
     "themes": {
@@ -22785,20 +21733,7 @@
     "implementationCostUSD": 308391.0,
     "paybackPeriodYears": 0.07631407598408964,
     "isSME": null,
-    "testimonials": [
-      {
-        "text": "“Implementation of energy Management based on ISO 50001 is the foundation for the company to go Beyond Performance and achieve sustainability.”",
-        "name": "Mufti Arimurti",
-        "title": "President Director",
-        "compelling": false
-      },
-      {
-        "text": "“Reduce energy consumption by implementing ISO 50001 is our business strategy for efficiency and sustainability.”",
-        "name": "Mochamad Alfin Zaini",
-        "title": "Operations Director",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -22858,20 +21793,7 @@
     "implementationCostUSD": 98585.0,
     "paybackPeriodYears": 0.004076750228180433,
     "isSME": null,
-    "testimonials": [
-      {
-        "text": "“ISO 50001 is a lead by example, effective and sustainable long-term approach that had helped the organization to optimize the facility Energy Efficiency and demonstrate our commitment to leadership in Energy Management Excellence.”",
-        "name": "Fahad S. Dossary",
-        "title": "Director",
-        "compelling": false
-      },
-      {
-        "text": "“The introduction of ISO 50001 guidelines and methodology has helped the department raising its Energy Management System maturity level, not only in meeting energy efficiency goals, but in GHG emission reduction.”",
-        "name": "Abdulaziz A. Albaiz",
-        "title": "Process Engineer, CEM, CEA",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -23004,20 +21926,7 @@
     "implementationCostUSD": 276000.0,
     "paybackPeriodYears": 0.8941684665226781,
     "isSME": null,
-    "testimonials": [
-      {
-        "text": "“We are very excited about achieving the ISO 50001 certification, which comes as a direct result of our adherence to the vision and directives of His Highness Sheikh Saud bin Saqr Al Qasimi, UAE Supreme Council Member and Ruler of Ras Al Khaimah, to make our emirate more sustainable and set a global example in energy efficiency and renewable energy.”",
-        "name": "Mohammed Abdullatif Khalifa",
-        "title": "Secretary General of the Executive Council & Director General of the Department of Human Resources",
-        "compelling": false
-      },
-      {
-        "text": "“Achieving the ISO 50001 certification is a recognition of Ras Al Khaimah government’s commitment to the energy transition. The energy management systems that we have implemented will support government entities in initiating many new projects and developments that will contribute to the net-zero ambitions of the UAE.”",
-        "name": "H.E. Munther Mohammed bin Shekar",
-        "title": "Director General of Municipality",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -23078,12 +21987,6 @@
     "paybackPeriodYears": 0.04965517241379311,
     "isSME": null,
     "testimonials": [
-      {
-        "text": "“CSR is part of our fundamental values. Coop has a strong focus on its climate footprint and modest energy resources. From a climate perspective, energy management is an essential tool to achieve our climate goals of becoming climate positive by 2030. And from a business perspective, energy savings can help strengthen the bottom line of our stores.”",
-        "name": "Kræn Østergård Nielsen",
-        "title": "CEO",
-        "compelling": true
-      },
       {
         "text": "“ISO 50001 is an effective tool for chasing energy savings, while at the same time it is powerful in terms of planning and involving stakeholders to bring awareness about energy consumptions and to ensure support and anchoring throughout the company.”",
         "name": "Nicki Pagh Børgesen",
@@ -23569,14 +22472,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": null,
-    "testimonials": [
-      {
-        "text": "“With SEP 50001, our energy works harder, which makes our plant more productive, competitive, and sustainable.”",
-        "name": "Craig Redshaw",
-        "title": "GM, Mt. Holly",
-        "compelling": true
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -23637,12 +22533,6 @@
     "paybackPeriodYears": null,
     "isSME": null,
     "testimonials": [
-      {
-        "text": "“50001 Ready has proven critical in managing operations at GM efficiently throughout this year’s challenges and positioned us well to meet our net-zero 2050 goals. Our implementation enabled us to establish common processes and procedures to increase efficiency, optimize production, and aid in effective remote troubleshooting. These actions have been indispensable in supporting GM’s responsiveness to the operational variabilities and challenges introduced by the COVID 19 pandemic.”",
-        "name": "Bob Baird",
-        "title": "Energy Sustainment Manager",
-        "compelling": false
-      },
       {
         "text": "“50001 Ready is an umbrella for everything we do. It allows us to do a lot of good things with consistency of purpose and process, plant-to-plant, organization-to-organization.”",
         "name": "Paul Hartmeister",
@@ -23709,20 +22599,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": null,
-    "testimonials": [
-      {
-        "text": "“We have a pretty motivated team, and we have commitment from our management to give us the time to participate in this type of program, which is really, really good. It’s a big effort from the company to get to these goals and objectives to reduce our carbon footprint and protect the environment—and be efficient as a company as well. Enhanced energy savings equals more money in the company’s pocket, which is also good.”",
-        "name": "Jules Diawara",
-        "title": "Quality & Technical Manager Salisbury",
-        "compelling": false
-      },
-      {
-        "text": "“Gränges is grateful for the immense and indispensable work via the U.S. Department of Energy 50001 Ready Program cohort. This has helped the company achieve one of its sustainability goals—ISO 50001 certification. Special thanks to Advanced Energy and the entire team that put together this program!”",
-        "name": "Jules Diawara",
-        "title": "Quality & Technical Manager, Salisbury",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": true,
@@ -23850,12 +22727,6 @@
     "paybackPeriodYears": null,
     "isSME": null,
     "testimonials": [
-      {
-        "text": "“Sustainability is part of the Loews Hotels & Co DNA. We’re seeing what we can do to make changes to drive our sustainability efforts, reduce our energy footprint, and be better environmental stewards.”",
-        "name": "Lonnie Miller",
-        "title": "Assistant Area Director Property Engineering Operations",
-        "compelling": true
-      },
       {
         "text": "“The 50001 Ready program and DOE leadership has enabled our team to better understand our buildings and build an energy management toolbox to implement at every Loews Hotel.”",
         "name": "Joe  Thomas",
@@ -24001,14 +22872,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": null,
-    "testimonials": [
-      {
-        "text": "“ORNL’s Energy Efficiency and Sustainability Team is very excited to receive the DOE 50001 Ready recognition. Its standardized approach and tools will pay great dividends at ORNL, especially with the unique, complex, and legacy facilities ORNL maintains for its state-of-the-art research mission.”",
-        "name": "Kory Miike",
-        "title": "Director, Facilities Management",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -24135,14 +22999,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": null,
-    "testimonials": [
-      {
-        "text": "“Detroit’s certification to SEP 50001 and Platinum level recognition is just one part of our location’s sustainability journey. Savings generated through these efforts have been invested in manufacturing the next generation of Detroit eMobility products, supporting our long-term commitment to reduce greenhouse gas emissions.”",
-        "name": "Matt Pfaffenbach",
-        "title": "Detroit Plant Manager",
-        "compelling": true
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": true,
@@ -24344,12 +23201,6 @@
     "isSME": null,
     "testimonials": [
       {
-        "text": "“Participating in 50001 Ready helped Polaris Huntsville to lead the way in exceeding our energy reduction goals and reduce our carbon footprint for the world. We highly recommend participation in this program to any company striving for energy conservation and reduction.”",
-        "name": "Brian Vick",
-        "title": "EHSS Manager, Polaris",
-        "compelling": true
-      },
-      {
         "text": "“The DOE 50001 Ready Navigator is a real-time functioning tool that will help any company keep focus on energy reduction goals. Polaris found that its navigation structure was very user-friendly. This initiative can only be achieved with transparent communication and a great team like we have here.”",
         "name": "Brian Vick",
         "title": "EHSS Manager, Polaris",
@@ -24489,12 +23340,6 @@
         "compelling": false
       },
       {
-        "text": "“ISO 50001 is a real facilitator to improve system efficiency by ensuring an economical product and improving operational profit while considering environmental balance...Leading to sustainable business growth.”",
-        "name": "Issam Ali Abdelkefi",
-        "title": "Energy Manager",
-        "compelling": true
-      },
-      {
         "text": "“ISO 50001:2018 incorporates more business management terminology and concepts ensuring that systems and information are integrated into SAGCO’s overall business processes...Rather than being separate entities.”",
         "name": "Nicolaas de Wet",
         "title": "Management Systems Consultant",
@@ -24562,12 +23407,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“We strengthen our reputation and commitment to sustainability that drives us to continue promoting the culture of continuous improvement.”",
-        "name": "Christian Farías",
-        "title": "Project and Investment Manager",
-        "compelling": true
-      },
-      {
         "text": "“We raise awareness among our collaborators about the importance of taking care of energy.”",
         "name": "Cesar Gonzalez",
         "title": "Human Resources Manager",
@@ -24633,20 +23472,7 @@
     "implementationCostUSD": 2733500.0,
     "paybackPeriodYears": 15.11339886988157,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Through our commitment to ISO 50001, Henkel has not only achieved operational excellence but also paved the way for sustainable success, demonstrating our dedication to energy efficiency, environmental responsibility, and continuous improvement.”",
-        "name": "Dr. Dirk Holbach",
-        "title": "Chief Supply Chain Officer",
-        "compelling": false
-      },
-      {
-        "text": "“ISO 50001 and our Energy Management System are integral to Henkel's success, enabling us to optimize energy usage, reduce costs, and uphold our commitment to environmental sustainability, all while driving continuous improvement across our operations.”",
-        "name": "Ozgur Dilmen",
-        "title": "Ankara Factory Director",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -24707,12 +23533,6 @@
     "paybackPeriodYears": 0.43204870850670674,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“At ENOC, sustainability has always been deeply rooted in our core values, we are leveraging talent and technology with prudence and foresight to co-create a shared future.”",
-        "name": "H.E. Saif Al Falasi",
-        "title": "Group Chief Executive Officer",
-        "compelling": true
-      },
       {
         "text": "“Adopting ISO 50001 is a commitment to smarter energy use, propelling business toward a greener and a more profitable future.”",
         "name": "Syed Danish",
@@ -24781,12 +23601,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Our ISO 50001 energy management system is a remarkable achievement that demonstrates our commitment to excellence, innovation, and sustainability. Together, we can make a difference for our organization, our nation and our planet.”",
-        "name": "Col. Jeffery Anderson",
-        "title": "Deputy Commander",
-        "compelling": true
-      },
-      {
         "text": "“The benefit [of the ESPC] is that it better connects the government operations with the investments and guaranteed savings that the contractor is bringing to the table. That partnership is better enabling communication and collaboration by providing a common perspective and shared goals.”",
         "name": "Joseph Cecrle",
         "title": "Energy Manager",
@@ -24853,12 +23667,6 @@
     "paybackPeriodYears": 12.82824300127957,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“At ENOC Group, sustainability is an integral part of our DNA. Having set a remarkable benchmark regionally, we are looking forward to leaving our imprint globally as a sustainability champion in the energy sector.”",
-        "name": "H.E. Saif Humaid Al Falasi",
-        "title": "Group Chief Executive Officer",
-        "compelling": false
-      },
       {
         "text": "“For a very long time now, energy and efficiency have been our focus areas but now they have become embedded in our core. We consider efficiency measures in everything we do.”",
         "name": "Taleb Al Saleh",
@@ -24927,21 +23735,9 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Our forward thinking approach to improve energy efficiency, reduce costs and leverage market opportunities through ISO 50001 continue to contribute to our bottom line beside aligning with the national strategy on ESG.”",
-        "name": "Nader Al Fardan",
-        "title": "Senior Director Gas Marketing",
-        "compelling": false
-      },
-      {
         "text": "“Our journey to achieve compliance to ISO 50001 enabled us to discover many areas of technological intervention that resulted in significant energy reduction. The structured approach under ISO 50001 to measure, monitor and analyze was instrumental in the implementation of technological solutions like Variable Frequency Drives in our LPG Cylinder bottling operations that resulted in over 28% reduction in energy in this operation.”",
         "name": "G. Vinod",
         "title": "Maintenance and Technical Services Manager",
-        "compelling": false
-      },
-      {
-        "text": "“The reduction in the energy intensity in our plant operations over the last 5 years is a testimony to the fact that effective implementation of ISO 50001 has a positive impact on EMGAS bottom line while aligning the business with ESG goals .”",
-        "name": "Faisal Shafie",
-        "title": "Operations and Logistics Manager",
         "compelling": false
       }
     ],
@@ -25079,12 +23875,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "\"Certification to the ISO 50001 standard is a key initiative in our journey towards carbon neutrality.\"",
-        "name": "Marcelo Catino",
-        "title": "Environmental Regional Manager",
-        "compelling": true
-      },
-      {
         "text": "“The ISO 50001 has been fundamental for our continuous improvement in energy efficiency. It has allowed us to identify and prioritize Significant Energy Uses (SEUs) and our energy resources, acting as an accelerator to focus our priorities and improve our environmental management process.”",
         "name": "Daniel Valeggia",
         "title": "Plant Director",
@@ -25150,20 +23940,7 @@
     "implementationCostUSD": 15556.0,
     "paybackPeriodYears": 0.9729493073146324,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Reducing energy consumption through efficient use in all processes is imperative in the face of the climate crisis.”",
-        "name": "Miguel Saavedra",
-        "title": "General Manager",
-        "compelling": false
-      },
-      {
-        "text": "“The implementation of the EnMS is a tremendously significant step for an energy-intensive company like EFE Valparaíso, which operates a fleet of electric trains and positions itself as a leader in electromobility in the Valparaíso Region, providing sustainable transportation to thousands of people every day.”",
-        "name": "Miguel Saavedra",
-        "title": "General Manager",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -25365,12 +24142,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“At ENOC, our commitment to sustainability is central to the long-term development of our business. As part of our longstanding practices and commitment to our sustainability, we have been focusing on improving efficiencies of our operations, minimizing the environmental impact and using tools available to us to bring about positive economic change.”",
-        "name": "H.E. Said Humaid Al Falasi",
-        "title": "Group Chief Executive Officer",
-        "compelling": false
-      },
-      {
         "text": "“Encourage and promote energy conservation measures by providing necessary resources and framework to set Objectives and Targets related to Energy and reviewing the same periodically.”",
         "name": "Khalid M Al Ahthel",
         "title": "General Manager",
@@ -25444,12 +24215,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“We have put sustainable development first and foremost as our management goal and in action, one of them is energy management system ISO 50001.”",
-        "name": "Lee Sang Sun",
-        "title": "General Director",
-        "compelling": false
-      },
-      {
         "text": "“We worked on ISO 50001 for beyond compliance reasons, now we feel the best benefits from the business side.”",
         "name": "Ida Nurhaida",
         "title": "Deputy Direction Responsible Sourcing and Manufacturing",
@@ -25515,20 +24280,7 @@
     "implementationCostUSD": 17000.0,
     "paybackPeriodYears": 0.2736154254719866,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“EnMS provided systematic approach for energy conservation activities at our plant; also it helped to reduce carbon footprint and enhance efficiency with continual improvement.\"",
-        "name": "Sarvesh Raut",
-        "title": "Chief Operating Officer",
-        "compelling": false
-      },
-      {
-        "text": "“ISO 50001 is the compass guiding organizations towards a sustainable future, offering not just a framework for energy management, but a pathway to identify all types of Energy losses, attacking them through optimization innovation, and technological upgradation. Its helps in developing culture of energy management through employee engagement and motivates employees to learn and improve. It’s indispensable in navigating the complexities of a rapidly evolving energy landscape, empowering organizations to thrive in a world where sustainability is not just an option, but a necessity.”",
-        "name": "Shridhar Deshmukh",
-        "title": "Deputy General Manager of Operation",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -25588,14 +24340,7 @@
     "implementationCostUSD": 16267.0,
     "paybackPeriodYears": 0.031003688918663678,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Great results from a great team, we are aiming for more optimization and further enhancement in safe and sustainable manners.”",
-        "name": "Sultan Al-Otaibi",
-        "title": "Chemical Operation Director",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -25657,21 +24402,9 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Achieving and maintaining our ISO 50001 accreditation and integrating it with our customer outreach not only embodies our commitment to energy efficiency, but is also the cornerstone of our alignment with the UAE's 2050 Net Zero Strategy. Our journey to meeting this international standard has helped us to meet our parent company's goals and highlights our dedication to excellence on a global scale.”",
-        "name": "AbdulAziz Al Shamsi",
-        "title": "Executive Customer Services Director",
-        "compelling": true
-      },
-      {
         "text": "“ADDC’s ISO 50001 initiative for our industrial customers and experience of EnMS has helped us to better understand our customers' needs and to train them to improve their energy efficiency.”",
         "name": "Dr. Mohamed Al Hosani",
         "title": "DSM Department Manager",
-        "compelling": false
-      },
-      {
-        "text": "“The structured approach of an ISO 50001 EnMS has really helped us to organize our improvement programme and take our sustainability journey to the next level.”",
-        "name": "Mohamed Abdel Maguid",
-        "title": "Health, Safety, and Environment Department Manager",
         "compelling": false
       }
     ],
@@ -25869,12 +24602,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“MPD accomplishments through implementing ISO 50001 has tremendously enhanced the Energy savings and establishing the path toward decarbonization evolvement.”",
-        "name": "Saif Alomari",
-        "title": "Energy Engineer",
-        "compelling": false
-      },
-      {
         "text": "“ISO 50001 provides MPD a roadmap to establish, maintain and implement effective EnMS.”",
         "name": "Ali A. Asiri",
         "title": "Operations Efficiency Supervisor",
@@ -25940,20 +24667,7 @@
     "implementationCostUSD": 12267.0,
     "paybackPeriodYears": 0.013373084473534958,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Implementing the Energy Management System ISO 50001:2018 has aided in saving costs, conserving energy, and reducing greenhouse gas (GHG) emission by 38% over the past four years.”",
-        "name": "Khaled ALAwwad",
-        "title": "EnMS Team Leader",
-        "compelling": false
-      },
-      {
-        "text": "“EnMS guides SASO to a systematic approach to continually improve energy performance, reduce costs, sustainability, enhance energy efficiency, and meet regulatory requirements in the Kingdom of Saudi Arabia.’’",
-        "name": "Khaled ALAwwad",
-        "title": "EnMS Team Leader, 50001 LA®, CCMLTM",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -26013,20 +24727,7 @@
     "implementationCostUSD": 55816.87,
     "paybackPeriodYears": 0.007928364417948289,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“ISO 50001 has given a formidable impetus to the Energy Conservation & Environment Preservation goals of NTPC Talcher Kaniha with its well defined & structured framework for differentiating our efforts towards Sustainability by minimizing our Carbon Footprint & water consumption and sensitization towards emissions from Thermal Power Plant.”",
-        "name": "Ashok Kumar Sehgal",
-        "title": "Business Unit Head",
-        "compelling": true
-      },
-      {
-        "text": "“Establishment of EnMS through ISO 50001 has been the key in identifying the major energy eaters and addressing them has delivered turnaround performance in terms of Energy Savings, CO2 emission reduction and profits.”",
-        "name": "C. Satyaramakrishna",
-        "title": "Head of Operations and Maintenance",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -26086,20 +24787,7 @@
     "implementationCostUSD": 466777.0,
     "paybackPeriodYears": 2.725545953520962,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Guelph is the first Canadian municipality to be certified at a Corporate‐wide level to ISO 50001. This means we are improving how we use energy through all municipal operations and reducing greenhouse gas emissions while lowering our energy costs. A win‐win‐win!”",
-        "name": "Cam Guthrie",
-        "title": "Mayor of Guelph",
-        "compelling": true
-      },
-      {
-        "text": "“The City of Guelph’s energy management system enables us to integrate the continual improvement of energy performance into our organization’s day‐to‐day operations, programs, and services. Through this system ‐ based on the ISO 50001 framework ‐ we have identified and implemented projects that support the reduction of our overall energy consumption and greenhouse gas emissions, including the electrification of our transit fleet, the installation of more energy efficient heat pump systems and solar PV systems, and our commitment to designing new City facilities to Zero Carbon Building Standards.”",
-        "name": "Jayne Holmes",
-        "title": "Deputy Chief Administrative Office of Infrastructure, Development, and Environment",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -26160,12 +24848,6 @@
     "paybackPeriodYears": 0.06190194130050298,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“Our energy efficiency projects and initiatives are key to achieve our strategic vision of becoming world leaders in seamless and sustainable mobility and support our journey towards a carbon-neutral transport sector.”",
-        "name": "Muna AlOsaimi",
-        "title": "Chief Executive Officer - Strategy and Corporate Governance Sector",
-        "compelling": false
-      },
       {
         "text": "“RTA’s vision and energy performance are being met with the implementation of ISO 50001.”",
         "name": "Nada Jasim",
@@ -26233,12 +24915,6 @@
     "paybackPeriodYears": 0.16249268143847873,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“The implementation of an energy management system based on the ISO 50001 standard has improved Watt's competitiveness while contributing to the development of a sustainable industry.”",
-        "name": "Claudio Vergara",
-        "title": "Energy Manager",
-        "compelling": true
-      },
       {
         "text": "“The ISO 50001 standard has been a fundamental guide for the standardization of energy management in the Company and the SGE has allowed us to concretely materialize management actions.”",
         "name": "Omara Monardez",
@@ -26451,20 +25127,7 @@
     "implementationCostUSD": 19800000.0,
     "paybackPeriodYears": 4.991781208716961,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Our green mobility strategy targets to develop a sustainable transportation network, cut carbon emissions by promoting transit, walking, active mobility, biking, and clean energy vehicles, foster compact communities for shorter trips, and prioritize climate-resilient investments.”",
-        "name": "Eng. Esmaeel Hasan Al Blooshi",
-        "title": "Director General",
-        "compelling": false
-      },
-      {
-        "text": "“Sustainable transportation and ensuring its energy efficiency by implementing ISO 50001 means finding an appropriate balance between current and future environmental, social and economic.”",
-        "name": "Raed Hamdan",
-        "title": "Director of Operation and Maintenance",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -26524,20 +25187,7 @@
     "implementationCostUSD": 267000.0,
     "paybackPeriodYears": 3.0638590854323255,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Actions to achieve benefits in one category cannot begin without looking at the impact on the other categories and even within the same category. Sustainability is all about balance.”",
-        "name": "Felizardo Orticio Jr.",
-        "title": "Senior Operations Manager",
-        "compelling": false
-      },
-      {
-        "text": "“By integrating considerations of energy related GHG emissions throughout our EMS planning activities, we ensured that our energy management efforts not only improved efficiency but also contributed to environmental sustainability by reducing our carbon footprint.”",
-        "name": "Felizardo Orticio Jr.",
-        "title": "Senior Operations Manager",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -26657,20 +25307,7 @@
     "implementationCostUSD": 67332.0,
     "paybackPeriodYears": 0.03074929134419231,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“ISO 50001 helped Sadara in establishing effective framework to support us in achieving our energy goals and optimization in managing our energy resources, which in return helps mitigate climate change, and also improve energy efficiency within our operations.”",
-        "name": "Salamah AlDhafiri",
-        "title": "Environmental, Health, and Safety Corporate Director",
-        "compelling": false
-      },
-      {
-        "text": "“ISO 50001 is a valuable tool that empowers the Energy management system to enhance energy performance, unlock the full potential of energy efficiency, reducing cost and contributing to a sustainable future.”",
-        "name": "Mousa AlShaikhi",
-        "title": "Utilities Production Director",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -26736,12 +25373,6 @@
         "name": "Humaidi Harbi",
         "title": "Operation Manager",
         "compelling": false
-      },
-      {
-        "text": "“ISO 50001 provides a structure for EnMS, facilitating not only compliance and savings but also fostering a culture of sustainability and efficiency throughout the organization.”",
-        "name": "Yousef Mubarak",
-        "title": "Engineering Manager",
-        "compelling": false
       }
     ],
     "themes": {
@@ -26804,12 +25435,6 @@
     "paybackPeriodYears": 0.15550261867964824,
     "isSME": false,
     "testimonials": [
-      {
-        "text": "“As a part of energy performance improvement, specific management system is required to reorganize the energy management implementation to achieve the objective & target and sustainable improvement.”",
-        "name": "Achmad Khoiruddin",
-        "title": "President Director Chief Executive Officer",
-        "compelling": false
-      },
       {
         "text": "“By implementing PT Badak NGL Energy Management System (BEST), we could organize what we have done and achieve target of Energy Performance more effectively.”",
         "name": "M. Arief Setiawan",
@@ -27011,12 +25636,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Our mission is to reduce emission through ISO 50001 EnMS implementation which strives to save every possible quantum of energy to create environmental synergy and become the most energy efficient unit in power industry.”",
-        "name": "Kedar Ranjan Pandu",
-        "title": "Head of Project",
-        "compelling": false
-      },
-      {
         "text": "“ISO 50001 implementation is only way to business nourishment & future sustenance.”",
         "name": "Alok Kumar Tripathi",
         "title": "Head of Operations and Maintenance Department",
@@ -27155,12 +25774,6 @@
         "name": "Alison Ward",
         "title": "Sustainability Supervisor",
         "compelling": true
-      },
-      {
-        "text": "“As a school district, we have a unique opportunity. We’re developing a more comprehensive climate curriculum and witnessing how students can carry it out into their homes and communities.”",
-        "name": "Alison Ward",
-        "title": "Sustainability Supervisor",
-        "compelling": false
       }
     ],
     "themes": {
@@ -27301,20 +25914,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": true,
-    "testimonials": [
-      {
-        "text": "“I am extremely proud of the efforts the pollution control plant has put forth in leading the way toward decarbonization in Fairfax County. This facility continues to go above and beyond to ensure the county not only meets its net zero carbon goals but leads by example for other industry leaders to follow. The 50001 Ready recognition is a testament to the hard work the men and women at the facility achieve every day.”",
-        "name": "Daniel G. Storck",
-        "title": "Fairfax County Supervisor, Mt. Vernon District",
-        "compelling": true
-      },
-      {
-        "text": "“50001 Ready helped us meet requirements, optimize processes, and develop a culture around managing energy. We now have greater access to information, which enables us to be more proactive in saving energy and money and propels us towards our GHG reduction goals.”",
-        "name": "Mike McGrath",
-        "title": "Wastewater Treatment Division Director",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -27374,14 +25974,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Our participation in 50001 Ready allowed us to refresh and simplify our EMOS programs and reinforce energy management as an important tool to reach cost savings and emissions reductions goals.”",
-        "name": "Michelle Croal",
-        "title": "Energy Manager",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": false,
@@ -27599,12 +26192,6 @@
         "name": "John Elliott",
         "title": "Chief Sustainability Officer",
         "compelling": false
-      },
-      {
-        "text": "“The responsibility for energy management should not fall on one or two people. Sustainable change across an organization is best achieved through a diverse team with clear roles.”",
-        "name": "Karen Salvini",
-        "title": "Sustainability Project Manager",
-        "compelling": true
       }
     ],
     "themes": {
@@ -27666,14 +26253,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": true,
-    "testimonials": [
-      {
-        "text": "“50001 Ready has provided us a structure to items we have been doing. In the early stages of the project this system has helped us identify an area of weakness. We will be able to continue on our track towards decarbonization with this guidance.”",
-        "name": "Steven French",
-        "title": "Manager of Correctional Operations",
-        "compelling": true
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
@@ -27739,12 +26319,6 @@
         "name": "Travis Brown",
         "title": "Sustainability Manager",
         "compelling": true
-      },
-      {
-        "text": "“The Department of Corrections has been committed to sustainability efforts since the first sustainability plan was launched in 2013. DOC set ambitious goals around sustainable operations and bringing on nature programming for adults in custody. The overarching goal and sustainability mission is to focus on being committed to sustainability and stewardship of our natural resources and environment.”",
-        "name": "Tracy Wilder",
-        "title": "Interim Facilities and Distribution Services Administrator",
-        "compelling": false
       }
     ],
     "themes": {
@@ -27879,14 +26453,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“At the end of the day, what I am most proud of is the sustainability of Quad’s culture and values, and the promise that holds.”",
-        "name": "Joel Quadracci",
-        "title": "Chairman, President, Chief Executive Officer",
-        "compelling": false
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": true,
@@ -28015,12 +26582,6 @@
     "isSME": false,
     "testimonials": [
       {
-        "text": "“Going through this process to become recognized by the DOE as 50001 Ready underscores the importance of energy management at Sandia and makes the institution sustainable long-term. Meeting the program’s requirements emphasizes and supports what we are doing and gives us credibility moving forward as we continue to make our operations more energy-efficient.”",
-        "name": "Molly Blumhoefer",
-        "title": "50001 Ready Team Coordinator",
-        "compelling": true
-      },
-      {
         "text": "“Just like you would in your own home — if you have a leaky faucet, if you notice something wasteful, put in a ticket. We want Sandia staff to be the eyes and ears of what is going on in our buildings. If you have an idea, let us know — because all those little things add up.”",
         "name": "Casiano Armenta",
         "title": "Acting Manager Energy and Infrastructure Data Management Group",
@@ -28086,14 +26647,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“Detroit’s certification to SEP 50001 and Platinum level recognition is just one part of our location’s sustainability journey. Savings generated through these efforts have been invested in manufacturing the next generation of Detroit eMobility products, supporting our long-term commitment to reduce greenhouse gas emissions.”",
-        "name": "Matt Pfaffenbach",
-        "title": "Detroit Plant Manager",
-        "compelling": true
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": true,
       "crossSectorEnergy": true,
@@ -28213,14 +26767,7 @@
     "implementationCostUSD": null,
     "paybackPeriodYears": null,
     "isSME": false,
-    "testimonials": [
-      {
-        "text": "“ISO 50001 certification at all of our North American truck sites is a great achievement, and I am proud of our team. We now have a continual energy management system that provides the information we need to reduce our energy usage per truck produced. ISO 50001 helps us meet our corporate environmental and sustainability goals on a daily basis. We are thankful for the support of partner Duke Energy and consultant Advanced Energy.”",
-        "name": "Sandra Carter",
-        "title": "Corporate Environmental Manager",
-        "compelling": true
-      }
-    ],
+    "testimonials": [],
     "themes": {
       "climateChange": false,
       "crossSectorEnergy": false,
