@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tile Test</title>
+    <script src="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.css" />
+    <style>
+        body { margin: 0; font-family: sans-serif; }
+        #map { width: 100%; height: 90vh; }
+        #log { padding: 10px; font-size: 13px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div id="log">Loading map...</div>
+    <div id="map"></div>
+    <script>
+        var log = document.getElementById('log');
+        try {
+            log.textContent = 'Initializing MapLibre...';
+
+            var colorMatch = ['match', ['get', 'SYMB_CLASS'],
+                'C', '#FF8C00', 'D', '#6B8E23', 'F', '#DAA520', 'G', '#D2B48C',
+                'I', '#C0C0C0', 'P', '#8FBC8F', 'R', '#4682B4', 'S', '#BC8F8F',
+                'T', '#CD853F', 'V', '#800080', 'YP', '#90EE90',
+                '#999'
+            ];
+
+            var map = new maplibregl.Map({
+                container: 'map',
+                style: {
+                    version: 8,
+                    sources: {
+                        'carto': {
+                            type: 'raster',
+                            tiles: ['https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png'],
+                            tileSize: 256
+                        },
+                        'crops': {
+                            type: 'vector',
+                            tiles: ['https://data.klimateconsulting.com/ca-water/data/tiles_2023/{z}/{x}/{y}.pbf'],
+                            minzoom: 5,
+                            maxzoom: 12
+                        }
+                    },
+                    layers: [
+                        { id: 'basemap', type: 'raster', source: 'carto' },
+                        {
+                            id: 'crop-fill',
+                            type: 'fill',
+                            source: 'crops',
+                            'source-layer': 'crops',
+                            paint: {
+                                'fill-color': colorMatch,
+                                'fill-opacity': 0.7
+                            }
+                        }
+                    ]
+                },
+                center: [-119.5, 37.3],
+                zoom: 7
+            });
+
+            map.on('load', function() {
+                log.textContent = 'Map loaded! Basemap OK. Waiting for crop tiles...';
+            });
+
+            map.on('data', function(e) {
+                if (e.sourceId === 'crops' && e.isSourceLoaded) {
+                    log.textContent = 'Crop tiles loaded successfully!';
+                }
+            });
+
+            map.on('error', function(e) {
+                log.textContent = 'ERROR: ' + (e.error ? e.error.message : JSON.stringify(e));
+                log.style.background = '#ffcccc';
+            });
+
+        } catch(err) {
+            log.textContent = 'JS ERROR: ' + err.message;
+            log.style.background = '#ffcccc';
+        }
+    </script>
+</body>
+</html>
