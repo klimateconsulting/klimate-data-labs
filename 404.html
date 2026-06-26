@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>California Water Dashboard</title>
+<script>
+  /* Single-Page-App deep links for the CA Water Dashboard.
+     A direct visit to /ca-water/<tab> 404s on GitHub Pages; bounce it to
+     /ca-water/?/<tab>, which the dashboard's <head> decoder turns back into the
+     clean path. Scoped to /ca-water/ — any other 404 just shows the message below. */
+  (function (l) {
+    var APP = '/ca-water/';
+    if (l.pathname.indexOf(APP) === 0 && l.pathname !== APP) {
+      var rest = l.pathname.slice(APP.length).replace(/&/g, '~and~');
+      var q = l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '';
+      l.replace(l.protocol + '//' + l.host + APP + '?/' + rest + q + l.hash);
+    }
+  }(window.location));
+</script>
+<style>
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #F3F5F8; color: #162123;
+         display: flex; min-height: 100vh; align-items: center; justify-content: center; margin: 0; }
+  .box { text-align: center; padding: 2rem; }
+  h1 { font-size: 1.5rem; margin: 0 0 .5rem; }
+  p { color: #5a6a6e; }
+  a { color: #0F4C81; text-decoration: none; font-weight: 600; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="box">
+    <h1>Page not found</h1>
+    <p>This page doesn’t exist. <a href="/">Return to klimate data labs</a></p>
+  </div>
+</body>
+</html>
