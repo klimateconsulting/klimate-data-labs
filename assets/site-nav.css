@@ -1,0 +1,132 @@
+/* Klimate Data Labs — shared global nav for every dashboard.
+   One source of truth (injected by assets/site-nav.js) so navigation can't
+   drift page to page. Brand matches the main site: dark #162123, blue #0F4C81.
+   Sits above the dashboards in normal flow (sticky), so it never overlaps the
+   Plotly/Mapbox content beneath. */
+
+:root {
+  --kc-nav-dark: #162123;
+  --kc-nav-blue: #0F4C81;
+  --kc-nav-light-blue: #C3D2DF;
+}
+
+.kc-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100001;
+  background: var(--kc-nav-blue);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 6px 0;
+  font: 600 14px/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  text-decoration: none;
+}
+.kc-skip:focus { left: 0; }
+
+/* Static (not sticky): several dashboards (e.g. ca-water) have their OWN
+   sticky header + tab bar pinned to top:0. A sticky global bar would collide
+   with them on scroll, so this bar sits at the very top of the page flow and
+   scrolls away, letting each dashboard's internal sticky nav work unchanged.
+   The footer's global links prevent any dead end below the fold. */
+.kc-nav {
+  position: relative;
+  z-index: 100000;
+  background: var(--kc-nav-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Montserrat", sans-serif;
+}
+.kc-nav__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.kc-nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+}
+.kc-nav__brand img { height: 26px; width: auto; display: block; }
+.kc-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.kc-nav__links a {
+  color: #e5e7eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+.kc-nav__links a:hover { color: #fff; }
+.kc-nav__links a.kc-here { color: var(--kc-nav-light-blue); }
+.kc-nav__toggle {
+  display: none;
+  background: none;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px;
+  line-height: 0;
+}
+.kc-nav__toggle svg { width: 26px; height: 26px; }
+
+@media (max-width: 720px) {
+  .kc-nav__toggle { display: inline-flex; }
+  .kc-nav__links {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--kc-nav-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 0;
+    display: none;
+  }
+  .kc-nav__links.kc-open { display: flex; }
+  .kc-nav__links li { width: 100%; }
+  .kc-nav__links a { display: block; padding: 12px 20px; width: 100%; }
+}
+
+.kc-foot {
+  background: var(--kc-nav-dark);
+  color: #9ca3af;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Montserrat", sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.kc-foot__inner { max-width: 1280px; margin: 0 auto; padding: 40px 20px; }
+.kc-foot__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.kc-foot__links a { color: #d1d5db; font-size: 14px; font-weight: 600; text-decoration: none; }
+.kc-foot__links a:hover { color: #fff; }
+.kc-foot__cross { font-size: 13px; margin: 0 0 14px; }
+.kc-foot__cross a { color: var(--kc-nav-light-blue); text-decoration: none; }
+.kc-foot__cross a:hover { text-decoration: underline; }
+.kc-foot__copy {
+  font-size: 13px;
+  color: #6b7280;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 18px;
+}
