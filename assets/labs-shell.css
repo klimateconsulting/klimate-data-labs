@@ -1,0 +1,291 @@
+/* ============================================================
+   Klimate Data Labs — shared shell (2026 redesign)
+   Light editorial system matching klimateconsulting.com.
+   Fonts: Space Grotesk (headings/values) + Montserrat (body/UI),
+   loaded per-page via Google Fonts.
+   Apply on the hub + every dashboard: header, title block,
+   panels, KPI cards, footer. Sector accents:
+   Water #0F4C81 · Ag #70A288 · Energy #FFAD05 · Food #220C10
+   ============================================================ */
+
+:root {
+  --kc-blue: #0F4C81;
+  --kc-blue-dark: #0a3a66;
+  --kc-green: #70A288;
+  --kc-yellow: #FFAD05;
+  --kc-brown: #220C10;
+  --kc-bg: #FDFDFB;
+  --kc-bg-grey: #F3F5F8;
+  --kc-bg-blue: #D3EBFB;
+  --kc-border: #E7EAEE;
+  --kc-divider: #DDE3E8;
+  --kc-light-blue: #C3D2DF;
+  --kc-dark: #162123;
+  --kc-text-lead: #45565a;
+  --kc-text-secondary: #5a6a6e;
+  --kc-text-muted: #8a979b;
+  --labs-content: 1280px;
+}
+
+/* ---- Slim dark header ---- */
+.labs-header {
+  background: var(--kc-blue-dark);
+}
+.labs-header-inner {
+  max-width: var(--labs-content);
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.labs-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+.labs-brand img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+.labs-brand-divider {
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.labs-brand-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--kc-bg-blue);
+}
+.labs-header-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.labs-header-links a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #d6e4ef;
+  text-decoration: none;
+}
+.labs-header-links a:hover { color: #ffffff; }
+
+/* ---- Signature sector stripe ---- */
+.labs-stripe {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 3px;
+}
+.labs-stripe span:nth-child(1) { background: var(--kc-blue); }
+.labs-stripe span:nth-child(2) { background: var(--kc-green); }
+.labs-stripe span:nth-child(3) { background: var(--kc-yellow); }
+.labs-stripe span:nth-child(4) { background: var(--kc-brown); }
+
+/* ---- Title block (white) ---- */
+.labs-title {
+  background: #ffffff;
+  border-bottom: 1px solid var(--kc-border);
+}
+.labs-title-inner {
+  max-width: var(--labs-content);
+  margin: 0 auto;
+  padding: 34px 32px 30px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.labs-title-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.labs-title-label img { width: 30px; height: 30px; object-fit: contain; }
+.labs-title-label span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--kc-text-secondary);
+}
+.labs-title h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--kc-dark);
+  margin: 0 0 10px;
+}
+.labs-title p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--kc-text-secondary);
+  margin: 0;
+  max-width: 640px;
+}
+.labs-source-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.labs-source-pills span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--kc-text-secondary);
+  background: var(--kc-bg-grey);
+  border: 1px solid var(--kc-divider);
+  border-radius: 999px;
+  padding: 6px 14px;
+  white-space: nowrap;
+}
+
+/* ---- Page body ---- */
+.labs-body { background: var(--kc-bg-grey); }
+.labs-content {
+  max-width: var(--labs-content);
+  margin: 0 auto;
+  padding: 32px;
+}
+
+/* ---- White panels ---- */
+.labs-panel {
+  background: #ffffff;
+  border: 1px solid var(--kc-border);
+  border-radius: 6px;
+  padding: 30px;
+}
+.labs-panel-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--kc-dark);
+  margin: 0 0 4px;
+}
+.labs-panel-source {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11.5px;
+  color: var(--kc-text-muted);
+  margin: 0 0 18px;
+}
+
+/* ---- KPI cards ---- */
+.labs-kpi {
+  background: #ffffff;
+  border: 1px solid var(--kc-border);
+  border-radius: 6px;
+  padding: 22px 24px;
+}
+.labs-kpi.accent-blue   { border-top: 3px solid var(--kc-blue); }
+.labs-kpi.accent-green  { border-top: 3px solid var(--kc-green); }
+.labs-kpi.accent-yellow { border-top: 3px solid var(--kc-yellow); }
+.labs-kpi.accent-brown  { border-top: 3px solid var(--kc-brown); }
+.labs-kpi-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--kc-text-muted);
+  margin: 0 0 8px;
+}
+.labs-kpi-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 33px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--kc-dark);
+  margin: 0;
+  line-height: 1.1;
+}
+.labs-kpi-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12.5px;
+  color: var(--kc-text-secondary);
+  margin: 6px 0 0;
+}
+
+/* ---- Underline tabs (CA Water) ---- */
+.labs-tabs {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid var(--kc-divider);
+}
+.labs-tabs a, .labs-tabs button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--kc-text-secondary);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 12px 2px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.labs-tabs .active {
+  color: var(--kc-blue);
+  border-bottom-color: var(--kc-blue);
+}
+
+/* ---- Pill tabs (Food & Ag) ---- */
+.labs-pill-tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+.labs-pill-tabs a, .labs-pill-tabs button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--kc-dark);
+  background: #ffffff;
+  border: 1px solid var(--kc-divider);
+  border-radius: 999px;
+  padding: 9px 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.labs-pill-tabs .active {
+  color: #ffffff;
+  background: var(--kc-blue);
+  border-color: var(--kc-blue);
+}
+
+/* ---- Footer strip ---- */
+.labs-footer {
+  background: var(--kc-blue-dark);
+}
+.labs-footer-inner {
+  max-width: var(--labs-content);
+  margin: 0 auto;
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.labs-footer span, .labs-footer a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12.5px;
+  color: #9db8cd;
+  text-decoration: none;
+}
+.labs-footer a:hover { color: #ffffff; }
+
+@media (max-width: 720px) {
+  .labs-header-inner, .labs-title-inner, .labs-content, .labs-footer-inner { padding-left: 20px; padding-right: 20px; }
+  .labs-title h1 { font-size: 27px; }
+  .labs-source-pills { justify-content: flex-start; }
+}
