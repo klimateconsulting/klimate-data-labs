@@ -29,12 +29,105 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/labs-shell.css">
   <script type="module" crossorigin src="./assets/index-C_GKK732.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-CGvXcHdm.css">
 </head>
 
 <body class="font-sans bg-gray-50 text-gray-900 antialiased">
+
+  <header class="labs-header">
+    <div class="labs-header-inner">
+      <a class="labs-brand" href="../">
+        <img src="../assets/images/logo-white.png" alt="Klimate Consulting">
+        <span class="labs-brand-divider"></span>
+        <span class="labs-brand-label">DATA LABS</span>
+      </a>
+      <div class="labs-header-links">
+        <a href="../">All dashboards</a>
+        <a href="https://klimateconsulting.com" target="_blank" rel="noopener">klimateconsulting.com &#8599;</a>
+      </div>
+    </div>
+  </header>
+  <div class="labs-stripe"><span></span><span></span><span></span><span></span></div>
+
+  <section class="labs-title">
+    <div class="labs-title-inner">
+      <div>
+        <div class="labs-title-label">
+          <img src="../assets/images/icon-food.png" alt="">
+          <span>U.S. Food &amp; Agriculture Value Chain</span>
+        </div>
+        <h1>Farm to fork, in eleven federal datasets</h1>
+        <p>The end-to-end U.S. food system &mdash; production, manufacturing, distribution, retail, trade, access, and waste &mdash; assembled from USDA, Census, EPA, and EIA data (2022&ndash;2024).</p>
+      </div>
+      <div class="labs-source-pills">
+        <span>USDA</span>
+        <span>Census</span>
+        <span>EPA</span>
+        <span>EIA</span>
+      </div>
+    </div>
+  </section>
+
   <div id="root"></div>
+
+  <footer class="labs-footer">
+    <div class="labs-footer-inner">
+      <span>&copy; 2026 Klimate Consulting &middot; Free &amp; open &middot; Built on public data</span>
+      <a href="../">&larr; All dashboards</a>
+    </div>
+  </footer>
+
+  <style id="labs-reskin">
+    body { background: #F3F5F8; }
+    #root > div.min-h-screen { background: #F3F5F8 !important; }
+    /* The app's own internal header is superseded by the labs shell header/title above */
+    #root > div.min-h-screen > header.bg-brand-500 { display: none !important; }
+
+    /* Pill tab nav -> labs-pill-tabs look */
+    #root main > nav:first-of-type {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      gap: 10px !important;
+      border-radius: 0 !important;
+    }
+    #root main > nav:first-of-type a {
+      border-radius: 999px !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      color: #45565a !important;
+      background: #FFFFFF !important;
+      border: 1px solid #DDE3E8 !important;
+      box-shadow: none !important;
+    }
+    #root main > nav:first-of-type a:hover {
+      border-color: #0F4C81 !important;
+      color: #0F4C81 !important;
+      background: #FFFFFF !important;
+    }
+    #root main > nav:first-of-type a[aria-current="page"] {
+      background: #0F4C81 !important;
+      color: #FFFFFF !important;
+      border-color: #0F4C81 !important;
+    }
+
+    /* Flatten Tailwind shadow cards to the flat editorial panel look */
+    #root .shadow-card, #root .shadow-card-hover, #root [class*="shadow-sm"], #root [class*="shadow-md"] {
+      box-shadow: none !important;
+      border: 1px solid #E7EAEE !important;
+      border-radius: 6px !important;
+    }
+
+    /* Headings & numeric values in Space Grotesk */
+    #root h1, #root h2, #root h3,
+    #root .text-3xl, #root .text-2xl, #root .text-xl, #root .text-lg.font-bold {
+      font-family: 'Space Grotesk', sans-serif !important;
+    }
+  </style>
 </body>
 
 </html>
