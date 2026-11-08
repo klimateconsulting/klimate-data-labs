@@ -1,0 +1,155 @@
+{
+  "stages": [
+    {
+      "name": "Crop production",
+      "color": "#4E9A51"
+    },
+    {
+      "name": "Livestock, dairy and poultry production",
+      "color": "#B5651D"
+    },
+    {
+      "name": "Controlled environment agriculture",
+      "color": "#2BB5A0"
+    },
+    {
+      "name": "Aquaculture and seafood",
+      "color": "#2E78C7"
+    },
+    {
+      "name": "Food and beverage processing",
+      "color": "#E07B39"
+    },
+    {
+      "name": "Alternative proteins and fermentation",
+      "color": "#8E5BBE"
+    },
+    {
+      "name": "Transportation and logistics",
+      "color": "#5C6B73"
+    },
+    {
+      "name": "Warehousing and distribution",
+      "color": "#A28D5B"
+    },
+    {
+      "name": "Cold chain and temperature controlled storage",
+      "color": "#4FB3E8"
+    },
+    {
+      "name": "Retail and foodservice",
+      "color": "#D94A6A"
+    },
+    {
+      "name": "Food waste, byproducts and recovery",
+      "color": "#7A9A2E"
+    },
+    {
+      "name": "Cross-cutting (energy, water, data, policy, workforce)",
+      "color": "#777777"
+    }
+  ],
+  "org_types": [
+    "University research center",
+    "Federal research center or lab",
+    "State or regional public research center",
+    "Nonprofit research institute",
+    "Commodity board or checkoff program",
+    "Innovation campus, incubator or accelerator",
+    "Industry consortium or association research program",
+    "Corporate R&D center",
+    "Philanthropic funder"
+  ],
+  "tag_groups": [
+    {
+      "group": "Inputs and genetics",
+      "tags": [
+        "Seeds and genetics",
+        "Biologicals and biostimulants",
+        "Crop protection and pest management",
+        "Soil health and regenerative practices",
+        "Nutrient and fertilizer management",
+        "Pollinators and bee health"
+      ]
+    },
+    {
+      "group": "Field technology and data",
+      "tags": [
+        "Precision agriculture and sensing",
+        "Robotics and autonomous machinery",
+        "Drones and remote sensing",
+        "Farm data, AI and digital agriculture",
+        "Irrigation and water management",
+        "On-farm energy and agrivoltaics"
+      ]
+    },
+    {
+      "group": "Animal agriculture and aquaculture",
+      "tags": [
+        "Animal health and welfare",
+        "Livestock, dairy and poultry production",
+        "Animal feed and nutrition",
+        "Manure management and livestock emissions",
+        "Aquaculture and fisheries"
+      ]
+    },
+    {
+      "group": "Controlled environment agriculture",
+      "tags": [
+        "Greenhouse and vertical farming systems",
+        "Horticultural lighting and climate control"
+      ]
+    },
+    {
+      "group": "Processing and manufacturing",
+      "tags": [
+        "Food processing technology",
+        "Nonthermal and novel processing",
+        "Industrial heat and process energy",
+        "Food safety and pathogen control",
+        "Product development and pilot plants",
+        "Ingredients and food chemistry",
+        "Dairy processing",
+        "Meat and poultry processing",
+        "Grain milling, baking and cereal products",
+        "Beverage, brewing and wine",
+        "Fermentation and biomanufacturing",
+        "Alternative proteins",
+        "Packaging and shelf life"
+      ]
+    },
+    {
+      "group": "Postharvest, logistics and storage",
+      "tags": [
+        "Postharvest handling and quality",
+        "Cold chain and refrigeration",
+        "Transportation and freight",
+        "Warehousing and distribution systems",
+        "Supply chain analytics and traceability"
+      ]
+    },
+    {
+      "group": "Retail, consumption and waste",
+      "tags": [
+        "Retail and consumer behavior",
+        "Foodservice and institutional food",
+        "Nutrition and health outcomes",
+        "Food waste reduction and recovery",
+        "Byproduct valorization and upcycling",
+        "Composting and anaerobic digestion"
+      ]
+    },
+    {
+      "group": "Cross-cutting",
+      "tags": [
+        "Energy efficiency and decarbonization",
+        "Water use and quality",
+        "Climate adaptation and resilience",
+        "Economics, markets and policy",
+        "Workforce, training and extension",
+        "Commercialization and startup support",
+        "Regional food systems and food access"
+      ]
+    }
+  ]
+}
