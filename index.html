@@ -139,6 +139,11 @@
             box-shadow: 0 10px 28px rgba(47,107,63,0.10);
         }
         .hub-card.is-featured h3 { color: #1a4832; }
+        .hub-card.is-featured-blue {
+            background: linear-gradient(180deg, #eef4fa 0%, #ffffff 62%);
+            border-color: #b7cbe0; border-top: 4px solid var(--kc-blue);
+            box-shadow: 0 10px 28px rgba(29,78,137,0.10);
+        }
         .hub-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
         .hub-card-top img { width: 34px; height: 34px; object-fit: contain; }
         .hub-card-slug {
@@ -262,7 +267,7 @@
             <div class="hub-cards">
 
                 <!-- California Water -->
-                <a href="ca-water/" class="hub-card accent-blue">
+                <a href="ca-water/" class="hub-card accent-blue is-featured-blue">
                     <div class="hub-card-top">
                         <img src="assets/images/icon-water.png" alt="">
                         <span class="hub-card-slug">data.klimateconsulting.com/ca-water</span>
